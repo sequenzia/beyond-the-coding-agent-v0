@@ -1,56 +1,102 @@
-# Section 0: Cold Open
+# Section 0: A question worth answering
 
-**Slides:** 1 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v2.md §0
+**Slides:** 1–2 | **Time:** 1:45 | **Outline:** outline-v3.md §0
 
-**Goal:** Open on the coding agent, not on AI. Name the distinction the whole talk rests on, put the thesis on screen, and leave it there.
+**Goal:** Establish a useful user request and the engineering responsibility.
 
-**Running example in this section:** Not yet. The coding agent the audience used this morning is the only example.
+**Running-example beat:** Immediate launch question, then the coding-agent bridge.
 
-**Bridge in:** None. This is the first slide. | **Bridge out:** "This talk is about crossing to that side." Slide 2 opens on the three categories.
+**Bridge in:** Opening. | **Bridge out:** Start with one supplied document.
 
-**Cut order if long:** Nothing. This is one minute.
+**Cut order if long:** Slide 2 only.
 
-**Sources convention:** Every number and quotation traces to `research/synthesis.md` §4 or a track report, with attribution and date. Flags: CAVEAT (say so on stage), SECONDARY (primary unreachable; keep the flag), NOT IN SYNTHESIS (traced to a track report, not in the §4 tables).
+**Delivery:** Script is verbatim first-person speech. At 150 words/minute, each row reserves its remaining time for the visual build, pointing, and reflection. Slides 5 and 11 reserve 12 seconds each for silent thought or brief chat. Do not read every diagram label aloud in addition to the script. All case excerpts and receipts are fictional.
 
-| Slide | Title | Time | Words |
-|---|---|---|---|
-| 1 | You shipped code you did not read | 1:00 | 150 |
+**Sources convention:** Synthesis §8 governs this revision. CAVEAT means say the qualification; SECONDARY means primary was unreachable; NOT IN SYNTHESIS means traced to a track report outside the synthesis. Fictional case evidence traces to the dossier instead of external research.
+
+| Slide | Title | Time | Spoken words | Build / reflection seconds |
+|---|---|---|---|---|
+| 1 | Your user needs an answer they can act on. | 1:00 | 111 | 15.6 |
+| 2 | You already use an agent. Now you own one. | 0:45 | 85 | 11.0 |
 
 ---
 
-### Slide 1: You shipped code you did not read
+### Slide 1: Your user needs an answer they can act on.
 
-**Outline:** 0 | **Time:** 1:00 | **Script target:** about 150 words
+**Outline:** 0.1 | **Time:** 1:00 | **Script:** 111 words | **Build / reflection:** 15.6 seconds
 
 **On slide**
 
-Headline: You shipped code this week that you did not read.
+Headline: Your user needs an answer they can act on.
 
-On build, beneath it, the thesis in two lines:
+Request: What is blocking the toaster-oven launch?
 
-- Using AI makes you an AI-enabled software engineer.
-- Engineering systems whose behavior depends on AI makes you an AI engineer.
+A standard consumer product. A folder of project records.
+
+Fictional walkthrough.
 
 **Visual**
 
-Nearly empty. The headline sits alone, centered, large, for the first half of the script. On [BUILD] it shrinks to the top and the two thesis lines appear beneath it, one above the other, set as a pair. The talk title sits in a small footer. Nothing else. The thesis stays on screen for the rest of the minute and returns verbatim on slide 19, so the wording here is the wording there.
+Open with the request in large type beside a document silhouette labeled TO-26. Use a flat pink outline to connect the question to the folder. The product label supplies the appliance context without technical detail or a photo. Keep the full talk title in the footer. Build only the immediate question. Recurring problems arrives on slide 11, saving on slide 15.
+
+**Build cues (within the allocated non-speech time)**
+
+Hold the request as the first paragraph lands; point to the fictional record collection before the close.
 
 **Script**
 
-Some of you shipped code this week that you did not read. I am not judging. Simon Willison, who has written about this longer than almost anyone, said in May that he no longer reviews every line his agents write, even for production. His words: "I'm not reviewing that code. And now I've got that feeling of guilt."
+Imagine I work on the launch of a standard consumer toaster oven. My colleague asks: what is blocking the launch?
 
-That does not make you an AI engineer. It makes you an AI-enabled software engineer, and that is a real skill.
+The answer is somewhere in the project documents. There are supplier updates, engineering changes, and a pilot report. My colleague needs an answer they can act on, with evidence they can inspect.
 
-Now turn it around. Everything you touched from the user side of that agent, somebody engineered. The instructions file. The permission prompt. The sandbox. The model picker. The people who built those are AI engineers.
+I am going to build toward an agent that investigates those records, learns from earlier launches, and saves a report. We will start with just the first question.
 
-This talk is about crossing to that side. [BUILD] Here is the whole argument in two sentences. [POINT: thesis] It stays on screen while we go.
+Everything in this walkthrough is fictional. I am illustrating document investigation, not manufacturing advice. By the end, I want you to understand the engineering responsibilities and know what to build first.
 
 **Cut if running long**
 
-Drop the verbatim Willison quotation and keep the paraphrase: "he no longer reviews every line his agents write, even for production." Saves about 8 seconds.
+Keep the opening. No planned cut. Saves 0 seconds.
 
 **Sources**
 
-- Willison no longer reviews every line, May 2026 → synthesis.md §2 finding 9 (paraphrase). Verbatim "I'm not reviewing that code. And now I've got that feeling of guilt: if I haven't reviewed the code, is it really responsible for me to use this in production?" → track-d-transition.md §2.5 (Simon Willison, May 6, 2026). NOT IN SYNTHESIS §4 tables; primary reachable.
-- The thesis → README.md, the talk's own claim. It sits inside swyx's categories one and two and Huyen's definition (synthesis.md §2 finding 1; §5 item 8).
-- "Everything you touched from the user side ... somebody engineered" → synthesis.md §2 finding 10 (the coding-agent bridge). The talk's own framing.
+Dossier §§1–3; README.md thesis. Fictional case, not external evidence.
+
+---
+
+### Slide 2: You already use an agent. Now you own one.
+
+**Outline:** 0.2 | **Time:** 0:45 | **Script:** 85 words | **Build / reflection:** 11.0 seconds
+
+**On slide**
+
+Headline: You already use an agent. Now you own one.
+
+Using a coding agent
+
+Building a product whose behavior depends on AI
+
+AI engineering: systems built around foundation models.
+
+**Visual**
+
+A statement scene. Set the first line in off-white and build the second in pink text on the dark base. No discipline map yet. The smaller definition appears last. Keep all three at body size or larger.
+
+**Build cues (within the allocated non-speech time)**
+
+Reveal the ownership line after “somebody else's product,” then hold the definition.
+
+**Script**
+
+If you have used a coding agent, you have already met parts of this system. It searches files, calls tools, handles permissions, and reports what happened.
+
+Now I am responsible for those behaviors in somebody else's product. That is the transition this talk is about.
+
+I use AI engineering to mean building products and systems around foundation models. The model contributes behavior that I cannot specify completely in ordinary code. I still own the interfaces, the failure handling, and the evidence that the product works.
+
+**Cut if running long**
+
+Drop the last sentence if needed. Saves 5 seconds.
+
+**Sources**
+
+Synthesis §3 AI engineer and §2 finding 10; README.md definition. Paraphrase, no quotation.

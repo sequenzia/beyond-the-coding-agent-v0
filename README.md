@@ -1,12 +1,12 @@
 # Beyond the Coding Agent: From Software Engineer to AI Engineer
 
-Preparation materials for a conference talk on AI engineering as a discipline, with a focus on designing, building, and deploying enterprise AI agents. Everything here is Markdown; there is no code.
+Preparation materials for a conference talk on AI engineering as a discipline, with a focus on designing, building, and deploying enterprise AI agents. The talk materials are Markdown. The small style token package supports a separate design sync.
 
 ## Session
 
-- **Length:** 50 minutes, roughly 30 of presentation and 20 of questions and discussion
+- **Length:** 50 minutes, 29 minutes of planned presentation, one minute of contingency, and 20 minutes of questions and discussion
 - **Audience:** software engineers who want to move into AI engineering, most of whom have used a coding agent but few of whom have shipped a system whose behavior depends on a model
-- **Focus:** agentic AI, taught by building one enterprise agent area by area
+- **Focus:** agentic AI, taught through a fictional document investigation supporting a consumer toaster-oven launch
 - **When:** September 2026
 
 ## Presentation Description
@@ -27,16 +27,23 @@ The description above was provided to attendees before the outline was finalized
 
 | Path | What it is |
 |---|---|
-| `overview.md` | A one-file breakdown of the talk as drafted: thesis, through-lines, time budget, the access agent, the map, every slide's beat and first cut, the cut inventory, evidence flags, Q&A stage answers, and status. Start here before opening the slide files. |
-| `outlines/outline-v2.md` | The current outline. Thirty minutes of content drawn on the agent loop, a running access-request agent built in four versions from a single model call to a tiered autonomous agent, a coding-agent bridge for every area, a Q&A table, and appendices on what changed from v1 and what was deliberately cut. |
-| `outlines/outline-v1.md` | The original draft, written for a 60-minute slot. Superseded, kept for comparison. |
-| `slides/` | Slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md` for the discussion. Nineteen slides numbered globally, each with on-slide text, a visual spec, a verbatim speaker script sized at 150 words per minute, a first cut for rehearsal, and a sources line that traces every number and quotation to the research with its evidence flag. |
-| `research/synthesis.md` | Consolidated research: the ranked verdict on what v1 was missing, 2026 vocabulary with attribution, statistics sorted by how safely they can be cited, live controversies, the transition roadmap, and sourced Q&A answers. Read this before putting any number or quotation on a slide. |
-| `research/track-a-discipline.md` | How the field defines AI engineering in 2025 and 2026, competency maps, the shift from prompt to context to harness engineering, conference programs. |
-| `research/track-b-enterprise-agents.md` | Canonical agent design guidance, standards (MCP, A2A, Agent Skills, AGENTS.md, agent identity), production patterns, security incidents, adoption data, governance. |
-| `research/track-c-evals-and-operations.md` | Evaluation methodology, verification versus evaluation, observability, testing, cost and latency. |
-| `research/track-d-transition.md` | Job market, transferable skills, first-timer mistakes, learning resources, first-person accounts, career debates. |
-| `CLAUDE.md` | Working conventions and the decisions that govern the talk, for Claude Code sessions in this repo. |
+| `overview.md` | Standalone guide to the full revised talk, chronology, timing, cuts, map, contracts, evidence, roadmap, and status. Start here. |
+| `outlines/outline-v3.md` | Current outline: twenty connected scenes, 29 minutes of planned content, and explicit coverage of the distributed description. |
+| `outlines/outline-v1.md`, `outlines/outline-v2.md` | Historical outlines, preserved for comparison. |
+| `slides/` | Five section files with globally numbered scenes 1–20, on-slide text, visual specs, verbatim scripts, cuts, and sources. `qa.md` prepares the 20-minute discussion. |
+| `handout.md` | Illustrative report, discipline map, first-project guide, evaluation checklist, and references. |
+| `research/toaster-oven-dossier.md` | Ten canonical fictional documents, chronology, access model, tool contracts, trace, and expected findings. |
+| `research/toaster-oven-injection-variant.md` | Isolated adversarial fixture, separate from the canonical evidence. |
+| `research/presentation-review.md` | Revision findings, checked primary sources, and corrected claims. |
+| `research/revision-validation.md` | Content checks, calculated rehearsal, layout proof results, and remaining speaker/export checks. |
+| `research/synthesis.md` | Consolidated research. Section 8 governs the current revision; earlier sections preserve historical research and flags. |
+| `research/track-a-discipline.md` | Definitions, competency maps, and discipline boundaries. |
+| `research/track-b-enterprise-agents.md` | Agent design, standards, production patterns, and security. |
+| `research/track-c-evals-and-operations.md` | Evaluation, verification, observability, cost, and latency. |
+| `research/track-d-transition.md` | Transferable skills, learning resources, and career research. |
+| `style/design-brief.md` | Conference design system and source for generated tokens. |
+| `.design-sync/` | Design sync configuration and conventions; no sync is included in this content revision. |
+| `AGENTS.md` | Working conventions and current talk decisions for repository agents. |
 
 ## Central Thesis
 
@@ -44,7 +51,8 @@ Using AI makes you an AI-enabled software engineer. Engineering systems whose be
 
 ## Status
 
-- Description: final and distributed.
-- Research: complete as of 2026-09-11. Each track report flags anything that could only be reached through secondary coverage.
-- Outline: v2 complete and under review by the speaker.
-- Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13. Not yet transcribed into a deck.
+- Description: final and distributed, preserved verbatim.
+- Research: original tracks dated 2026-09-11; revision sources and qualifications checked 2026-09-13.
+- Outline: v3 is current. Earlier outlines remain unchanged.
+- Slides: twenty-scene Markdown revision with a fictional illustrated case. No working agent is required.
+- Delivery: local content/layout verification is documented in `research/revision-validation.md`. Live speaker rehearsal and final design-export review remain separate. No design sync was published.

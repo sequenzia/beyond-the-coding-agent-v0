@@ -2,168 +2,113 @@
 
 ## Purpose
 
-A slide design system for one talk: "Beyond the Coding Agent: From Software Engineer to AI Engineer," delivered at an internal virtual conference whose theme is "Code Meets Intelligence." The deck is 19 slides at 16:9, about 30 minutes of presentation followed by 20 of questions, shown over a video call rather than a projector.
+A design system for “Beyond the Coding Agent: From Software Engineer to AI Engineer.” Twenty 16:9 scenes support 29 minutes of planned speech and visual builds, one minute of contingency, and 20 minutes of Q&A. The audience watches an internal virtual conference in a reduced video-call window.
 
-The colors and typefaces come from the conference brand. The conference's aesthetic is fun, playful, and bright, and this system carries that onto a dark ground: saturated accents, big type, big shapes, nothing muddy. The tone is bright, playful, and confident. The conference name, theme, and logo do not appear on the slides; the platform frames the deck.
+The conference theme is “Code Meets Intelligence.” Its palette and Helvetica supply the branding. Do not put its logo or theme line on slides. Every slide has a dark base. Use statement scenes instead of section dividers.
 
-What the deck contains, so the system covers exactly that and no more:
+The running example is a document investigation supporting a standard consumer toaster-oven launch. The recurring visual is the evolving request, evidence, investigation, checks, and report. Reserve the complete discipline map for slide 17. All records are fictional; source IDs and dates must match the dossier.
 
-- A dark base on every slide. There is no light variant.
-- One ring diagram (the "map") drawn three times: base, labeled, and bare.
-- Three Mermaid flowcharts and a handful of drawn diagrams.
-- Tables, cards, checklists, big numbers, stat tiles, quotations, and one dense resource list.
-- No photography, no screenshots, no code blocks, no charts.
+## Color palette
 
-`colors.md` in this folder is the raw conference palette this brief derives from.
-
-## Color Palette
-
-### Base
-
-| Role | Hex | Usage |
+| Role | Value | Use |
 |---|---|---|
-| Background | `#14161c` | Every slide. Never pure black. Never a light background. |
-| Text | `#fffcf5` | Primary text. Warm off-white, not pure white. |
-| Muted text | `#fffcf5` at 60% opacity | Captions, attributions, footers, slide numbers, connectors. Reads at 6.9:1. |
-| Dimmed | `#fffcf5` at 40% opacity | De-emphasized cards, rows, and example values when a sibling is highlighted. Reads at 3.8:1, so only for content the audience is not meant to read closely. |
-| Surface | `#1c1f27` | Cards, tiles, table rows, diagram containers. Slightly lighter than the background. |
-| Border / divider | `#fffcf5` at 12% opacity | Hairline rules, table borders, card outlines. |
-
-### Accents
-
-| Name | Hex | Role |
-|---|---|---|
-| Pink (primary) | `#f948be` | The hero. Big numbers, the highlighted card, row, stop, or node, the "this talk" arrow, strikes and cross-outs, the statement-slide background, the first series in any stat row. Slide titles when the title is the point. |
-| Blue (secondary) | `#1064f8` | Structure. The loop ring, step nodes, connectors that matter, the read-only tool tier, links. |
-| Green | `#01b66d` | Positive. The harness ring, checklist checks, the antidote side of a contrast pair, tips. |
-| Amber | `#fdad00` | Caution and the model. The model at the center of the map, the consequential tool tier, waits, warnings, untrusted segments, caveat callouts. |
+| Base | #14161c | Every slide background; dark text on bright fills |
+| Text | #fffcf5 | Primary text; text on blue fills |
+| Muted | #fffcf5 at 60% | Secondary captions, footers, connectors |
+| Dimmed | #fffcf5 at 40% | Nonessential siblings only, never evidence the viewer must read |
+| Surface | #1c1f27 | Document regions and restrained containers |
+| Border | #fffcf5 at 12% | Hairline separators |
+| Pink | #f948be | Hero emphasis, selected evidence, strikes and failures |
+| Blue | #1064f8 | Retrieval, read tools, ordinary loop steps |
+| Green | #01b66d | Enforced boundaries, checks, harness, verified receipt |
+| Amber | #fdad00 | Model, untrusted text, waits, partial outcomes, save boundary |
 
 ### Text on fills
 
-Measured against WCAG AA: 4.5:1 for body text, 3:1 for large text (24 pt regular or 19 pt bold and up).
+| Fill | Required text |
+|---|---|
+| Base or surface | Off-white |
+| Pink, green, amber, off-white | Base #14161c |
+| Blue | Off-white #fffcf5 |
 
-| Fill | Text | Ratio | Rule |
-|---|---|---|---|
-| Background `#14161c` | Off-white | 17.7 | Default. |
-| Background | Pink | 5.8 | Any size. |
-| Background | Green | 6.8 | Any size. |
-| Background | Amber | 9.6 | Any size. |
-| Background | Blue | 3.6 | Large text only. Never for captions or body. |
-| Pink | `#14161c` | 5.8 | Dark text on pink. |
-| Green | `#14161c` | 6.8 | Dark text on green. |
-| Amber | `#14161c` | 9.6 | Dark text on amber. |
-| Blue | Off-white | 4.9 | Off-white text on blue. The one accent that takes light text. |
-| Off-white | `#14161c` | 17.7 | Dark text on off-white nodes and rings. |
-
-Never place off-white text on pink, green, or amber. Never place dark text on blue.
-
-### Accent rules
-
-- Pink is the default. If a slide needs one accent, it is pink.
-- Up to three accents on a slide. Map slides may use four: amber, blue, green, and a pink highlight.
-- Large flat blocks of accent color are welcome on the statement slide and behind big numbers. Elsewhere accents go on fills, strokes, and highlights, not on backgrounds.
-- Highlight and dim: when one element is the point, it takes a pink fill with dark text or a 3 px pink border, and its siblings drop to the Dimmed token.
-- Series order for stat rows and tiles is fixed: pink, blue, green, amber.
-- Red is not in the palette. Strikes, cross-outs, and failures use pink.
+Never off-white text on pink, green, or amber; never dark text on blue. Blue text on dark ground is large only: at least 24 pt regular or 19 pt bold. Use off-white for smaller necessary source labels. At most three accent colors per scene; four only for the full map. Failures use pink, never red. Dates, explicit labels, and solid/dashed line styles reinforce color meaning.
 
 ### Fixed color keys
 
-These recur across slides and must not vary.
-
-| Structure | Key |
+| Visual | Key |
 |---|---|
-| The map (slides 5, 14, 19) and area names on slide 16 | Model at the center: amber. Loop ring: blue. Harness ring: green. Operations ring: muted off-white. |
-| Autonomy spectrum (slide 4) | Four stop cards on the surface color. v3 highlighted in pink; v0, v1, v2 dimmed. |
-| Tool tiers (slide 8) | Read-only: blue. Durable wait: muted off-white. External and consequential: amber. |
-| Mistake and antidote columns (slide 17) | Mistake column text in amber. Antidote column text in green. |
-| Contrast card (slide 10) | Two columns on one surface card; headings in blue and green at 24 pt bold or larger. |
-| Checklists (slides 15, 18) | Green check glyph, off-white text. |
-| Diagram nodes | See the node class table under Components. |
+| Investigation steps, slides 4–6 | Ordinary steps blue; model choice amber; enforced stop green |
+| Tools, slide 7 | list documents, search documents, read document: blue at large type; save report: amber |
+| Ledger and coverage, slides 8 and 11 | Surface or base rows, off-white body, pink emphasis; no invented heatmap values |
+| Authorization, slide 9 | Green enforced gate, blue retrieval paths; dashed blocked path labeled Outside user access |
+| Injection, slide 10 | Amber untrusted document, pink attempted redirection, green private boundary |
+| Claim checks, slide 12 | Pink strike for overclaim; explicit Overclaim and Supported labels |
+| Checkpoints, slide 14 | Green checkpoint, amber partial result, dashed resume line |
+| Save, slide 15 | Amber controlled action, green verified receipt, amber unknown status |
+| Full map, slide 17 only | Model amber; loop/context/tools blue; harness/checks/security green; operations muted off-white |
 
-## Typography
+## Typography and reduced viewing
 
-Font family: Helvetica. Prefer Helvetica Neue where available, falling back to Helvetica, then Arial. Monospace: Menlo, falling back to SF Mono, then any monospace.
+Helvetica Neue, Helvetica, Arial, sans-serif throughout. Menlo or SF Mono for tool names and field labels only when useful. Italics are allowed for attributed quotations; emphasis is bold or pink. No code screenshots.
 
-| Element | Face and weight | Size (16:9 slide) | Notes |
+Sizes below are points on a 960 × 540 pt canvas, equivalent to twice those numbers in pixels on a 1920 × 1080 export.
+
+| Element | Size |
+|---|---|
+| Statement headline | 54–64 pt bold; wrap deliberately |
+| Assertion headline | 36–42 pt bold, at most three short lines |
+| Essential body, excerpt, table | 24–28 pt; use 26–28 where possible |
+| Essential source identity/date | 20–22 pt, off-white where needed |
+| Secondary attribution | 16 pt muted |
+| Footer and slide number | 14 pt muted, only nonessential text below 16 pt |
+
+Most scenes should contain roughly 25–40 essential words including excerpts, labels, and headline. A small exception is allowed for the four-tool record, coverage table, or milestone checks when every word earns its place. Remove duplication before shrinking type. At a 960 × 540 pixel proof, required text should remain legible. Inspect that reduced proof as well as the full-size render. Do not count tiny footers as teaching content.
+
+## Layout and builds
+
+Use 16:9 at 1920 × 1080 px, about 6% horizontal margins, and a consistent title position. Prefer one clear assertion supported by evidence. Plain document excerpts, timelines, readable tables, and diagrams fit this talk better than decorative dashboards. A two-column split is useful only when the evidence comparison needs it. Use the full canvas for the milestone roadmap and coverage matrix.
+
+No section dividers. Transitions come from the script. The full talk title belongs in the small footer; no extra cover is added to the twenty scenes.
+
+The opening request reveals its immediate question first. Slide 3 previews a bounded D05 answer. Slide 5 restarts the broader investigation and contrasts D02 with D03. Slide 11 reveals the recurring-pattern request; slide 15 reveals saving. Do not show later findings in early builds. Keep the slide 5 and 11 reflection prompts on screen for their allocated pauses.
+
+## Visual vocabulary
+
+- **Request:** large plain question, connected to a labeled document collection. No chat-app chrome needed.
+- **Evidence passage:** canonical short excerpt with ID, version, section, and date when the decision depends on chronology. Pink underline for the decisive phrase. Never fictionalize additional text during design.
+- **Timeline:** dated records along a clear horizontal line. Use Earlier status and Later update labels as well as color. Critical old evidence stays readable after supersession.
+- **Evidence ledger:** compact table with source and what it establishes. Full provenance stays in the handout and notes. Do not squeeze the entire dossier onto a slide.
+- **Coverage matrix:** one row per project, explicit unread state during the build, counterexample retained. Repeated hits never become extra projects.
+- **Claim check:** overclaim with a pink strike, followed by a qualified supported statement and its citations.
+- **Investigation/checkpoint diagram:** editable nodes and solid progress edges; dashed interruption, resume, or optional edges. Gates are labeled, not just colored.
+- **Report:** a readable excerpt of the final report, with current blocker, pattern, and limit. Build the receipt only after the controlled save. Distinguish unknown status from verified success in text.
+- **Map:** compose once on slide 17, using familiar labels. The semantic structure is in its Mermaid diagram; concentric bands are an allowed visual rendering. A2A stays at an optional dashed inter-agent boundary.
+- **Skill pairing / roadmap:** flat table or sequential milestones, with concrete completion checks. No skill percentages.
+- **Resources:** three plain titles on slide 20. Links also appear in the handout. No dense bibliography or QR-only access.
+
+### Mermaid classes
+
+Every Mermaid block uses these colors directly. Do not retain the old pastel classes or rely on an external theme to fix them later.
+
+| Class | Fill | Text | Purpose |
 |---|---|---|---|
-| Statement headline | Helvetica Bold | 64 to 72 pt | Centered. Slide 1 before the build; the closing line on slide 19. |
-| Slide title | Helvetica Bold | 40 to 44 pt | Tight letter spacing, left aligned. Off-white by default; pink when the title is the point. |
-| Big number | Helvetica Bold | 96 pt or larger | Pink. One line of explanation below in body size. |
-| Body text | Helvetica Regular | 20 to 24 pt | Line height about 1.4. Max two levels of bullets. |
-| Mono display | Menlo Regular | 20 to 40 pt | The slide 3 headline quotation; the tool names look up requester, search policy, check entitlements, request approval, notify requester, grant entitlement, and revoke; field names on slide 12; tags. Not for code; there is none. |
-| Captions and labels | Helvetica Regular or Light | 16 pt | Muted text color. Diagram labels are 16 pt minimum. |
-| Attribution | Helvetica Regular or Italic | 16 pt | Muted. Quotation sources, stat sources, the small-type attributions on slides 2, 3, and 15. |
-| Slide number and footer | Helvetica Regular | 14 pt | Muted. The only text allowed below 16 pt. |
+| model | #fdad00 | #14161c | Model choice |
+| step | #1064f8 | #fffcf5 | Retrieval and ordinary steps |
+| check | #01b66d | #14161c | Harness, gates, verified outcomes |
+| wait | #fdad00 | #14161c | Partial result, waiting, unknown status |
+| strike | #f948be | #14161c | Failure or rejected claim |
+| ops | #fffcf5 | #14161c | Operations node |
+| container | #1c1f27 | #fffcf5 | Containers; boundary stroke takes the relevant key color |
 
-- Sentence case is the default because every headline in the deck is written that way. Title Case is allowed for a label or a tag, not for headlines.
-- Italics are for attributed quotations only. Emphasis inside body text uses bold or pink.
-- Virtual delivery: viewers watch on their own screens, often in a small window. Nothing the audience must read goes below 16 pt, the slide 18 resource list included.
-- Keep body text to roughly 40 words per slide. Slide 18 breaks this on purpose.
+## Decoration and exclusions
 
-## Layout
+Flat shapes and restrained decorative lines may support a meaningful relationship. Do not add ornamental circles behind evidence or shapes that resemble interactive controls. No gradients, shadows, glows, pure black/white, light-slide variant, or red. No adoption tiles, anecdotal percentages, retirement trivia, seven-mistakes table, or dense resource slide. No appliance specifications, safety marks, or stock imagery implying a real product.
 
-- Aspect ratio 16:9. Dark background on every slide.
-- Margins of about 6% of slide width on all sides; content sits on a 12-column grid.
-- Left-aligned text by default. Center only on the statement slide and when the map stands alone.
-- One idea per slide. Prefer a diagram or a single large number over a paragraph.
-- Slide number bottom right in muted text. Talk title bottom left in muted text. No conference logo or theme line.
-- Two-column split is 5/7 (text left, diagram right) by default. Slide 8 uses 8/4 (table left, sandbox strip right).
-- Builds: the scripts mark them [BUILD]. Each build is a simple appear or a short fade. No flying, bouncing, or zooming.
-- Corner radius 8 px on cards, tiles, and nodes. Strokes 2 px on diagram shapes, 3 px on highlight borders, 1 px hairline on dividers.
+## Source and sync contract
 
-## Components
+Slides are authored in the five existing Markdown section files. The dossier governs all fictional excerpts, dates, versions, and report conclusions. The synthesis §8 governs external evidence. Do not add unverified statistics during design. Preserve access and uncertainty labels through visual polish.
 
-Each component names the slides that use it. "Not for" says where a similar-looking element should use something else.
-
-- **Statement slide**: one headline alone, centered, 64 to 72 pt. Default is off-white on the background; optional full-bleed pink with dark text. On build the headline shrinks to the top and body text appears beneath. For: slide 1, and the thesis pair with the closing line on slide 19. Not for: section breaks; the deck has none and bridges by script.
-- **Title + body**: title top left, body, table, or diagram below. For: most slides. Not for: a slide whose only content is a headline; use the statement slide.
-- **Two column**: text left, diagram right, 5/7 or 8/4. For: slides 8, 10, 13, 18. Not for: two lists of equal weight; use a table.
-- **Card and card row**: surface fill, hairline border, 8 px radius, title in bold body size, two or three lines beneath. Variants: highlighted (pink border, or pink fill with dark text) and dimmed (Dimmed token for border and text). For: the three categories on slide 2 (third card dimmed) and the four stops on slide 4 (v3 highlighted). Not for: metrics; use a stat tile.
-- **Contrast card**: one surface card split into two columns with a hairline between, headings in blue and green at 24 pt bold or larger (blue on the surface color is 3.3:1, large text only), body in off-white. For: verification versus evaluation on slide 10. Not for: mistakes and antidotes; that is a table.
-- **Table**: hairline row dividers, no vertical borders, header row bold. Variants: highlighted row (pink border, slide 16); color-coded cells (tier cells on slide 8 and area names on slide 16 in their fixed key); tinted columns (slide 17, mistake text amber, antidote text green, surface fill unchanged). Rows may build one at a time. For: slides 8, 16, 17. Not for: a list of resources; use the resource list.
-- **Checklist**: green check glyph at the left, off-white text at body size, one item per line. For: the seven carried-over skills on slide 15 and the four first-project steps on slide 18. Not for: mistakes or warnings; those are a table.
-- **Big number**: one figure at 96 pt or larger in pink, one line of explanation in body size. Variant: arithmetic row, three surface boxes and an equals sign, built left to right (slide 3: three 75% boxes to 42%). For: slides 3 and 15 ("about 80%"). Not for: a set of three metrics; use stat tiles.
-- **Stat tile**: surface card, number in an accent in series order, one-line label, attribution in muted 16 pt. Three across. For: the adoption numbers on slide 11. Not for: a single headline number; use a big number.
-- **Callout**: surface card with a 3 px left border in the accent that matches its meaning: amber for a caveat, green for a tip, pink for a tag or a highlighted takeaway. Text in off-white. For: the "hardest area" tag on slide 16 and the "about 80%" callout on slide 15. Not for: quotations; use the quote component.
-- **Quote**: the quotation in mono display or italic Helvetica, the attribution beneath in muted 16 pt. For: the slide 3 headline, the footer quotation on slide 15, the attributed row on slide 17. Not for: the thesis; that is body text set as a pair.
-- **Resource list**: two columns of grouped items, group headings in an accent, items at 16 pt in off-white. For: slide 18 only. Not for: anything else; it is the one dense slide.
-- **Ring map**: the deck's signature asset. Three concentric rings around a center: the model at the center (amber fill, dark text), the loop as the innermost ring (blue), the harness as the middle ring (green), operations as the outer ring (muted off-white). Ring labels are dark on the colored rings and off-white on the neutral ring. Three variants: base (slide 5, built ring by ring), labeled (slide 14, every element named, no build), bare (slide 19, smaller, no labels). Draw it once and reuse it; the three must be recognizably the same drawing. Area names elsewhere (slide 16) take the color of their ring.
-- **Diagram nodes**: for Mermaid flowcharts and any drawn box diagram. Node fill and text follow this class table, which replaces the pastel `classDef` colors in the slide files.
-
-  | Class | Fill | Text | Used for |
-  |---|---|---|---|
-  | model | Amber `#fdad00` | `#14161c` | The model node on slides 5 and 14. |
-  | step | Blue `#1064f8` | `#fffcf5` | Ordinary steps: gather context, act through a tool, verify, and the run steps on slides 9 and 11. |
-  | wait | Amber `#fdad00` | `#14161c` | The approval wait on slide 9. |
-  | strike | Pink `#f948be` | `#14161c` | The deploy strike on slide 9; any failure or cross-out. |
-  | ops | Off-white `#fffcf5` | `#14161c` | Operations nodes on slides 5 and 14. |
-  | container | Surface `#1c1f27` | `#fffcf5` label | Subgraphs: 2 px stroke in the ring color (blue for the loop, green for the harness, muted off-white for operations). |
-
-  Connectors are muted off-white at 2 px; an edge that is the point (the loop-back, the resume) takes an accent. Dotted edges stay dotted. Labels are 16 pt minimum. For: slides 5, 9, 11, 14. Not for: cards; cards have hairline borders and no accent fill unless highlighted.
-- **Spectrum**: one horizontal line across the slide in muted off-white, labeled at the ends (workflow at the left, agent at the right), four stop cards on it built left to right, v3 highlighted in pink and the rest dimmed. Two definitions above in body size. For: slide 4 only.
-- **Drawn diagram rules**: for the one-offs that are neither Mermaid nor cards: the three-word cycle and eval gate on slide 6, the segmented budget bar on slide 7, the sandbox strip on slide 8, the four-dial gauge on slide 9, the ladder on slide 10, the four-column scorecard strip on slide 11, the record card on slide 12, the triangle and identity chain on slide 13. Boxes on the surface color with hairline or 2 px accent strokes. Cross-hatching is allowed as an amber pattern on a surface fill (the untrusted segments on slide 7). Markers, stamps, and direction-of-argument arrows in pink. Crossed-out elements in pink. Greyed example values in the Dimmed token. The gauge dials are line drawings in off-white with pink needles.
-- **Prop card**: a surface card styled to look like a document, with an amber stamp. For: the deprecation notice on slide 6 only.
-
-## Iconography, imagery, and decoration
-
-- Icons come in two styles; pick one per slide. Filled icons in an accent color (the key on slide 8; the ticket, gate, package, speech bubble, and ledger on slide 13; the status badge on slide 12; checks; dials). Or line icons at 2 px in off-white. Icons never carry text; a caption in muted 16 pt sits beside them.
-- Diagrams use the node class table and the drawn diagram rules above.
-- One decorative shape per slide is allowed: a flat circle or ring in an accent, echoing the map, behind a big number or on the statement slide. Never behind body text, tables, or diagrams. Flat color only, no gradient, no glow.
-- Patterns are limited to cross-hatching inside a diagram element. No background patterns.
-- No photography, no stock imagery, no screenshots. The deck has none.
-
-## Things to avoid
-
-- Gradients, drop shadows, and glow effects.
-- Pure black or pure white anywhere. Red anywhere.
-- A light background on any slide.
-- The conference logo, name, or theme line on any slide.
-- Off-white text on pink, green, or amber. Dark text on blue. Blue text below 24 pt regular or 19 pt bold.
-- More than three accents on a non-map slide; more than four on a map slide.
-- More than one decorative shape per slide; any decorative shape behind text, a table, or a diagram.
-- Text the audience must read below 16 pt; anything below 14 pt.
-- Motion effects on builds.
-- Code blocks, charts, and section divider slides. The deck has none; do not add them.
+The token block below is unchanged by the narrative revision. `style/tokens.css` is generated from it; never edit generated tokens by hand. Updating these guidelines does not publish a design sync. Read `.design-sync/NOTES.md` before any later sync.
 
 ## Tokens for import
 

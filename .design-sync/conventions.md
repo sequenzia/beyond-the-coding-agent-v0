@@ -1,56 +1,39 @@
 # Beyond the Coding Agent: slide design system
 
-Tokens and rules for one 19-slide, 16:9 talk deck shown over a video call, on a dark ground with bright accents. There are **no React components** in this design system. Build every slide from your own primitives and style them only with the tokens below. Read `guidelines/design-brief.md` before composing any slide: it is the source of truth for the component vocabulary (statement slide, card row, contrast card, table, checklist, big number, stat tile, callout, quote, resource list, ring map, diagram nodes, spectrum), the fixed color keys per slide, and the banned list.
+Tokens and guidelines for one **20-scene, 16:9** talk deck shown over a video call. Planned content is 29:00 with 1:00 contingency and 20:00 Q&A. There are no React components. Read `guidelines/design-brief.md` before composing slides and use the supplied tokens for your primitives.
 
-## Setup
+## Narrative and source contract
 
-`styles.css` imports `_ds_bundle.css`, which defines every token on `:root`. Nothing applies the ground for you: give each slide `background: var(--color-base); color: var(--color-text); font-family: var(--font-sans)`. Slides are 16:9 at 1920 × 1080 px. Never a light background, never pure black or pure white, never red.
+The example is a **document investigation supporting a standard consumer toaster-oven launch**. Reuse the request, evidence, investigation, checks, and report. Reserve the full discipline map for slide 17. Reveal the immediate question first, recurring problems on slide 11, saving on slide 15. Slide 3 is a bounded preview; slide 5 restarts the broad investigation.
 
-## Tokens (the complete set)
+The earlier supplier update D02 v1 §1, September 2, names tooling as the blocker. D03 v1 §1, September 9, clears tooling. D04 v2 §2, September 10, requires repeat validation after a heating-element revision. D05 v1 §2, September 11, records validation pending. D06 v1, September 12, corroborates that dependency. D07/D08 show late changes and repeat validation in reviewed retrospectives; D09 supplies the packaging counterexample. Match the dossier and slide text exactly. All records and receipts are fictional.
 
-| Token | Value | Use |
-|---|---|---|
-| `--color-base` | `#14161c` | Slide background. Also the dark text on pink, green, amber, and off-white fills. |
-| `--color-text` | `#fffcf5` | Primary text. The text on blue fills. |
-| `--color-muted` | off-white at 60% | Captions, attributions, footers, slide numbers, connectors, the operations ring. |
-| `--color-dimmed` | off-white at 40% | Siblings of a highlighted element, greyed example values. |
-| `--color-surface` | `#1c1f27` | Cards, tiles, table rows, diagram containers. |
-| `--color-border` | off-white at 12% | Hairline rules, table borders, card outlines. |
-| `--color-primary` | `#f948be` pink | The hero: big numbers, the highlighted card, row, or node, strikes, statement backgrounds. |
-| `--color-secondary` | `#1064f8` blue | Structure: loop ring, step nodes, connectors that matter, read-only tool tier. |
-| `--color-positive` | `#01b66d` green | Harness ring, checklist checks, the antidote side, tips. |
-| `--color-caution` | `#fdad00` amber | The model, waits, warnings, the consequential tool tier, caveats. |
-| `--font-sans` | Helvetica Neue stack | All text. |
-| `--font-mono` | Menlo stack | Quotations, tool names, field names, tags. Never code blocks; the deck has none. |
-| `--radius` | 8px | Cards, tiles, nodes. |
-| `--stroke`, `--stroke-highlight`, `--stroke-hairline` | 2px, 3px, 1px | Diagram shapes, highlight borders, dividers. |
+Use these four display names verbatim: **list documents**, **search documents**, **read document**, **save report**. Authorization precedes every retrieval path. Source restrictions also govern caches, derived material, and reopened reports. The only persistent business action is saving privately. Never imply source editing, permission changes, email, public sharing, or readiness certification.
 
-## Color rules
+## Setup and colors
 
-- Pink is the default accent. At most three accents on a slide; four only on the map slides.
-- Text on fills: `--color-base` on pink, green, amber, and off-white. `--color-text` on blue, and only on blue. Blue text on the base only at 24 pt regular or 19 pt bold and up.
-- Highlight and dim: the element that is the point takes a pink fill with dark text or a `--stroke-highlight` pink border; its siblings switch text and border to `--color-dimmed`.
-- Series order for stat rows and tiles: pink, blue, green, amber.
-- Strikes, cross-outs, and failures are pink. No gradients, drop shadows, or glows.
+`styles.css` imports `_ds_bundle.css`. Give every slide `background: var(--color-base); color: var(--color-text); font-family: var(--font-sans)`. Render at 1920 × 1080 px. Never a light background, pure black/white, gradients, shadows, glows, or red. No conference logo or theme line.
 
-## Type scale (pt on a 960 × 540 pt slide; 1 pt = 2 px at 1920 × 1080)
+- Base #14161c; primary text #fffcf5; surface #1c1f27.
+- Pink #f948be is the hero accent and marks selected evidence or failures.
+- Blue #1064f8 is retrieval and ordinary steps. Green #01b66d is harness, enforced gates, checks, and verified receipt. Amber #fdad00 is model, untrusted text, save boundary, waits, and partial outcomes.
+- Text on pink, green, amber, and off-white fills is #14161c. Text on blue fills is #fffcf5.
+- Blue text on dark ground is at least 24 pt regular or 19 pt bold. Smaller necessary source labels use off-white.
+- At most three accents per scene; four only on the complete map at slide 17.
+- Map key: amber model, blue loop/context/tools, green harness/checks/security, muted off-white operations. A2A is optional and dashed.
+- Dates, explicit labels, and solid/dashed lines reinforce color. Never dim evidence the audience must read.
 
-Statement headline 64 to 72 pt bold, centered. Slide title 40 to 44 pt bold, left, tight tracking. Big number 96 pt or larger, bold, pink. Body 20 to 24 pt regular, line height 1.4, at most two bullet levels. Captions, labels, and attributions 16 pt in `--color-muted`. Slide number and footer 14 pt muted, the only text below 16 pt. Sentence case for headlines. Italics for attributed quotations only; emphasis is bold or pink.
+## Type and composition
 
-## Layout
+Use the Helvetica stack. Menlo/SF Mono is available for tools or fields. On a 960 × 540 pt canvas: assertion titles 36–42 pt bold, statement titles 54–64 pt, essential body/excerpts/tables 24–28 pt, essential source IDs/dates 20–22 pt, secondary attribution 16 pt, footer 14 pt. Double these values for the 1920 × 1080 pixel export. Cut text before reducing necessary type. Inspect at 960 × 540 pixels too.
 
-Margins about 6% of slide width on a 12-column grid. Left-aligned by default; center only the statement slide and a lone map. Two-column split 5/7, text left and diagram right. Slide number bottom right and talk title bottom left, both muted. One idea and about 40 words of body per slide. No section-divider slides, no code blocks, no charts, no photos.
+Keep most scenes near 25–40 essential words including the headline and excerpts. Use about 6% horizontal margins. Favor a clear assertion supported by a passage, timeline, table, or diagram. No section-divider slides, code screenshots, adoption tiles, anecdotal percentages, retirement trivia, mistakes inventory, or dense resource slide. Slide 20 contains three starting resources.
 
-## Example: the autonomy spectrum's four stop cards, v3 highlighted
+## Example evidence comparison
 
-```jsx
-const card = { background: 'var(--color-surface)', border: 'var(--stroke-hairline) solid var(--color-border)', borderRadius: 'var(--radius)', padding: 32, color: 'var(--color-text)', fontFamily: 'var(--font-sans)', fontSize: 40, lineHeight: 1.4 };
-const dim = { ...card, color: 'var(--color-dimmed)', borderColor: 'var(--color-dimmed)' };
-const hot = { ...card, border: 'var(--stroke-highlight) solid var(--color-primary)' };
-<div style={{ display: 'flex', gap: 32 }}>
-  <div style={dim}><b>v0, a single call</b><br />A human sends it.</div>
-  <div style={dim}><b>v1, a workflow</b><br />A human decides and acts.</div>
-  <div style={dim}><b>v2, an agent with read-only tools</b><br />A human approves and executes.</div>
-  <div style={hot}><b>v3, an agent with tiered actions</b><br />The agent, within tiers.</div>
-</div>
-```
+Display these as dated passages, not application widgets:
+
+- September 2 · D02 v1 §1: “Tooling availability is the current launch blocker.”
+- September 9 · D03 v1 §1: “Tooling is available for pilot production.”
+
+Reveal the second passage after the first. Add an explicit Earlier status label and pink strike to the first claim while keeping it readable. Ask what to search next. The next scene follows remaining validation dependencies. Do not show the complete report or discipline map in this build.

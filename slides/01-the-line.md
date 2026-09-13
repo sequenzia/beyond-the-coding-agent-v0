@@ -1,157 +1,232 @@
-# Section 1: The Line
+# Section 1: From an answer to an investigation
 
-**Slides:** 2 through 4 (3 slides) | **Approximate time:** 4 minutes | **Outline:** outline-v2.md §1
+**Slides:** 3–6 | **Time:** 5:15 | **Outline:** outline-v3.md §1
 
-**Goal:** Define the discipline, explain why it is distinct, and set up the spectrum the running example moves along.
+**Goal:** Distinguish a supplied answer, fixed retrieval, and evidence-adaptive investigation.
 
-**Running example in this section:** Introduced on slide 4. The access agent and its four versions, v0 to v3, are placed on the autonomy spectrum. Every later section refers back to this slide's wording.
+**Running-example beat:** Preview D05, restart the broad request, then reconcile the stale tooling claim.
 
-**Bridge in:** "This talk is about crossing to that side." | **Bridge out:** "v3 is the same shape as the coding agent you used this morning."
+**Bridge in:** Start with one supplied document. | **Bridge out:** Make the investigation tools dependable.
 
-**Cut order if long:** Nothing in this section is on the outline's cut list. If forced: the job-postings paragraph on slide 2 (10 seconds), then the Thoughtworks sentence on slide 3 (10 seconds).
+**Cut order if long:** 4, 6, then shorten reflection on 5. Preserve the reveal.
 
-**Sources convention:** Every number and quotation traces to `research/synthesis.md` §4 or a track report, with attribution and date. Flags: CAVEAT (say so on stage), SECONDARY (primary unreachable; keep the flag), NOT IN SYNTHESIS (traced to a track report, not in the §4 tables).
+**Delivery:** Script is verbatim first-person speech. At 150 words/minute, each row reserves its remaining time for the visual build, pointing, and reflection. Slides 5 and 11 reserve 12 seconds each for silent thought or brief chat. Do not read every diagram label aloud in addition to the script. All case excerpts and receipts are fictional.
 
-| Slide | Title | Time | Words |
-|---|---|---|---|
-| 2 | Same tools, different deliverable | 1:15 | 190 |
-| 3 | Why it is a distinct discipline | 1:15 | 190 |
-| 4 | The autonomy spectrum and the access agent | 1:30 | 225 |
+**Sources convention:** Synthesis §8 governs this revision. CAVEAT means say the qualification; SECONDARY means primary was unreachable; NOT IN SYNTHESIS means traced to a track report outside the synthesis. Fictional case evidence traces to the dossier instead of external research.
 
----
-
-### Slide 2: Same tools, different deliverable
-
-**Outline:** 1.1 | **Time:** 1:15 | **Script target:** about 190 words
-
-**On slide**
-
-Headline: Same tools, different deliverable.
-
-- Software engineers enhanced by AI
-- Software engineers building AI products
-- Non-human software engineers
-
-Footer: The deliverable is the test. Does the shipped system call a model at runtime?
-
-**Visual**
-
-Three cards in a row, one per category, attributed in small type to swyx (2023, restated 2025). The first two cards are full weight; the third is dimmed, since the talk is not about it. An arrow runs from the first card to the second, labeled "this talk." The footer line sits beneath the cards and is the only other text on the slide. No build.
-
-**Script**
-
-swyx, who named this field and runs its conference, draws three categories. Software engineers enhanced by AI. Software engineers building AI products. And non-human software engineers, the agents themselves. This talk is about moving from the first to the second. [POINT: arrow]
-
-What does the second group build? Chip Huyen's definition: products and systems on foundation models that someone else made. Machine learning engineers train models. AI engineers adapt them. Karpathy's line, quoted by swyx: "One can be quite successful in this role without ever training anything." That is the boundary with ML engineering, and it is the last time I will mention fine-tuning until the end.
-
-So how do you tell the two groups apart? Not by the tools. Both use the same coding agent. The test is the deliverable. [POINT: footer] If the system you ship calls a model at runtime, it inherits non-determinism, evaluation, cost, and safety as engineering problems. That is the whole difference.
-
-And it is what the job postings say. Real 2026 postings from OpenAI and Anthropic list "evaluation frameworks" and "agent development" as required. Not agent use. Agent development.
-
-**Cut if running long**
-
-Drop the final paragraph on job postings. Saves about 10 seconds. The same fact returns on slide 18.
-
-**Sources**
-
-- Three categories: software engineers enhanced by AI, software engineers building AI products, non-human software engineers → track-a-discipline.md §2.1 (swyx, RedMonk conversation, July 23, 2025; first drawn at the 2023 AI Engineer Summit). Also synthesis.md §2 finding 1. NOT IN SYNTHESIS §4 tables; a definition, not a statistic.
-- "products and systems on foundation models made by others" → synthesis.md §3 (Huyen, 2025). Huyen's own words: models "typically developed by research labs and made available as a service" → track-a-discipline.md §2.1 (Huyen with Orosz, May 20, 2025).
-- "One can be quite successful in this role without ever training anything." → track-d-transition.md §3 (Karpathy, quoted by swyx, 2023).
-- "evaluation frameworks" and "agent development" required, not preferred → track-d-transition.md §1 finding 4 (OpenAI Applied AI Engineer posting; Anthropic Forward Deployed Engineer, Applied AI posting; both 2026). Verbatim from the Anthropic posting: "Production experience with LLMs including advanced prompt engineering, agent development, evaluation frameworks" → track-d-transition.md §2.1.
-- "Same tools, different deliverable" → track-d-transition.md §1 finding 9 and §5. The track's framing, adopted by the talk.
+| Slide | Title | Time | Spoken words | Build / reflection seconds |
+|---|---|---|---|---|
+| 3 | One document can answer one bounded question. | 1:00 | 103 | 18.8 |
+| 4 | Retrieval supplies evidence for the question. | 1:15 | 146 | 16.6 |
+| 5 | The first relevant document can tell an outdated story. | 1:30 | 152 | 29.2 |
+| 6 | An agent chooses the next investigation step. | 1:30 | 181 | 17.6 |
 
 ---
 
-### Slide 3: Why it is a distinct discipline
+### Slide 3: One document can answer one bounded question.
 
-**Outline:** 1.2 | **Time:** 1:15 | **Script target:** about 190 words
+**Outline:** 1.3 | **Time:** 1:00 | **Script:** 103 words | **Build / reflection:** 18.8 seconds
 
 **On slide**
 
-Headline: "Demo is works.any(). Product is works.all()."
+Headline: One document can answer one bounded question.
 
-- Jagged. Non-deterministic. Amnesiac at every context boundary.
-- 75% × 75% × 75% = 42%
-- Retaining principles, relinquishing patterns.
+Question: What validation is pending?
+
+“Temperature-uniformity validation remains pending.”
+
+D05 v1 §2 · September 11, 2026
+
+Answer: temperature-uniformity validation.
 
 **Visual**
 
-The headline is Karpathy's line in monospace, attributed. Beneath it, the three psychology words in a single row, small. Then the arithmetic as three boxes, each reading "75%," with multiplication signs between them and "= 42%" at the end. The boxes build one at a time on [BUILD], so the audience watches the number fall. Attribution under the boxes: Anthropic, January 2026. The Thoughtworks phrase sits in the footer with attribution. If the speaker prefers to speak the arithmetic rather than show it, the boxes collapse to one line of text.
+Show the supplied pilot-production report as a wide document passage. Pink underline on the exact quoted sentence. Put question above and answer below, with the citation attached to the passage. This is a bounded demonstration before restarting the larger request on slide 5.
+
+**Build cues (within the allocated non-speech time)**
+
+Highlight the passage after the first answer; hold it while contrasting the missing completion date.
 
 **Script**
 
-Why is this a distinct discipline and not just software engineering with an API call in it? Start with the model's psychology, because the engineering that follows needs a reason. Karpathy, June 2025: these models are jagged, brilliant at one thing and wrong at the thing next to it. They are non-deterministic; the same input does not give the same output. And they are amnesiac at every context boundary. Every new session starts from nothing.
+First I supply one document: the pilot-production report. I ask what validation is pending.
 
-Karpathy again, on the gap between prototype and production: "Demo is works.any(). Product is works.all()." [POINT: headline] Your demo has to work once. Your product has to work every time.
+The report says temperature-uniformity validation remains pending. I can answer directly and point to the passage. There is no search decision and no investigation loop here. One model call may be enough.
 
-Here is the arithmetic that makes that real. [BUILD] An agent that succeeds 75 percent of the time per attempt. [BUILD] Three attempts in a row. [BUILD] 42 percent. Anthropic published that in January. Reliability, not capability, is the enterprise problem, and the field's own data says capability gains have not delivered it.
+I also need an unanswerable case. If I ask when validation will finish, this report gives no completion date. A useful answer says that the document does not tell us.
 
-So traditional software engineering remains the foundation. It is no longer sufficient. Thoughtworks put it as "retaining principles, relinquishing patterns." The principles are old. The failure modes are new.
+This small version already gives me a way to define success: answer the bounded question, preserve the supporting passage, and recognize what the supplied evidence cannot establish.
 
 **Cut if running long**
 
-Drop the Thoughtworks sentence and end on "capability gains have not delivered it." Saves about 10 seconds. The Thoughtworks line returns in the Q&A answer to "Isn't this just software engineering?"
+Shorten the completion-date example to one sentence. Saves 8 seconds.
 
 **Sources**
 
-- Jagged, amnesiac → track-a-discipline.md §2.1 (Karpathy, "Software in the era of AI," YC AI Startup School, June 17, 2025). "Jagged intelligence" and "anterograde amnesia" are his terms; "non-deterministic" is the track's gloss. Paraphrased on slide and in script, no quotation marks. NOT IN SYNTHESIS §4 tables.
-- "Demo is works.any(), product is works.all()." → track-a-discipline.md §3 (Karpathy, June 17, 2025).
-- 75 percent per attempt, 42 percent for three consecutive passes → synthesis.md §4 safe (Anthropic, "Demystifying evals for AI agents," 2026-01-09).
-- "capability gains have not delivered [reliability]" → synthesis.md §1 item 8 (Princeton reliability study, June 2026: "reliability gains lag behind accuracy improvements" over 24 months of model releases). NOT IN SYNTHESIS §4 tables. Paraphrased; do not quote the study's number.
-- "retaining principles, relinquishing patterns" → track-a-discipline.md §4 (Thoughtworks Technology Radar vol. 34, April 2026). "The principles are old, the failure modes are new" is the track's gloss, owned by the talk.
+Dossier D05 v1 §§2–3; synthesis §8 R6. All displayed excerpts are fictional canonical text.
 
 ---
 
-### Slide 4: The autonomy spectrum and the access agent
+### Slide 4: Retrieval supplies evidence for the question.
 
-**Outline:** 1.3 | **Time:** 1:30 | **Script target:** about 225 words
+**Outline:** 1.4 | **Time:** 1:15 | **Script:** 146 words | **Build / reflection:** 16.6 seconds
 
 **On slide**
 
-Headline: Start with a workflow. Add autonomy when it demonstrably improves outcomes.
+Headline: Retrieval supplies evidence for the question.
 
-- Workflow: LLMs and tools orchestrated through predefined code paths.
-- Agent: LLMs dynamically direct their own processes and tool usage.
+Question
 
-Then the spectrum, built one stop at a time:
+Authorized retrieval
 
-| v0, a single call | v1, a workflow | v2, agent, read-only tools | v3, agent, tiered actions |
-|---|---|---|---|
-| Classify the request and draft a reply | Retrieve policy, look up entitlements, recommend, on a fixed code path | The model chooses which lookups to run and proposes an action | Grants low-sensitivity access itself, requests approval for elevated, escalates the rest |
-| A human sends it | A human decides and acts | A human approves and executes | The agent, within tiers |
+Supporting passages
+
+Grounded answer
+
+RAG: retrieval-augmented generation. This path is fixed.
 
 **Visual**
 
-Anthropic's two definitions sit at the top, attributed (December 2024). Beneath them a horizontal line runs from "workflow" on the left to "agent" on the right. Four stops on the line, each a card with two rows: what it is, and who acts. The cards build left to right on [BUILD]. When v3 appears it takes the highlight and the other three dim, because v3 is what the rest of the talk builds. The card wording here is the wording every later slide uses.
+Use the Mermaid workflow below across the canvas. The authorization gate precedes any passage entering the model. Build each step in order. Explain indexing aloud rather than adding another diagram.
 
-**Running example**
+```mermaid
+flowchart LR
+ Q[Question]:::step --> A[Authorized retrieval]:::check
+ A --> P[Supporting passages]:::step
+ P --> M[Grounded answer]:::model
+ classDef step fill:#1064f8,color:#fffcf5,stroke:#1064f8
+ classDef check fill:#01b66d,color:#14161c,stroke:#01b66d
+ classDef model fill:#fdad00,color:#14161c,stroke:#fdad00
+```
 
-Introduced here. The access agent resolves employee access requests end to end, correctly, with human approval where policy requires it. No baseline numbers; where a figure would go, the script says "your current median resolution time."
+**Build cues (within the allocated non-speech time)**
 
-**Bridge**
-
-"v3 is the same shape as the coding agent you used this morning."
+Build the fixed path after the RAG definition, then point back to authorization.
 
 **Script**
 
-Now the spectrum every guide agrees on. Anthropic's definitions from December 2024 are the ones the field uses. Workflows are "systems where LLMs and tools are orchestrated through predefined code paths." Agents are "systems where LLMs dynamically direct their own processes and tool usage." The difference is who decides what happens next: your code, or the model.
+Now the user has a folder rather than a supplied passage. I add retrieval: find relevant evidence, put it in the model's context, and generate an answer grounded in it. That is retrieval-augmented generation, or RAG.
 
-And the rule: start with a workflow. Add autonomy only when it demonstrably improves outcomes. Anthropic's own words: "For many applications, optimizing single LLM calls with retrieval and in-context examples is usually enough."
+The retrieval service needs to ingest documents, preserve their identities and versions, and index useful passages. Search may match words, meanings, or both. Those are implementation choices we evaluate against our questions.
 
-Here is the example we build for the rest of the talk. Employees ask for access to systems and data all day. "I need read access to the billing database for the Q3 audit." Today a human reads that, checks policy, looks up what you already have, asks your manager, grants it, and replies. You have filed one of these. You have waited.
+Here the application fixes the path: retrieve, then answer. It can retrieve several documents and still be a workflow. The number of documents does not determine whether I need an agent.
 
-[BUILD] v0, a single call. Classify the request and draft a reply. A human sends it. [BUILD] v1, a workflow. Retrieve policy, look up entitlements, produce a recommendation, on a fixed code path. A human decides. [BUILD] v2, an agent with read-only tools. The model chooses which lookups to run and proposes an action. A human approves. [BUILD] v3, tiered actions. It grants low-sensitivity access itself, requests approval for elevated access, and escalates what it cannot resolve.
+Notice the authorization gate before the passages. The model only receives evidence this user can access. We will return to that boundary when the collection includes restricted material.
 
-v3 is the most demanding expression of this discipline. It is what we build. And it is the same shape as the coding agent you used this morning.
+For now, we have made evidence available. We have not established that the first result tells the current story.
 
 **Cut if running long**
 
-Drop the "For many applications" quotation. Saves about 8 seconds. Keep the rule before it; slide 17 depends on it.
+Drop the indexing choices paragraph. Saves 15 seconds.
 
 **Sources**
 
-- Workflows are "systems where LLMs and tools are orchestrated through predefined code paths"; agents are "systems where LLMs dynamically direct their own processes and tool usage." → synthesis.md §3 (Anthropic, "Building effective agents," 2024-12-19).
-- Add complexity "only when it demonstrably improves outcomes" → track-b-enterprise-agents.md §2 (Anthropic, 2024-12-19).
-- "For many applications, optimizing single LLM calls with retrieval and in-context examples is usually enough." → track-d-transition.md §3 (Anthropic, 2024-12-19).
-- The access agent, v0 to v3 → outlines/outline-v2.md, "The Running Example." The talk's own scenario. No external source, no invented numbers.
-- "the same shape as the coding agent you used this morning" → synthesis.md §2 finding 10.
+Synthesis §8 R6 and R2; dossier §5 authorization is the local application contract.
+
+---
+
+### Slide 5: The first relevant document can tell an outdated story.
+
+**Outline:** 1.5 | **Time:** 1:30 | **Script:** 152 words | **Build / reflection:** 29.2 seconds
+
+**On slide**
+
+Headline: The first relevant document can tell an outdated story.
+
+September 2 · D02 v1 §1
+“Tooling availability is the current launch blocker.”
+
+September 9 · D03 v1 §1
+“Tooling is available for pilot production.”
+
+What would you search next?
+
+**Visual**
+
+Two dated excerpts on a horizontal timeline. Initially show only September 2. Pause before revealing September 9. Mark the earlier claim with a pink strike labeled Earlier status after the later update appears. Keep dates and IDs fully readable, never dim the critical contradiction. The reflection question remains at the bottom.
+
+**Build cues (within the allocated non-speech time)**
+
+Show only D02 first. Reveal D03 after the follow-up search. Reserve 12 seconds after “what would you search next?” for silent thought or brief chat.
+
+**Script**
+
+Let me restart with the broader launch question. Our first search returns the earlier supplier update. It says tooling availability is the current launch blocker. That is a relevant result with a perfectly real citation inside our fictional pack.
+
+Would you send that answer to your colleague?
+
+I would first ask what current means here. The update is dated September second. It also promises a follow-up. That gives the investigation a specific next step: search for later tooling status.
+
+The September ninth update says tooling is available for pilot production. The earlier blocker has cleared.
+
+Take a moment: what would you search next? You can think silently or put a short answer in chat.
+
+I would look for the remaining readiness dependencies. Simply taking the newest search hit is not enough either. We need to know what each record establishes, which product configuration it describes, and whether another record closes the dependency.
+
+**Cut if running long**
+
+Shorten reflection from 12 to 6 seconds, still reveal both records. Saves 6 seconds.
+
+**Sources**
+
+Dossier D02 v1 §§1–2, D03 v1 §§1–2 and §4 trace. Fictional excerpts.
+
+---
+
+### Slide 6: An agent chooses the next investigation step.
+
+**Outline:** 1.6 | **Time:** 1:30 | **Script:** 181 words | **Build / reflection:** 17.6 seconds
+
+**On slide**
+
+Headline: An agent chooses the next investigation step.
+
+Search tooling
+Read D03: tooling cleared
+Search validation
+Reconcile D04–D06
+Stop with supported findings
+
+Harness: application control around the model.
+
+**Visual**
+
+Build the evidence-dependent turn first, then place a green harness outline around the loop. Label the return edge New evidence. Show the green stop boundary. Use this compact Mermaid flow, not a full discipline map.
+
+```mermaid
+flowchart LR
+ S[Search tooling]:::step --> D[Read D03: cleared]:::step
+ D --> V[Search validation]:::model
+ V --> R[Reconcile D04–D06]:::step
+ R -. New evidence .-> V
+ R --> E[Supported findings]:::check
+ classDef step fill:#1064f8,color:#fffcf5,stroke:#1064f8
+ classDef model fill:#fdad00,color:#14161c,stroke:#fdad00
+ classDef check fill:#01b66d,color:#14161c,stroke:#01b66d
+```
+
+**Build cues (within the allocated non-speech time)**
+
+Build the change from tooling to validation after the second paragraph. Add the harness boundary when it is defined.
+
+**Script**
+
+This is where I give the model a bounded choice about what to do next.
+
+It reads the tooling update and changes its next search to validation and design revisions. That finds the engineering change record, the pilot report, and the readiness review. Together they establish that the revised heating-element configuration needs repeat validation, and that the result remains pending.
+
+The choice follows the evidence. I did not just ask for a longer answer or send every document into a bigger prompt.
+
+An agent uses the model to choose its next investigation step. The harness is the application control around that model: it supplies context, validates tool calls, tracks state, handles failures, and decides which actions are available.
+
+The model can propose another search. The harness can reject an invalid call or stop an exhausted run. That division of responsibility matters even when the model is capable.
+
+Think of your coding agent changing its search after finding an unexpected dependency. We are engineering that behavior for project documents. We will earn this added autonomy by comparing it with the simpler workflow.
+
+**Cut if running long**
+
+Drop the coding-agent comparison sentence and shorten loop build. Saves 10 seconds.
+
+**Sources**
+
+Synthesis §8 R6; dossier §4 trace and §5 harness contract. Harness is the talk’s working definition, consistent with synthesis §3.

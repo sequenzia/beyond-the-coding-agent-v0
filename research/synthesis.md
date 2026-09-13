@@ -2,6 +2,8 @@
 
 **Prepared:** 2026-09-11, for "Beyond the Coding Agent: From Software Engineer to AI Engineer" (week of 2026-09-14).
 
+**Current revision:** Outline v3 and the toaster-oven investigation are governed by §8 below. Sections 1–7 preserve the original research context; their statistics, product claims, and legal dates are not reverified for this revision and are not current slide copy. Reuse requires current verification and the original qualifications.
+
 **Method.** Four parallel research tracks, each written up in full in this folder:
 
 | Track | File | Scope |
@@ -45,7 +47,7 @@ v1's five-area map (context, tools, harness, evals, operations) matches the fiel
 - 3.1 should lead with the token budget ("find the smallest set of high-signal tokens that maximize the likelihood of your desired outcome," Anthropic) and with provenance and freshness. Amazon's March 2026 retail outage traced to an engineer acting on advice an agent inferred from an outdated internal wiki.
 - 3.2 should say that MCP is how tools ship, and that action tiers are enforced by a policy layer outside the model.
 - 3.3 should be framed around the loop and the harness, absorbing durable state, sandboxing, routing, and budgets. That matches how Anthropic and OpenAI use the word "harness" in 2026.
-- 3.4 should say the evaluator must not share the generator's context, and that graders, judges, and fixtures are production code that drift.
+- 3.4 should distinguish generator and grader roles. A grader needs the candidate claim, relevant evidence, and a rubric; overlapping source evidence is appropriate. Do not rely on shared hidden reasoning. Graders, judges, and fixtures are production code that drift.
 - 3.5 splits naturally into security (injection, identity, sandbox, supply chain) and operations (observability, incident response, rollback, model upgrades).
 
 **What v1 gets right.** RAG demoted to one technique (the field now calls it infrastructure). Tools as contracts. Read-only, reversible, and consequential tiers. Evals as the primary instrument. Continued evaluation after deployment. And the central thesis sits inside the field's consensus: it is swyx's categories one and two (software engineers enhanced by AI versus software engineers building AI products), and Huyen's definition (building on foundation models developed by others).
@@ -90,7 +92,7 @@ v1's five-area map (context, tools, harness, evals, operations) matches the fiel
 - **pass@k versus pass^k.** At least one of k trials succeeds, versus all k succeed (Sierra, 2024; Anthropic, 2026).
 - **Lethal trifecta.** Private data access, exposure to untrusted content, and a way to communicate externally (Willison, June 2025).
 - **Agent Ops.** DevOps plus MLOps plus "tool management, orchestration, memory, and task decomposition" (Google, Feb 2025).
-- **MCP.** Model Context Protocol: agent-to-tool. Donated to the Linux Foundation's Agentic AI Foundation on 2025-12-09. **A2A**: agent-to-agent, relevant only across organizational or vendor boundaries. **Agent Skills**: a folder with a `SKILL.md`, loaded by progressive disclosure; procedural memory as version-controlled files. **AGENTS.md**: the repo-level instruction file, in 60,000+ projects.
+- **MCP.** Model Context Protocol: agent-to-tool. Donated to the Linux Foundation's Agentic AI Foundation on 2025-12-09. **A2A**: agent-to-agent interoperability, optional within or across organizations; not required for local parallel workers (clarified in §8). **Agent Skills**: a folder with a `SKILL.md`, loaded by progressive disclosure; procedural memory as version-controlled files. **AGENTS.md**: the repo-level instruction file, in 60,000+ projects.
 
 ---
 
@@ -129,7 +131,7 @@ v1's five-area map (context, tools, harness, evals, operations) matches the fiel
 
 **Do not put on a slide.**
 
-- MIT NANDA's "95 percent of pilots fail." Non-random sample of about 300 disclosed projects, measures "no measurable P&L impact," largely reflects missing baselines, not peer reviewed, produced by a lab with a stake in the result. If asked, say "most pilots never get measured."
+- MIT NANDA's "95 percent of pilots fail." Non-random sample of about 300 disclosed projects, measures "no measurable P&L impact," largely reflects missing baselines, not peer reviewed, produced by a lab with a stake in the result. If asked, say this study does not establish a universal pilot-failure rate; define success and measure the actual task.
 - LinkedIn's "143 percent" growth figure. Appears only in secondary coverage.
 - Stanford HAI's "10,854 percent" agentic postings surge. Not found on HAI pages.
 - Any single developer-productivity number. METR's July 2025 RCT found experienced developers 19 percent slower while believing they were 20 percent faster; METR's Feb 2026 follow-up has confidence intervals spanning zero and METR calls it "very weak evidence."
@@ -160,7 +162,7 @@ v1's five-area map (context, tools, harness, evals, operations) matches the fiel
 
 **Common first mistakes**, each sourced in track D: building an agent when a workflow would do; shipping without evals and then "prompt and pray"; frameworks before primitives; generic metrics instead of reading traces; shipping unread output ("spells disaster within months," Horthy); treating the demo as done; ignoring cost and latency; abandoning too early without diagnosing where failures occur.
 
-**Build first.** One narrow, real agent for a task the engineer already understands; 20 to 50 eval cases from real examples before tuning the first prompt; direct API calls before a framework; single agent before multi-agent; a trace viewer from day one; add autonomy one tier at a time. First-person accounts put the transition at months, not years, when the first project is small and real (two months for one feature at DSI; a year of workflow change for Khurram).
+**Build first.** One narrow, real agent for a task the engineer already understands; define success before tuning, start with representative cases, and expand from observed failures; direct API calls before a framework; single agent before multi-agent; operational traces with deliberate, governed content capture; add autonomy one tier at a time. First-person accounts put the transition at months, not years, when the first project is small and real (two months for one feature at DSI; a year of workflow change for Khurram).
 
 **Resources practitioners actually recommend.** Chip Huyen, *AI Engineering* (O'Reilly, Jan 2025). Anthropic's "Building Effective Agents," "Effective context engineering for AI agents," and "Demystifying evals for AI agents." OpenAI's "A Practical Guide to Building Agents." Dex Horthy's "12-Factor Agents." Husain and Shankar's evals course and their book *Evals for AI Engineers* (O'Reilly, due 2026-10-31). Google and Kaggle's five-day AI Agents Intensive (free; 1.5 million learners in its first run). Hugging Face's Agents course (free). Anthropic Academy and OpenAI Academy developer tracks (free). Latent Space and The Pragmatic Engineer for staying current. Karpathy's Zero to Hero for model intuition, after shipping something rather than before.
 
@@ -188,3 +190,43 @@ v1's five-area map (context, tools, harness, evals, operations) matches the fiel
 | Is the market saturated? | Not for engineers who have shipped production LLM work. Narrow for juniors. Postings want evals and agent development, not agent use. |
 | How do we handle prompt injection? | Assume it succeeds. Keep the lethal trifecta from assembling: if the agent has private data and reads untrusted content, it must not be able to take consequential actions or communicate out without a deterministic gate. |
 | What about fine-tuning? | Later, if ever. 57 percent of teams do not. Start on frontier models, specialize with context and tools, train only with workload and data. |
+
+
+## 8. Revision evidence and qualifications
+
+**Updated:** 2026-09-13. **Applies to:** outline v3, slides 1–20, overview, handout, and Q&A. This section supersedes conflicting teaching advice in the historical synthesis above. Source verification and the editorial review are recorded in [presentation-review.md](presentation-review.md).
+
+### Current source register
+
+| Key | Source and date | Safe teaching use |
+|---|---|---|
+| R1 | [Penn State slide-design research](https://writing.engr.psu.edu/research.html), checked 2026-09-13 | Assertion headlines supported by visual evidence. No promised learning effect for this talk. |
+| R2 | [Edge et al., From Local to Global](https://www.microsoft.com/en-us/research/publication/from-local-to-global-a-graph-rag-approach-to-query-focused-summarization/), April 2024 | Specific retrieval and collection-wide synthesis have different coverage needs. Our bounded manifest is a local application of the distinction; GraphRAG is not prescribed. |
+| R3 | [Gao et al., ALCE](https://aclanthology.org/2023.emnlp-main.398/), December 2023 | Assess answer correctness and citation quality separately. A resolving citation alone does not establish claim support. |
+| R4 | [Anthropic, Demystifying Evals for AI Agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents), 2026-01-09 | Begin with a small suite, repeat trials, use suitable graders, and expand from observed failures. A suggested suite size is not a prerequisite or production guarantee. |
+| R5 | [OpenTelemetry GenAI spans](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md), living specification checked 2026-09-13 | Do not capture sensitive instructions, inputs, and outputs by default. Explicit content capture and separately governed storage are supported patterns. Pin the implemented convention version. |
+| R6 | [Anthropic, Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents), 2024-12-19 | Fixed workflows versus models choosing tool use based on intermediate evidence. Add autonomy when evaluation justifies it. |
+| R7 | [Anthropic, Effective Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), 2025-09-29 | Select and maintain useful context under finite capacity. The talk's versioned ledger is a local design. |
+| R8 | [MCP tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools), versioned specification | Tool descriptions, argument schemas, and structured results. Service structured content differs from model structured outputs. Format constraints do not prove factual correctness. |
+| R9 | [A2A overview](https://a2a-protocol.org/latest/topics/what-is-a2a/), living documentation checked 2026-09-13 | Optional interoperability between agents, within or across organizations. |
+| R10 | [OWASP injection guidance](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html), checked 2026-09-13 | Layered defenses and least privilege reduce risk; they do not guarantee perfect prevention. |
+
+### Fictional evidence and local design
+
+All product statements, dates, source IDs, versions, project counts, quotations, expected outputs, and report receipts come from [toaster-oven-dossier.md](toaster-oven-dossier.md). They are invented teaching material, never measured performance or industry evidence. The [injection variant](toaster-oven-injection-variant.md) is isolated from canonical documents. Source versions and section references accompany excerpts.
+
+The current blocker is pending validation following the documented revision. The earlier tooling delay cleared. The recurring pattern describes the reviewed retrospectives, includes the packaging counterexample, and establishes neither company-wide frequency nor readiness certification. Unknown completion dates remain unknown.
+
+The four tool display names are list documents, search documents, read document, save report. Model arguments cannot change identity or mandatory access restrictions. Authorization precedes listings, snippets, search results, and reads, including cache and derived-material paths. A private report retains source lineage and requires current access on reopen. Changed source permissions can block it. These are explicit application requirements, not guarantees supplied by MCP, citations, structured outputs, or a model.
+
+Verification checks an individual claim or action, including preconditions and postconditions. Evaluation examines behavior across representative cases and repeated trials. Keep retrieval quality, answer quality, citation support, permissions, completion, cost, and latency distinct. A semantic grader needs evidence and a rubric, then validation against domain-informed review. No blanket rule forbids the grader from seeing the source evidence used by the answerer.
+
+Harness is used here for application control around the model: context/state, validated tool execution, budgets, checkpoints, progress, interruption, and stop/partial-result behavior. Working notes are derived content with provenance and access constraints. Sensitive trace capture is opt-in and governed; do not confuse resumable state with unrestricted telemetry.
+
+### Removed or corrected teaching claims
+
+No active slide uses adoption rates, skill-overlap percentages, retirement trivia, universal multi-agent cost multipliers, salary forecasts, legal dates, or guaranteed transition timelines. Those historical claims require their own current verification if reused. Do not replace a weak statistic with an unrelated survey.
+
+The earliest relevant document may be outdated. The newest document is not automatically authoritative. Resolve date, configuration, scope, explicit updates, and source dependencies; retain unresolved contradictions. Multiple documents do not by themselves require an agent. Repeated mentions are not independent projects.
+
+The deck's 20 scenes, 29-minute content budget, 1-minute contingency, 20-minute Q&A, and 3,300–3,600-word target are editorial constraints. They are not research-derived numbers. Live rehearsal and final export inspection remain necessary to confirm actual delivery.

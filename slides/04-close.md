@@ -1,60 +1,65 @@
-# Section 4: Close
+# Section 4: An answer you can stand behind
 
-**Slides:** 19 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v2.md §4
+**Slides:** 20–20 | **Time:** 1:15 | **Outline:** outline-v3.md §4
 
-**Goal:** Show the map one last time, restate the thesis in the same words as slide 1, deliver the closing line, invite questions.
+**Goal:** Return to the report and invite questions with three starting resources.
 
-**Running example in this section:** Named in the closing line. The machine the audience used this morning is the one they would build.
+**Running-example beat:** Supported finding, bounded pattern, private report.
 
-**Bridge in:** "Which is what the first project is for." | **Bridge out:** "Questions." Twenty minutes of discussion; see `qa.md`.
+**Bridge in:** Return to the supported report. | **Bridge out:** Twenty minutes of Q&A.
 
-**Cut order if long:** Nothing. One minute.
+**Cut order if long:** No planned cut.
 
-**Sources convention:** Every number and quotation traces to `research/synthesis.md` §4 or a track report, with attribution and date. Flags: CAVEAT (say so on stage), SECONDARY (primary unreachable; keep the flag), NOT IN SYNTHESIS (traced to a track report, not in the §4 tables).
+**Delivery:** Script is verbatim first-person speech. At 150 words/minute, each row reserves its remaining time for the visual build, pointing, and reflection. Slides 5 and 11 reserve 12 seconds each for silent thought or brief chat. Do not read every diagram label aloud in addition to the script. All case excerpts and receipts are fictional.
 
-| Slide | Outline | Title | Time | Words |
+**Sources convention:** Synthesis §8 governs this revision. CAVEAT means say the qualification; SECONDARY means primary was unreachable; NOT IN SYNTHESIS means traced to a track report outside the synthesis. Fictional case evidence traces to the dossier instead of external research.
+
+| Slide | Title | Time | Spoken words | Build / reflection seconds |
 |---|---|---|---|---|
-| 19 | 4 | The same machine | 1:00 | 150 |
+| 20 | Build one answer you can stand behind. | 1:15 | 141 | 18.6 |
 
 ---
 
-### Slide 19: The same machine
+### Slide 20: Build one answer you can stand behind.
 
-**Outline:** 4 | **Time:** 1:00 | **Script target:** about 150 words
+**Outline:** 4.20 | **Time:** 1:15 | **Script:** 141 words | **Build / reflection:** 18.6 seconds
 
 **On slide**
 
-The map, base variant, exactly as on slide 5.
+Headline: Build one answer you can stand behind.
 
-Beneath it, the thesis in the same two lines and the same wording as slide 1:
+A supported report, with its limits visible.
 
-- Using AI makes you an AI-enabled software engineer.
-- Engineering systems whose behavior depends on AI makes you an AI engineer.
+Building Effective Agents
+Demystifying Evals for AI Agents
+The talk’s first-project guide
 
-On build: "Go build one where the customer is on the other end."
-
-On the last build: "Questions."
+Questions
 
 **Visual**
 
-The slide 5 ring drawing, bare, centered, slightly smaller than on slide 5 to leave room beneath it. The thesis sits under the map in the same type as slide 1, so the audience sees the talk close where it opened. On [BUILD], the closing line appears as a single line beneath the thesis. On the final [BUILD], the word "Questions" replaces nothing and joins the slide at the bottom. No Mermaid here; the map is the slide 5 base variant, not redrawn.
+Return to the report motif with a pink underline under supported and an amber underline under limits. Three starting resources appear as a plain left-aligned list at body size. Link their titles in the exported deck when possible. Keep Questions visible during Q&A. No dense bibliography, QR-dependent resource, or second map.
+
+**Build cues (within the allocated non-speech time)**
+
+Hold the report statement first; reveal resources when named and leave Questions visible.
 
 **Script**
 
-Here is the map one last time. [POINT: map] A model in a loop, inside a harness, inside operations. Six areas. Every one of them is something you already touched from the user side of a coding agent: the instructions file, the permission prompt, the sandbox, the subagent, the deprecation email.
+We began with a colleague asking what was blocking a launch. We ended with a report that explains the current documented dependency, distinguishes it from an earlier resolved problem, and states how far the evidence goes.
 
-So the thesis, once more. Using AI makes you an AI-enabled software engineer. Engineering systems whose behavior depends on AI makes you an AI engineer.
+The useful result came from engineering the investigation around the model. We made evidence available, checked its support, enforced permissions, and verified the saved outcome.
 
-[BUILD] The coding agent you used this morning is this machine. Someone engineered every part of it. Go build one where the customer is on the other end.
+That is the transition I want you to take away. Start with one answer you can stand behind. Add autonomy when evidence shows that it helps. Keep learning from the cases where it fails.
 
-[BUILD] Thank you. We have about twenty minutes. Questions.
+The three starting resources are Building Effective Agents, Demystifying Evals for AI Agents, and the first-project guide in the handout. The handout also has the illustrative report and broader references.
+
+I will leave those here. Let us use the rest of the session for your questions.
 
 **Cut if running long**
 
-Nothing. The close is already short; the air is deliberate.
+Keep the closing and resources. No planned cut. Saves 0 seconds.
 
 **Sources**
 
-- The thesis → README.md "Central Thesis"; identical wording to slide 1.
-- The closing line → outline-v2.md §4.
-- The bridge list (instructions file, permission prompt, sandbox, subagent, deprecation email) → synthesis.md §2 finding 10.
+Synthesis §8 R6 and R4; handout.md. Closing is the talk’s own framing.
