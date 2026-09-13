@@ -1,0 +1,12 @@
+{
+  "pkg": "swe-to-aie-deck",
+  "shape": "package",
+  "entry": "style/index.js",
+  "buildCmd": "awk '/^```css$/{f=1;next} /^```$/{if(f){exit}} f' style/design-brief.md > style/tokens.css",
+  "cssEntry": "tokens.css",
+  "guidelinesGlob": [
+    "design-brief.md"
+  ],
+  "readmeHeader": ".design-sync/conventions.md",
+  "projectId": "495a27f2-1951-4f4e-bed0-a950e86a333b"
+}

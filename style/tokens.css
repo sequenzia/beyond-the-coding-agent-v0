@@ -1,0 +1,18 @@
+:root {
+  --color-base: #14161c;
+  --color-text: #fffcf5;
+  --color-muted: rgba(255, 252, 245, 0.6);
+  --color-dimmed: rgba(255, 252, 245, 0.4);
+  --color-surface: #1c1f27;
+  --color-border: rgba(255, 252, 245, 0.12);
+  --color-primary: #f948be;   /* pink: hero, highlight, strike */
+  --color-secondary: #1064f8; /* blue: structure, loop, steps */
+  --color-positive: #01b66d;  /* green: harness, checks, antidote */
+  --color-caution: #fdad00;   /* amber: model, waits, warnings */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: Menlo, "SF Mono", monospace;
+  --radius: 8px;
+  --stroke: 2px;
+  --stroke-highlight: 3px;
+  --stroke-hairline: 1px;
+}

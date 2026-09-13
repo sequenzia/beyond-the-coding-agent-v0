@@ -1,0 +1,10 @@
+{
+  "name": "swe-to-aie-deck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Design tokens and design brief for the talk \"Beyond the Coding Agent: From Software Engineer to AI Engineer\". Synced to Claude Design with /design-sync.",
+  "type": "module",
+  "main": "index.js",
+  "style": "tokens.css",
+  "files": ["index.js", "tokens.css", "design-brief.md"]
+}

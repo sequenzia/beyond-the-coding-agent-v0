@@ -4,7 +4,7 @@ This file provides guidance to coding agents when working with code in this repo
 
 ## What this repository is
 
-Preparation materials for a conference talk, "Beyond the Coding Agent: From Software Engineer to AI Engineer." Everything is Markdown. There is no code, build, lint, or test tooling.
+Preparation materials for a conference talk, "Beyond the Coding Agent: From Software Engineer to AI Engineer." Everything is Markdown except a small token package under `style/` that `/design-sync` uploads to Claude Design. There is no build, lint, or test tooling for the talk itself.
 
 ## Layout and roles
 
@@ -13,7 +13,8 @@ Preparation materials for a conference talk, "Beyond the Coding Agent: From Soft
 - `research/synthesis.md`: consolidated research findings and the single place to check before putting a statistic, quotation, or definition in an outline or slide. Section 4 sorts claims into safe to cite, cite with a caveat, and do not put on a slide.
 - `research/track-*.md`: the four full research reports (discipline, enterprise agents, evals and operations, transition). They are large; read `synthesis.md` first and open a track report only for detail, using its section headers.
 - `slides/`: the slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md`. Slides are numbered 1 to 19 globally with the outline reference beside each. Every slide has the same shape: on-slide text (a headline and at most three bullets, except the resource list on slide 18), a visual spec (Mermaid where there is a diagram; node fill and text colors follow the class table in `style/design-brief.md`), a verbatim first-person script sized at 150 words per minute against the slide's time, a "cut if running long" with seconds saved, and a sources line. Section files carry a header with goal, running-example beat, bridges in and out, cut order, and a timing table.
-- `style/`: `design-brief.md` is the design system for the deck and the file uploaded to Claude Design to build it; `colors.md` is the raw conference palette it derives from. The brief's fixed color keys (map rings, tool tiers, node classes) and its text-on-fill table govern any color named in a slide's visual spec.
+- `style/`: `design-brief.md` is the design system for the deck; `colors.md` is the raw conference palette it derives from. The brief's fixed color keys (map rings, tool tiers, node classes) and its text-on-fill table govern any color named in a slide's visual spec. The folder is also a tiny npm package (`package.json`, an intentionally empty `index.js` entry, and `tokens.css` generated from the brief's token block) that `/design-sync` converts and uploads to the Claude Design project as tokens and guidelines; there are no components. Edit the brief, never `tokens.css`.
+- `.design-sync/`: sync state for Claude Design. `config.json` holds the project id and the command that regenerates `tokens.css`; `conventions.md` is the header inlined into the design agent's prompt; `NOTES.md` is the file to read before re-syncing. `.ds-sync/` and `ds-bundle/` are gitignored scratch.
 
 ## Decisions that govern the talk
 
