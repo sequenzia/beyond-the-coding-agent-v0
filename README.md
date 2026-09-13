@@ -27,6 +27,7 @@ The description above was provided to attendees before the outline was finalized
 
 | Path | What it is |
 |---|---|
+| `overview.md` | A one-file breakdown of the talk as drafted: thesis, through-lines, time budget, the access agent, the map, every slide's beat and first cut, the cut inventory, evidence flags, Q&A stage answers, and status. Start here before opening the slide files. |
 | `outlines/outline-v2.md` | The current outline. Thirty minutes of content drawn on the agent loop, a running access-request agent built in four versions from a single model call to a tiered autonomous agent, a coding-agent bridge for every area, a Q&A table, and appendices on what changed from v1 and what was deliberately cut. |
 | `outlines/outline-v1.md` | The original draft, written for a 60-minute slot. Superseded, kept for comparison. |
 | `slides/` | Slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md` for the discussion. Nineteen slides numbered globally, each with on-slide text, a visual spec, a verbatim speaker script sized at 150 words per minute, a first cut for rehearsal, and a sources line that traces every number and quotation to the research with its evidence flag. |

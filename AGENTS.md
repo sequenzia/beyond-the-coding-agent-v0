@@ -9,6 +9,7 @@ Preparation materials for a conference talk, "Beyond the Coding Agent: From Soft
 ## Layout and roles
 
 - `README.md`: the session description already sent to attendees. Treat its topic list as fixed scope. Any outline must cover every responsibility it names; only the weighting may change.
+- `overview.md`: a standalone breakdown of the talk compiled from the slides, outline v2, the synthesis, and the design brief. It repeats slide timing, cuts, and the running example on purpose so a reader gets the whole talk in one file. Update it when those change.
 - `outlines/outline-vN.md`: versioned outlines. `outline-v2.md` is current. Do not overwrite a prior version; write the next number and leave earlier ones in place for comparison.
 - `research/synthesis.md`: consolidated research findings and the single place to check before putting a statistic, quotation, or definition in an outline or slide. Section 4 sorts claims into safe to cite, cite with a caveat, and do not put on a slide.
 - `research/track-*.md`: the four full research reports (discipline, enterprise agents, evals and operations, transition). They are large; read `synthesis.md` first and open a track report only for detail, using its section headers.
