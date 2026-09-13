@@ -29,6 +29,7 @@ The description above was provided to attendees before the outline was finalized
 |---|---|
 | `outlines/outline-v2.md` | The current outline. Thirty minutes of content drawn on the agent loop, a running access-request agent built in four versions from a single model call to a tiered autonomous agent, a coding-agent bridge for every area, a Q&A table, and appendices on what changed from v1 and what was deliberately cut. |
 | `outlines/outline-v1.md` | The original draft, written for a 60-minute slot. Superseded, kept for comparison. |
+| `slides/` | Slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md` for the discussion. Nineteen slides numbered globally, each with on-slide text, a visual spec, a verbatim speaker script sized at 150 words per minute, a first cut for rehearsal, and a sources line that traces every number and quotation to the research with its evidence flag. |
 | `research/synthesis.md` | Consolidated research: the ranked verdict on what v1 was missing, 2026 vocabulary with attribution, statistics sorted by how safely they can be cited, live controversies, the transition roadmap, and sourced Q&A answers. Read this before putting any number or quotation on a slide. |
 | `research/track-a-discipline.md` | How the field defines AI engineering in 2025 and 2026, competency maps, the shift from prompt to context to harness engineering, conference programs. |
 | `research/track-b-enterprise-agents.md` | Canonical agent design guidance, standards (MCP, A2A, Agent Skills, AGENTS.md, agent identity), production patterns, security incidents, adoption data, governance. |
@@ -45,4 +46,4 @@ Using AI makes you an AI-enabled software engineer. Engineering systems whose be
 - Description: final and distributed.
 - Research: complete as of 2026-09-11. Each track report flags anything that could only be reached through secondary coverage.
 - Outline: v2 complete and under review by the speaker.
-- Slides: not started.
+- Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13. Not yet transcribed into a deck.

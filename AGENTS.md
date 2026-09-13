@@ -12,6 +12,7 @@ Preparation materials for a conference talk, "Beyond the Coding Agent: From Soft
 - `outlines/outline-vN.md`: versioned outlines. `outline-v2.md` is current. Do not overwrite a prior version; write the next number and leave earlier ones in place for comparison.
 - `research/synthesis.md`: consolidated research findings and the single place to check before putting a statistic, quotation, or definition in an outline or slide. Section 4 sorts claims into safe to cite, cite with a caveat, and do not put on a slide.
 - `research/track-*.md`: the four full research reports (discipline, enterprise agents, evals and operations, transition). They are large; read `synthesis.md` first and open a track report only for detail, using its section headers.
+- `slides/`: the slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md`. Slides are numbered 1 to 19 globally with the outline reference beside each. Every slide has the same shape: on-slide text (a headline and at most three bullets, except the resource list on slide 18), a visual spec (Mermaid where there is a diagram, dark text on nodes), a verbatim first-person script sized at 150 words per minute against the slide's time, a "cut if running long" with seconds saved, and a sources line. Section files carry a header with goal, running-example beat, bridges in and out, cut order, and a timing table.
 
 ## Decisions that govern the talk
 
@@ -25,12 +26,14 @@ These were settled with the speaker on 2026-09-11 and are not recorded elsewhere
 
 ## Evidence rules
 
-- Every number or quotation in an outline must trace to `research/synthesis.md` or a track report, with the same attribution and date.
+- Every number or quotation in an outline or slide must trace to `research/synthesis.md` or a track report, with the same attribution and date.
 - Do not invent baseline numbers for the running example. Where a figure is needed, the outline says "your current median resolution time" so the audience supplies its own.
 - Items flagged as unverified or secondary in the research keep that flag when they move into an outline.
+- Sources lines in `slides/` use three flags: CAVEAT (say the caveat on stage), SECONDARY (primary source unreachable when the research ran), NOT IN SYNTHESIS (traced to a track report rather than the §4 tables of `synthesis.md`). `qa.md` ends with the numbers that must not be cited and what to say instead.
 
 ## Conventions
 
 - Kebab-case filenames, flat directories.
 - Match the prose style of `outline-v2.md`: short declarative sentences, attributed claims, per-section time budgets, and a running-example beat plus a coding-agent bridge for each area of section 2.
+- The access agent's six tools are named on slide 8 (look up requester, search policy, check entitlements, request approval, notify requester, grant entitlement) plus revoke as the compensating action. Reuse those names verbatim.
 - The Context7 MCP server is disabled for this repository in `.claude/settings.local.json`; there are no library docs to fetch here.
