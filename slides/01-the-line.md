@@ -1,12 +1,12 @@
 # Section 1: The Line
 
-**Slides:** 2 through 4 (3 slides) | **Approximate time:** 4 minutes | **Outline:** outline-v2.md §1
+**Slides:** 2 through 4 (3 slides) | **Approximate time:** 3 minutes 45 seconds | **Outline:** outline-v4.md §1
 
-**Goal:** Define the discipline, explain why it is distinct, and set up the spectrum the running example moves along.
+**Goal:** Define the discipline, explain why it is distinct, and set up the spectrum the specimen sits at the end of.
 
-**Running example in this section:** Introduced on slide 4. The access agent and its four versions, v0 to v3, are placed on the autonomy spectrum. Every later section refers back to this slide's wording.
+**Specimen in this section:** Introduced on slide 4 as the fourth stop of the coding agent's own lineage: a completion, chat over the codebase, explore or plan mode, the agent behind the permission prompt. Every later section refers back to this slide's wording.
 
-**Bridge in:** "This talk is about crossing to that side." | **Bridge out:** "v3 is the same shape as the coding agent you used this morning."
+**Bridge in:** "This talk is about crossing to that side. We are going to take that agent apart." | **Bridge out:** "That fourth stop is the machine we take apart for the next nineteen minutes."
 
 **Cut order if long:** Nothing in this section is on the outline's cut list. If forced: the job-postings paragraph on slide 2 (10 seconds), then the Thoughtworks sentence on slide 3 (10 seconds).
 
@@ -16,7 +16,7 @@
 |---|---|---|---|
 | 2 | Same tools, different deliverable | 1:15 | 190 |
 | 3 | Why it is a distinct discipline | 1:15 | 190 |
-| 4 | The autonomy spectrum and the access agent | 1:30 | 225 |
+| 4 | The autonomy spectrum and the coding agent's lineage | 1:15 | 190 |
 
 ---
 
@@ -102,9 +102,9 @@ Drop the Thoughtworks sentence and end on "capability gains have not delivered i
 
 ---
 
-### Slide 4: The autonomy spectrum and the access agent
+### Slide 4: The autonomy spectrum and the coding agent's lineage
 
-**Outline:** 1.3 | **Time:** 1:30 | **Script target:** about 225 words
+**Outline:** 1.3 | **Time:** 1:15 | **Script target:** about 190 words
 
 **On slide**
 
@@ -115,34 +115,32 @@ Headline: Start with a workflow. Add autonomy when it demonstrably improves outc
 
 Then the spectrum, built one stop at a time:
 
-| v0, a single call | v1, a workflow | v2, agent, read-only tools | v3, agent, tiered actions |
+| One call | A workflow | Agent, read-only tools | Agent, tiered actions |
 |---|---|---|---|
-| Classify the request and draft a reply | Retrieve policy, look up entitlements, recommend, on a fixed code path | The model chooses which lookups to run and proposes an action | Grants low-sensitivity access itself, requests approval for elevated, escalates the rest |
-| A human sends it | A human decides and acts | A human approves and executes | The agent, within tiers |
+| A completion, or one prompt that returns a snippet | Chat over your codebase: retrieve the relevant files, answer, on a fixed path | Explore or plan mode: the model chooses which files to read and proposes a patch | Edits files, runs commands behind a permission prompt, pushes when allowed |
+| You paste it | You decide and edit | You approve and apply | The agent, within tiers |
 
 **Visual**
 
-Anthropic's two definitions sit at the top, attributed (December 2024). Beneath them a horizontal line runs from "workflow" on the left to "agent" on the right. Four stops on the line, each a card with two rows: what it is, and who acts. The cards build left to right on [BUILD]. When v3 appears it takes the highlight and the other three dim, because v3 is what the rest of the talk builds. The card wording here is the wording every later slide uses.
+Anthropic's two definitions sit at the top, attributed (December 2024). Beneath them a horizontal line runs from "workflow" on the left to "agent" on the right. Four stops on the line, each a card with two rows: what it is, and who acts. The cards build left to right on [BUILD]. When the fourth stop appears it takes the highlight and the other three dim, because the fourth stop is what the rest of the talk takes apart. The card wording here is the wording every later slide uses.
 
-**Running example**
+**Specimen**
 
-Introduced here. The access agent resolves employee access requests end to end, correctly, with human approval where policy requires it. No baseline numbers; where a figure would go, the script says "your current median resolution time."
+Introduced here as the fourth stop. The four stops are the coding agent's own lineage, which the audience lived from the first completion to the agent behind the permission prompt. No product is named; the stops are described by what they do and who acts.
 
 **Bridge**
 
-"v3 is the same shape as the coding agent you used this morning."
+"That fourth stop is the machine we take apart for the next nineteen minutes."
 
 **Script**
 
-Now the spectrum every guide agrees on. Anthropic's definitions from December 2024 are the ones the field uses. Workflows are "systems where LLMs and tools are orchestrated through predefined code paths." Agents are "systems where LLMs dynamically direct their own processes and tool usage." The difference is who decides what happens next: your code, or the model.
+Now the spectrum every guide agrees on. Anthropic's definitions, December 2024. Workflows are "systems where LLMs and tools are orchestrated through predefined code paths." Agents are "systems where LLMs dynamically direct their own processes and tool usage."
 
 And the rule: start with a workflow. Add autonomy only when it demonstrably improves outcomes. Anthropic's own words: "For many applications, optimizing single LLM calls with retrieval and in-context examples is usually enough."
 
-Here is the example we build for the rest of the talk. Employees ask for access to systems and data all day. "I need read access to the billing database for the Q3 audit." Today a human reads that, checks policy, looks up what you already have, asks your manager, grants it, and replies. You have filed one of these. You have waited.
+You have lived this spectrum. [BUILD] One call. A completion, or one prompt that hands back a snippet. You paste it. [BUILD] A workflow. Chat over your codebase: retrieve the relevant files, answer, on a fixed path. That was retrieval-augmented generation before it had a name. You decide and edit. [BUILD] An agent with read-only tools. Explore or plan mode: the model chooses which files to read and proposes a patch. You approve and apply. [BUILD] An agent with tiered actions. It edits files, runs commands behind a permission prompt, and pushes when allowed.
 
-[BUILD] v0, a single call. Classify the request and draft a reply. A human sends it. [BUILD] v1, a workflow. Retrieve policy, look up entitlements, produce a recommendation, on a fixed code path. A human decides. [BUILD] v2, an agent with read-only tools. The model chooses which lookups to run and proposes an action. A human approves. [BUILD] v3, tiered actions. It grants low-sensitivity access itself, requests approval for elevated access, and escalates what it cannot resolve.
-
-v3 is the most demanding expression of this discipline. It is what we build. And it is the same shape as the coding agent you used this morning.
+The industry did what the rule says. It started with a workflow and added autonomy one tier at a time. That fourth stop is the most demanding expression of this discipline. And it is the machine we take apart for the next nineteen minutes.
 
 **Cut if running long**
 
@@ -153,5 +151,6 @@ Drop the "For many applications" quotation. Saves about 8 seconds. Keep the rule
 - Workflows are "systems where LLMs and tools are orchestrated through predefined code paths"; agents are "systems where LLMs dynamically direct their own processes and tool usage." → synthesis.md §3 (Anthropic, "Building effective agents," 2024-12-19).
 - Add complexity "only when it demonstrably improves outcomes" → track-b-enterprise-agents.md §2 (Anthropic, 2024-12-19).
 - "For many applications, optimizing single LLM calls with retrieval and in-context examples is usually enough." → track-d-transition.md §3 (Anthropic, 2024-12-19).
-- The access agent, v0 to v3 → outlines/outline-v2.md, "The Running Example." The talk's own scenario. No external source, no invented numbers.
-- "the same shape as the coding agent you used this morning" → synthesis.md §2 finding 10.
+- The four stops as the coding agent's lineage → outlines/outline-v4.md, "The Specimen." The talk's own framing, backed by Karpathy's autonomy slider (synthesis.md §1 item 7; track-a-discipline.md §2.1, June 2025) and by the field's sequence from completion to agent (track-a-discipline.md §2.2, vocabulary timeline). No external source states the four stops as such. NOT IN SYNTHESIS §4.
+- Chat over the codebase as retrieval-augmented generation → synthesis.md §1 "What v1 gets right" (RAG as one technique, now infrastructure). The placement on the spectrum is the talk's own.
+- "the machine we take apart" → synthesis.md §2 finding 10 (the coding agent as the bridge; every attendee has touched a harness from the user side).

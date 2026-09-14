@@ -1,6 +1,6 @@
 # Questions and Discussion
 
-**Time:** about 20 minutes | **Outline:** outline-v2.md "Questions and Discussion" | **Sourced answers:** research/synthesis.md §7, with track-report detail where noted
+**Time:** about 20 minutes | **Outline:** outline-v4.md "Questions and Discussion" | **Sourced answers:** research/synthesis.md §7, with track-report detail where noted
 
 **How to use this file.** One block per anticipated question. *Stage answer* is about twenty seconds, said as written. *If pressed* is the next layer, from the synthesis. *Sources* says where each fact lives. *Do not say* names the number or claim to avoid on that question. The file closes with the list of numbers that must not be cited and what to say instead.
 
@@ -12,9 +12,9 @@
 
 ## Preface: the vocabulary trap
 
-"Harness engineering" means two things in 2026. Anthropic's posts use it for the system around a production agent, which is how this talk uses it. OpenAI's February 2026 post and Birgitta Böckeler's essay on martinfowler.com use it for configuring a coding agent with instruction files, linters, and tests. The skills overlap, which is the talk's bridge, but the targets differ. Slide 9 names this once. If a question seems to disagree with slide 9, the asker is probably using the other meaning. Say so, then answer.
+"Harness engineering" means two things in 2026. Anthropic's posts and OpenAI's platform post use it for the system around a production agent, the program that runs the loop, which is the sense the deck uses throughout. OpenAI's February 2026 post and Birgitta Böckeler's essay on martinfowler.com use it for configuring a coding agent with instruction files, linters, and tests. Slide 5 names this once, in one sentence: configuring the harness is the user side of the line, writing it is the engineer side. If a question seems to disagree with slide 10, the asker is probably using the user-side meaning. Point back to the slide 5 sentence, then answer. The overlap is real and is the talk's entry ramp: the skills of configuring a harness are the skills of writing one, applied from the other side.
 
-Sources: outline-v2.md Appendix D; synthesis.md §3 (harness); track-a-discipline.md §4 ("Two meanings of 'harness engineering'").
+Sources: outline-v4.md Appendix D; synthesis.md §3 (harness); track-a-discipline.md §4 ("Two meanings of 'harness engineering'").
 
 ---
 
@@ -178,9 +178,9 @@ Sources: outline-v2.md Appendix D; synthesis.md §3 (harness); track-a-disciplin
 
 **Stage answer.** Assume it succeeds. Keep the lethal trifecta from assembling: if the agent has private data and reads untrusted content, it must not be able to take a consequential action or communicate out without a deterministic gate.
 
-**If pressed.** Willison: "Once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions." Meta's Rule of Two: no more than two of untrusted input, sensitive data, and external state change per session without human approval. Classifiers: academic tests reached "up to 100% evasion" against commercial guardrails, while Anthropic's Constitutional Classifiers held through more than 3,000 red-team hours; both are true, and architecture is the cheaper first line for most teams. Two incidents if the room wants texture: EchoLeak, a zero-click email exfiltrating from Microsoft 365 Copilot; ForcedLeak, an injection through a Salesforce web form exfiltrating through an expired allowlisted domain the researchers bought for five dollars.
+**If pressed.** Willison: "Once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions." Meta's Rule of Two: no more than two of untrusted input, sensitive data, and external state change per session without human approval. Classifiers: academic tests reached "up to 100% evasion" against commercial guardrails, while Anthropic's Constitutional Classifiers held through more than 3,000 red-team hours; both are true, and architecture is the cheaper first line for most teams. EchoLeak and ForcedLeak are on slide 13. If the room wants the coding-agent case: GTG-1002 (Anthropic, November 2025), where a state actor ran a coding agent through MCP servers against about thirty targets and bypassed its safeguards by telling it it worked for a security firm doing authorized testing; the model did most of the campaign with a handful of human decision points per intrusion.
 
-**Sources.** synthesis.md §2 findings 6 and 8, §5 item 7, §7; track-b-enterprise-agents.md §2.4; track-c-evals-and-operations.md §2.4 (Meta, 2025-10-31) and §2.6 (Hackett et al., 2025; Anthropic classifiers).
+**Sources.** synthesis.md §2 findings 6 and 8, §5 item 7, §7; track-b-enterprise-agents.md §2.4 (EchoLeak, ForcedLeak, GTG-1002, Anthropic disclosure 2025-11-13); track-c-evals-and-operations.md §2.4 (Meta, 2025-10-31) and §2.6 (Hackett et al., 2025; Anthropic classifiers).
 
 ---
 

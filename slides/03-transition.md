@@ -1,10 +1,10 @@
 # Section 3: Making the Transition
 
-**Slides:** 15 through 18 (4 slides) | **Approximate time:** 5 minutes | **Outline:** outline-v2.md §3
+**Slides:** 15 through 18 (4 slides) | **Approximate time:** 5 minutes | **Outline:** outline-v4.md §3
 
 **Goal:** A roadmap concrete enough to act on Monday: what carries over, what to add, the mistakes to skip, the first project, and where to learn.
 
-**Running example in this section:** Called back on slide 18. The recommended first project is a v1 of something like the access agent: a workflow with retrieval and a recommendation, and a human who decides.
+**Specimen in this section:** Called back on slide 18. The recommended first project is a read-only agent over a repo you own, a pull-request reviewer or an issue-triage agent: retrieval, a recommendation, and a human who decides.
 
 **Bridge in:** "Now, how do you get there from here?" | **Bridge out:** "Which is what the first project is for." Slide 19 closes on the map.
 
@@ -70,13 +70,13 @@ Headline: Six things to add, one per area of the map.
 | The model | Model intuition: how they fail, what to ask for, when to swap |
 | Context | Context engineering: the token budget, retrieval, provenance, memory |
 | Tools | Tool design and action tiers |
-| The harness | Loop control: the workflow-versus-agent judgment, durable state |
-| Verify and evaluate | Error analysis and evals. The priority. |
+| The harness | Loop control: verify each action, durable state, the workflow-versus-agent judgment |
+| Evaluate | Error analysis and evals. The priority. |
 | Operations | Security and operations for probabilistic systems: injection, identity, tracing |
 
 **Visual**
 
-Six rows. The left cell of each row carries the area name in the same color it has on the map, so the audience connects the list to the diagram they photographed. On [BUILD] the "Verify and evaluate" row highlights and gains a tag: "every source names this the hardest." Nothing else on the slide.
+Six rows. The left cell of each row carries the area name in the same color it has on the map, so the audience connects the list to the diagram they photographed. On [BUILD] the "Evaluate" row highlights and gains a tag: "every source names this the hardest." Nothing else on the slide.
 
 **Script**
 
@@ -88,7 +88,7 @@ Context engineering: the token budget, retrieval, provenance, memory.
 
 Tool design and action tiers: writing interfaces for a caller that reasons.
 
-Harness and loop control: the workflow-versus-agent judgment, and durable state.
+Harness and loop control: verifying each action, durable state, and the workflow-versus-agent judgment.
 
 [BUILD] Error analysis and evals. Every source names this the hardest. So make it the priority. If you learn one thing from this list first, learn this one. Ross McNairn, who built a legal AI team from scratch: "Getting comfortable with evaluations and iterating on non-deterministic outputs is the biggest challenge most devs have."
 
@@ -102,7 +102,7 @@ The McNairn quotation. Saves about 10 seconds. The "hardest skill" claim stands 
 
 **Sources**
 
-- The six competencies mapped to the six areas → synthesis.md §6 "What must be added"; outline-v2.md 3.2.
+- The six competencies mapped to the six areas → synthesis.md §6 "What must be added"; outline-v4.md 3.2.
 - Model intuition comes from shipping and reading traces → synthesis.md §7 ("Do I need math or ML?").
 - Evals as the hardest new skill, named by every source → synthesis.md §2 finding 5 and §6.
 - "Getting comfortable with evaluations and iterating on non-deterministic outputs is the biggest challenge most devs have." → track-d-transition.md §3 (Ross McNairn, Wordsmith, in The Pragmatic Engineer, March 25, 2025).
@@ -158,13 +158,13 @@ The Horthy interview sentence in the frameworks row ("Dex Horthy interviewed ...
 
 **Sources**
 
-- The seven mistakes and antidotes → synthesis.md §6 "Common first mistakes"; track-d-transition.md §2.3 items 1 to 7; outline-v2.md 3.3.
+- The seven mistakes and antidotes → synthesis.md §6 "Common first mistakes"; track-d-transition.md §2.3 items 1 to 7; outline-v4.md 3.3.
 - "Evals get harder to build the longer you wait." → track-d-transition.md §3 (Anthropic, "Demystifying evals for AI agents," January 9, 2026).
 - Start with 20 to 50 tasks from real failures → synthesis.md §4 safe (Anthropic, 2026-01-09).
 - Horthy's roughly 100 interviews; engineers abandoned popular frameworks for custom pipelines → track-d-transition.md §2.3 item 4 (The Pragmatic Engineer, July 15, 2026); synthesis.md §5 item 5. Framework names omitted on the slide and in the script by the no-endorsement rule.
 - "Shipping unread code spells disaster within months." → track-d-transition.md §3 and §2.3 item 5 (Dex Horthy, quoted in The Pragmatic Engineer, July 15, 2026, about a July 2025 experiment he shut down four months later).
 - "Demo is works.any(), product is works.all()." → track-a-discipline.md §3 (Karpathy, June 17, 2025).
-- Cost and latency on the scorecard → track-c-evals-and-operations.md §2.8; outline-v2.md 2.5.
+- Cost and latency on the scorecard → track-c-evals-and-operations.md §2.8; outline-v4.md 2.5.
 
 ---
 
@@ -178,10 +178,10 @@ Headline: Build one narrow, real agent for a task you already understand.
 
 First project:
 
-- A task you already understand. Single agent before multi-agent.
+- A read-only agent over a repo you own: a pull-request reviewer or an issue-triage agent.
 - 20 to 50 eval cases from real examples before the first prompt is tuned.
 - Direct API calls before a framework. A trace viewer from day one.
-- Add autonomy one tier at a time. Let the evals tell you when.
+- One agent, one tier at a time. Let the evals tell you when.
 
 Where to learn:
 
@@ -199,13 +199,13 @@ Footer: AI engineer is LinkedIn's fastest-growing US role for the second year. T
 
 Two columns. Left, the first-project checklist, four items. Right, the resource list, grouped as books, guides, courses, and staying current, in small type but legible from the back of the room, since this is the slide people photograph on the way out. The market line runs as a footer strip. No build. This slide breaks the three-bullet rule on purpose: the outline asks for a short resource list, and the list is the deliverable.
 
-**Running example**
+**Specimen**
 
-The first project described here is a v1 of something like the access agent: retrieval, a recommendation, a human who decides. The tiers come later, when the evals say so.
+The first project is the third stop of the spectrum from slide 4, over a repo you own: a pull-request reviewer or an issue-triage agent. Retrieval, a recommendation, a human who decides. Cognition's review agent is the precedent. The tiers come later, when the evals say so.
 
 **Script**
 
-Build first. One narrow, real agent for a task you already understand. Something like v1 of the access agent: a workflow with retrieval and a recommendation, and a human who decides. Single agent before multi-agent. Twenty to fifty eval cases from real examples before you tune the first prompt. Direct API calls before a framework. A trace viewer from day one. Then add autonomy one tier at a time, and let the evals tell you when. First-person accounts put this at months, not years, when the first project is small and real.
+Build first. One narrow, real agent for a task you already understand. A read-only agent over a repo you own: a pull-request reviewer, or an issue-triage agent. Retrieval, a recommendation, a human who decides. That is the third stop on the spectrum, and Cognition's review agent is proof it earns its keep. Single agent before multi-agent. Twenty to fifty eval cases from real examples before you tune the first prompt. Direct API calls before a framework. A trace viewer from day one. Then add autonomy one tier at a time, and let the evals tell you when. First-person accounts put this at months, not years, when the first project is small and real.
 
 Where to learn, chosen because practitioners recommend them rather than because they are marketed. Chip Huyen's book, AI Engineering. Anthropic's three guides: Building Effective Agents, Effective Context Engineering, and Demystifying Evals. OpenAI's Practical Guide to Building Agents. Dex Horthy's 12-Factor Agents. Hamel Husain and Shreya Shankar's evals course, and their book, due next month. Free courses from Google and Kaggle, Hugging Face, Anthropic Academy, and OpenAI Academy. And Latent Space and The Pragmatic Engineer to stay current. The list is on the slide. Photograph it.
 
@@ -217,7 +217,8 @@ The market paragraph. Saves about 15 seconds. Its facts return in the Q&A answer
 
 **Sources**
 
-- Build first: one narrow real agent; 20 to 50 eval cases first; direct API calls before a framework; single agent before multi-agent; a trace viewer from day one; add autonomy one tier at a time → synthesis.md §6 "Build first"; outline-v2.md 3.4.
+- Build first: one narrow real agent; 20 to 50 eval cases first; direct API calls before a framework; single agent before multi-agent; a trace viewer from day one; add autonomy one tier at a time → synthesis.md §6 "Build first"; outline-v4.md 3.4.
+- A pull-request reviewer as the first project; Cognition's review agent finds about two bugs per pull request because it does not share the author's context → track-b-enterprise-agents.md §2.1 (Cognition, "Multi-Agents: What's Actually Working," 2026-04-22). NOT IN SYNTHESIS §4. The shape is the talk's own recommendation.
 - Months, not years, when the first project is small and real → synthesis.md §6 (two months for one feature at DSI; a year of workflow change for Khurram); track-d-transition.md §2.5.
 - Resource list → synthesis.md §6 "Resources practitioners actually recommend"; track-d-transition.md §2.4. Husain and Shankar, *Evals for AI Engineers*, O'Reilly, due 2026-10-31.
 - AI engineer the number one fastest-growing US job for the second year → synthesis.md §4 safe (LinkedIn Jobs on the Rise, 2026-01-07).

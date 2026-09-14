@@ -1,10 +1,10 @@
 # Section 4: Close
 
-**Slides:** 19 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v2.md §4
+**Slides:** 19 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v4.md §4
 
 **Goal:** Show the map one last time, restate the thesis in the same words as slide 1, deliver the closing line, invite questions.
 
-**Running example in this section:** Named in the closing line. The machine the audience used this morning is the one they would build.
+**Specimen in this section:** Named in the closing line. The machine the audience took apart is the one they would build.
 
 **Bridge in:** "Which is what the first project is for." | **Bridge out:** "Questions." Twenty minutes of discussion; see `qa.md`.
 
@@ -41,7 +41,7 @@ The slide 5 ring drawing, bare, centered, slightly smaller than on slide 5 to le
 
 **Script**
 
-Here is the map one last time. [POINT: map] A model in a loop, inside a harness, inside operations. Six areas. Every one of them is something you already touched from the user side of a coding agent: the instructions file, the permission prompt, the sandbox, the subagent, the deprecation email.
+Here is the map one last time. [POINT: map] A model in a loop, inside a harness, inside operations. Six areas. Every one of them is something you touched from the user side of a coding agent, and saw from the inside today: the model picker, the instructions file, the permission prompt, the sandbox, the tests it runs before it says done, the progress file, the subagent, the deprecation email.
 
 So the thesis, once more. Using AI makes you an AI-enabled software engineer. Engineering systems whose behavior depends on AI makes you an AI engineer.
 
@@ -56,5 +56,5 @@ Nothing. The close is already short; the air is deliberate.
 **Sources**
 
 - The thesis → README.md "Central Thesis"; identical wording to slide 1.
-- The closing line → outline-v2.md §4.
-- The bridge list (instructions file, permission prompt, sandbox, subagent, deprecation email) → synthesis.md §2 finding 10.
+- The closing line → outline-v4.md §4.
+- The list (model picker, instructions file, permission prompt, sandbox, tests before done, progress file, subagent, deprecation email) → synthesis.md §2 finding 10, and the specimen beats on slides 6 to 10. The tests-before-done item → track-a-discipline.md §2.7 (linters, tests, and hooks as the coding-agent harness); it is slide 9's bridge. NOT IN SYNTHESIS §4.
