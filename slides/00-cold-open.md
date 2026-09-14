@@ -1,12 +1,12 @@
 # Section 0: Cold Open
 
-**Slides:** 1 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v3.md §0
+**Slides:** 1 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v4.md §0
 
 **Goal:** Open on the coding agent, not on AI. Name the distinction the whole talk rests on, put the thesis on screen, and leave it there.
 
-**Running example in this section:** Not yet. The coding agent the audience used this morning is the only example.
+**Specimen in this section:** Named, not yet taken apart. The coding agent the audience used this morning is the machine the talk dissects from slide 5 on.
 
-**Bridge in:** None. This is the first slide. | **Bridge out:** "This talk is about crossing to that side." Slide 2 opens on the three categories.
+**Bridge in:** None. This is the first slide. | **Bridge out:** "This talk is about crossing to that side. We are going to take that agent apart." Slide 2 opens on the three categories.
 
 **Cut order if long:** Nothing. This is one minute.
 
@@ -43,7 +43,7 @@ That does not make you an AI engineer. It makes you an AI-enabled software engin
 
 Now turn it around. Everything you touched from the user side of that agent, somebody engineered. The instructions file. The permission prompt. The sandbox. The model picker. The people who built those are AI engineers.
 
-This talk is about crossing to that side. [BUILD] Here is the whole argument in two sentences. [POINT: thesis] It stays on screen while we go.
+This talk is about crossing to that side. We are going to take that agent apart. [BUILD] Here is the whole argument in two sentences. [POINT: thesis] It stays on screen while we go.
 
 **Cut if running long**
 

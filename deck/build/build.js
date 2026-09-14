@@ -1,6 +1,6 @@
 // Builds the 19-slide deck (20 physical slides; slide 1 is two) from the slide files and the design brief.
 const pptxgen = require('pptxgenjs');
-const { FaKey, FaTicketAlt, FaDoorClosed, FaBox, FaCommentDots, FaBook, FaCheck } = require('react-icons/fa');
+const { FaKey, FaCodeBranch, FaDoorClosed, FaBox, FaCommentDots, FaBook, FaCheck } = require('react-icons/fa');
 const L = require('./lib');
 const { C, SANS, MONO, W, H, M, CW, colX, colW, RADIUS, T, bullets, rect, circle, triangle, line, path, pill, title, newSlide, icon, ringMap } = L;
 const { parse, notesText } = require('./notes');
@@ -89,10 +89,10 @@ async function main() {
     T(s, 'agent', { x: 11.75, y: ly - 0.15, w: 0.8, h: 0.3, size: 16, color: C.muted, valign: 'middle' });
     const cw = 2.71, gap = 0.3, cy = 3.4, ch = 3.3;
     const stops = [
-      { t: 'v0, a single call', what: 'Classify the request and draft a reply', who: 'A human sends it' },
-      { t: 'v1, a workflow', what: 'Retrieve policy, look up entitlements, recommend, on a fixed code path', who: 'A human decides and acts' },
-      { t: 'v2, agent, read-only tools', what: 'The model chooses which lookups to run and proposes an action', who: 'A human approves and executes' },
-      { t: 'v3, agent, tiered actions', what: 'Grants low-sensitivity access itself, requests approval for elevated, escalates the rest', who: 'The agent, within tiers', hot: true },
+      { t: 'One call', what: 'A completion, or one prompt that returns a snippet', who: 'You paste it' },
+      { t: 'A workflow', what: 'Chat over your codebase: retrieve the relevant files, answer, on a fixed path', who: 'You decide and edit' },
+      { t: 'Agent, read-only tools', what: 'Explore or plan mode: the model chooses which files to read and proposes a patch', who: 'You approve and apply' },
+      { t: 'Agent, tiered actions', what: 'Edits files, runs commands behind a permission prompt, pushes when allowed', who: 'The agent, within tiers', hot: true },
     ];
     stops.forEach((c, i) => {
       const x = 0.8 + i * (cw + gap), b = i + 1;
@@ -197,14 +197,14 @@ async function main() {
     const lw = colW(8);
     // the six-tool table
     const tx = M, ty = by + 0.08;
-    const cols = [2.45, 1.85, lw - 4.3];
+    const cols = [2.7, 1.85, lw - 4.55];
     const rows = [
-      ['Look up requester', 'Read-only', C.blue, C.text, '', 0.32],
-      ['Search policy', 'Read-only', C.blue, C.text, '', 0.32],
-      ['Check entitlements', 'Read-only', C.blue, C.text, '', 0.32],
-      ['Request approval', 'Durable wait', C.muted, C.base, 'Approval is itself a tool call', 0.34],
-      ['Notify requester', 'External\ncommunication', C.amber, C.base, 'An outbound channel; see slide 13', 0.62],
-      ['Grant entitlement', 'Consequential', C.amber, C.base, 'Carries a sensitivity tier; the policy engine decides; revoke is the compensating action', 0.9],
+      ['Read file', 'Read-only', C.blue, C.text, '', 0.32],
+      ['Search the codebase', 'Read-only', C.blue, C.text, '', 0.32],
+      ['List files', 'Read-only', C.blue, C.text, '', 0.32],
+      ['Edit file', 'Reversible', C.muted, C.base, 'Git is the compensating action', 0.34],
+      ['Run a command', 'Consequential', C.amber, C.base, 'Behind the permission prompt; the policy decides, not the model', 0.62],
+      ['Push, or open\na pull request', 'External\ncommunication', C.amber, C.base, 'An outbound channel; see slide 13', 0.62],
     ];
     T(s, 'Tool', { x: tx, y: ty, w: cols[0], h: 0.28, size: 16, bold: true, color: C.muted, valign: 'middle' });
     T(s, 'Tier', { x: tx + cols[0], y: ty, w: cols[1], h: 0.28, size: 16, bold: true, color: C.muted, valign: 'middle', name: 'b1:tier-h' });
@@ -213,7 +213,7 @@ async function main() {
     line(s, tx, y, tx + lw, y, { color: C.border, width: 1 });
     rows.forEach((r, i) => {
       const h = r[5];
-      T(s, r[0], { x: tx, y, w: cols[0], h, size: 16, font: MONO, color: C.text, valign: 'middle' });
+      T(s, r[0], { x: tx, y, w: cols[0], h, size: 16, font: MONO, color: C.text, valign: 'middle', lh: 1.1 });
       const two = r[1].includes('\n');
       pill(s, { text: r[1], x: tx + cols[0], y: y + (h - (two ? 0.5 : 0.28)) / 2, w: 1.7, h: two ? 0.5 : 0.28, fill: r[2], color: r[3], size: 16, name: `b1:tier${i}` });
       if (r[4]) T(s, r[4], { x: tx + cols[0] + cols[1], y: y + 0.03, w: cols[2], h: h - 0.06, size: 16, color: C.text, valign: 'middle', lh: 1.1 });
@@ -231,8 +231,8 @@ async function main() {
     pill(s, { text: 'Model', x: cx - 0.95, y: sby + 0.3, w: 1.9, h: 0.5, fill: C.amber, color: C.base, size: 18 });
     line(s, cx, sby + 0.8, cx, sby + 2.55, { arrow: true });
     pill(s, { text: 'Tools', x: cx - 0.95, y: sby + 2.55, w: 1.9, h: 0.5, fill: C.blue, color: C.text, size: 18 });
-    rect(s, { x: cx - 1.1, y: sby + 1.35, w: 2.2, h: 0.6, fill: C.surface, stroke: C.green, strokeW: 2, name: 'b2:policy' });
-    T(s, 'policy engine', { x: cx - 1.1, y: sby + 1.35, w: 2.2, h: 0.6, size: 18, bold: true, color: C.green, align: 'center', valign: 'middle', name: 'b2:policy-t' });
+    rect(s, { x: cx - 1.35, y: sby + 1.35, w: 2.7, h: 0.6, fill: C.surface, stroke: C.green, strokeW: 2, name: 'b2:policy' });
+    T(s, 'permission system', { x: cx - 1.35, y: sby + 1.35, w: 2.7, h: 0.6, size: 18, bold: true, color: C.green, align: 'center', valign: 'middle', name: 'b2:policy-t' });
     rect(s, { x: sbx, y: sby, w: sbw, h: sbh, stroke: C.text, strokeW: 2, dash: 'dash', radius: 0.1, name: 'b2:sandbox' });
     T(s, 'sandbox', { x: sbx + 0.15, y: sby + sbh - 0.4, w: 1.5, h: 0.3, size: 16, color: C.muted, name: 'b2:sandbox-l' });
     line(s, cx, sby + sbh, cx, sby + sbh + 0.55, { arrow: true, name: 'b2:egress' });
@@ -278,46 +278,75 @@ async function main() {
   // ---------------------------------------------------------------- 10
   {
     const s = newSlide(10, notes(10));
-    const by = title(s, 'An approval can take two days. The harness is what survives them.');
-    const nw = 1.72, ww = 2.1, gap = 0.18, r1 = by + 0.32, nh = 0.8, wh = 0.95;
-    const sx = (i) => M + i * (nw + gap);           // slots 0..5; slot 5 is the wait (wider)
-    const node = (x, y, w, h, text, fill, color, nm) => pill(s, { text, x, y, w, h, fill, color, size: 16, bold: false, name: nm, lh: 1.15 });
-    const r1nodes = ['Request arrives', 'Journal the step', 'Look up requester', 'Search policy', 'Check entitlements'];
+    const by = title(s, 'The session ends before the task does. The harness is what carries it across.');
+    const node = (x, y, w, h, text, fill, color, nm) => pill(s, { text, x, y, w, h, fill, color, size: 16, bold: false, name: nm, lh: 1.1 });
+    // row 1: the run up to the session boundary (visible from the start)
+    const nw = 1.72, gap = 0.28, nh = 0.68, r1 = by + 0.25;
+    const sx = (i) => M + i * (nw + gap);
+    const r1nodes = ['Task arrives', 'Write the\nprogress file', 'Feature 1', 'Tests pass', 'Feature 2', 'Tests pass'];
     r1nodes.forEach((t, i) => node(sx(i), r1, nw, nh, t, C.blue, C.text));
     for (let i = 0; i < 5; i++) line(s, sx(i) + nw + 0.03, r1 + nh / 2, sx(i + 1) - 0.03, r1 + nh / 2, { arrow: true });
-    const wx = sx(5);
-    node(wx, r1, ww, wh, 'Request approval\ndurable wait, up to 2 days', C.amber, C.base);
-    // build 1: the deploy strike lands on the wait; the run resumes from its log and completes
-    pill(s, { text: 'Deploy mid-wait', x: wx + ww - 1.7, y: r1 - 0.43, w: 1.75, h: 0.4, fill: C.pink, color: C.base, size: 16, name: 'b1:deploy', stroke: C.base, strokeW: 1.5 });
-    const r2 = r1 + 1.6, midy = r1 + wh + 0.32;
-    const rw = 2.0, rx = (i) => sx(1) + i * (rw + 0.3);
-    node(rx(0), r2, rw, nh, 'Resume from log', C.blue, C.text, 'b1:resume');
-    node(rx(1), r2, rw, nh, 'Grant entitlement\nidempotency key', C.blue, C.text, 'b1:grant');
-    node(rx(2), r2, rw, nh, 'Notify requester', C.blue, C.text, 'b1:notify');
-    line(s, rx(0) + rw + 0.03, r2 + nh / 2, rx(1) - 0.03, r2 + nh / 2, { arrow: true, name: 'b1:a01' });
-    line(s, rx(1) + rw + 0.03, r2 + nh / 2, rx(2) - 0.03, r2 + nh / 2, { arrow: true, name: 'b1:a12' });
-    path(s, [[wx + 0.45, r1 + wh + 0.03], [wx + 0.45, midy], [rx(0) + rw / 2, midy], [rx(0) + rw / 2, r2 - 0.03]], { color: C.green, width: 2.5, arrow: true, name: 'b1:resume-a' });
-    T(s, 'resume from the journal', { x: rx(0) + rw / 2 + 0.15, y: midy - 0.32, w: 3.0, h: 0.28, size: 16, color: C.green, name: 'b1:resume-l' });
-    node(wx, r2, ww, nh, 'Human queue\nreasoning attached', C.amber, C.base, 'b1:queue');
-    line(s, wx + ww - 0.45, r1 + wh + 0.03, wx + ww - 0.45, r2 - 0.03, { arrow: true, name: 'b1:timeout-a' });
-    T(s, 'timeout', { x: wx + ww - 0.4 + 0.1, y: midy - 0.14, w: 1.0, h: 0.28, size: 16, color: C.muted, valign: 'middle', name: 'b1:timeout-l' });
-    // gauge
-    const gx = colX(8), gy = r2 + nh + 0.3;
-    T(s, 'Budgets', { x: gx, y: gy, w: colW(4), h: 0.3, size: 16, color: C.muted });
+    // build 1: the session ends; the next session resumes from the progress file and finishes the run
+    const ex = sx(5);
+    pill(s, { text: 'Session ends', x: ex + nw - 1.55, y: r1 - 0.42, w: 1.6, h: 0.38, fill: C.pink, color: C.base, size: 16, name: 'b1:end', stroke: C.base, strokeW: 1.5 });
+    const r2 = r1 + 1.2, midy = r1 + nh + (r2 - r1 - nh) / 2;
+    const r2nodes = [
+      ['New session reads\nthe progress file', 2.2, C.blue, C.text],
+      ['Feature 3\nnot 1 and 2 again', 2.0, C.blue, C.text],
+      ['Open the pull\nrequest, once', 2.0, C.blue, C.text],
+      ['Wait for CI and review\ndurable wait, can take days', 2.7, C.amber, C.base],
+      ['Human queue\nreasoning attached', 2.0, C.amber, C.base],
+    ];
+    const g2 = (CW - r2nodes.reduce((a, n) => a + n[1], 0)) / (r2nodes.length - 1);
+    let x2 = M;
+    const xs = [];
+    r2nodes.forEach(([t, w, f, c], i) => {
+      xs.push(x2);
+      node(x2, r2, w, nh, t, f, c, `b1:r2n${i}`);
+      if (i < r2nodes.length - 1) line(s, x2 + w + 0.03, r2 + nh / 2, x2 + w + g2 - 0.03, r2 + nh / 2, { arrow: true, name: `b1:r2a${i}` });
+      x2 += w + g2;
+    });
+    T(s, 'timeout', { x: xs[4] - g2 + 0.02, y: r2 - 0.3, w: g2, h: 0.28, size: 16, color: C.muted, align: 'center', valign: 'middle', name: 'b1:timeout-l' });
+    path(s, [[ex + nw / 2, r1 + nh + 0.03], [ex + nw / 2, midy], [xs[0] + r2nodes[0][1] / 2, midy], [xs[0] + r2nodes[0][1] / 2, r2 - 0.03]], { color: C.green, width: 2.5, arrow: true, name: 'b1:resume-a' });
+    T(s, 'resume from the progress file', { x: xs[0] + r2nodes[0][1] / 2 + 0.15, y: midy - 0.3, w: 3.6, h: 0.28, size: 16, color: C.green, name: 'b1:resume-l' });
+    // build 2: the loop as code (nine columns), the budget gauge beside it (three columns)
+    const cy = r2 + nh + 0.2, cw = colW(9), chh = 6.8 - cy;
+    rect(s, { x: M, y: cy, w: cw, h: chh, fill: C.surface, stroke: C.border, name: 'b2:code-bg' });
+    const CODE = [
+      ['state = journal.load(id)', 'resume, or start empty'],
+      ['while within(BUDGET, state):', 'one run'],
+      ['  context = gather(state, tools)', 'what this call sees'],
+      ['  action = model(context)', 'one call'],
+      ['  if policy.gated(action):', 'that action gated'],
+      ['    journal.wait(action); break', 'wait; timeout escalates'],
+      ['  journal.intend(action)', 'journal before acting'],
+      ['  result = sandbox.run(action)', 'one action'],
+      ['  journal.record(verify(result))', 'deterministic first'],
+      ['  if done(state): break', ''],
+    ];
+    // comments in the muted token: each line is a code run and a comment run
+    const runs2 = [];
+    CODE.forEach(([code, cmt], i) => {
+      const last = i === CODE.length - 1;
+      if (cmt) {
+        runs2.push({ text: code.padEnd(33), options: { color: C.text } });
+        runs2.push({ text: '# ' + cmt, options: { color: C.muted, breakLine: !last } });
+      } else {
+        runs2.push({ text: code, options: { color: C.text, breakLine: !last } });
+      }
+    });
+    T(s, runs2, { x: M + 0.2, y: cy + 0.1, w: cw - 0.4, h: chh - 0.2, size: 16, font: MONO, color: C.text, lh: 0.95, name: 'b2:code' });
+    const gx = colX(9), gy = cy;
+    T(s, 'Budgets', { x: gx, y: gy, w: colW(3), h: 0.3, size: 16, color: C.muted, name: 'b2:gauge-h' });
     const dials = [['steps', 35], ['tokens', 120], ['dollars', 70], ['wall-clock', 160]];
     dials.forEach(([t, ang], i) => {
-      const dx = gx + 0.45 + (i % 2) * 1.9, dy = gy + 0.75 + Math.floor(i / 2) * 1.0, r = 0.3;
-      circle(s, dx, dy, r, { stroke: C.text, strokeW: 2 });
+      const dx = gx + 0.35, dy = gy + 0.72 + i * 0.5, r = 0.22;
+      circle(s, dx, dy, r, { stroke: C.text, strokeW: 2, name: `b2:dial${i}` });
       const a = (ang - 90) * Math.PI / 180;
-      line(s, dx, dy, dx + (r - 0.06) * Math.cos(a), dy + (r - 0.06) * Math.sin(a), { color: C.pink, width: 2.5 });
-      circle(s, dx, dy, 0.05, { fill: C.pink });
-      T(s, t, { x: dx + r + 0.12, y: dy - 0.15, w: 1.3, h: 0.3, size: 16, color: C.muted, valign: 'middle' });
+      line(s, dx, dy, dx + (r - 0.05) * Math.cos(a), dy + (r - 0.05) * Math.sin(a), { color: C.pink, width: 2.5, name: `b2:hand${i}` });
+      circle(s, dx, dy, 0.04, { fill: C.pink, name: `b2:pin${i}` });
+      T(s, t, { x: dx + r + 0.12, y: dy - 0.15, w: 1.6, h: 0.3, size: 16, color: C.muted, valign: 'middle', name: `b2:dial-l${i}` });
     });
-    bullets(s, [
-      'One run, in code: a deterministic outer loop, model-directed steps, hard budgets for steps, tokens, dollars, and wall-clock.',
-      'Durable state: journal before acting, idempotency keys, compensating actions, approval as a durable wait with a timeout.',
-      'Multi-agent in one rule: writes stay single-threaded.',
-    ], { x: M, y: r2 + nh + 0.3, w: colW(8), h: 2.3, size: 18, paraAfter: 6 });
   }
 
   // ---------------------------------------------------------------- 11
@@ -366,15 +395,15 @@ async function main() {
     bullets(s, [
       'Record: full context, every model call, every tool call and result, state transitions and stopping reason, end state, tokens, cost, latency, model and prompt versions, user feedback.',
       'OpenTelemetry has GenAI conventions for agents and tools. Still marked development. Instrument now, expect renames.',
-      'A model swap that raises the over-grant rate is an incident.',
+      'A model swap that raises the rate of runs that say done without passing the tests is an incident.',
     ], { x: M, y: by + 0.15, w: colW(5), h: 4.6, size: 18, paraAfter: 10 });
     const cx = colX(5), cw = colW(7), cy = by + 0.15, ch = 4.75;
     rect(s, { x: cx, y: cy, w: cw, h: ch, fill: C.surface, stroke: C.border, radius: 0.03 });
-    T(s, 'One trace, one run', { x: cx + 0.3, y: cy + 0.3, w: 2.6, h: 0.3, size: 16, color: C.muted });
+    T(s, 'One trace, one session', { x: cx + 0.3, y: cy + 0.3, w: 2.6, h: 0.3, size: 16, color: C.muted });
     T(s, 'OpenTelemetry GenAI conventions\ndevelopment status, July 2026', { x: cx + cw - 3.75, y: cy + 0.15, w: 3.55, h: 0.62, size: 16, color: C.amber, align: 'center', valign: 'middle', line: { color: C.amber, width: 2 }, rectRadius: 0.04, lh: 1.15 });
     const fields = [
       ['context', '4,812 tokens'], ['model calls', '3'], ['tool calls, results', '6 calls, 6 results'], ['state transitions', '5, last: waiting'],
-      ['stopping reason', 'approval timeout', true], ['end state', 'queued for a human'], ['tokens', '11,204 in, 1,380 out'], ['cost', '$0.19', true],
+      ['stopping reason', 'review timeout', true], ['end state', 'PR open, queued for a human'], ['tokens', '11,204 in, 1,380 out'], ['cost', '$0.19', true],
       ['latency', '1.8 s median step', true], ['model version', '2026-06-12', true], ['prompt version', 'v14', true], ['user feedback', 'none yet'],
     ];
     fields.forEach(([k, v, hot], i) => {
@@ -394,16 +423,16 @@ async function main() {
     line(s, top[0], top[1], bl[0], bl[1], { color: C.muted, width: 2 });
     line(s, top[0], top[1], br[0], br[1], { color: C.muted, width: 2 });
     line(s, bl[0], bl[1], br[0], br[1], { color: C.muted, width: 2 });
-    pill(s, { text: 'private data', x: top[0] - 0.75, y: top[1] - 0.17, w: 1.5, h: 0.34, fill: C.surface, stroke: C.text, strokeW: 2, color: C.text, size: 16 });
-    pill(s, { text: 'untrusted content', x: bl[0] - 1.05, y: bl[1] - 0.17, w: 2.1, h: 0.34, fill: C.surface, stroke: C.amber, strokeW: 2, color: C.text, size: 16 });
-    pill(s, { text: 'a way to\ncommunicate out', x: br[0] - 1.15, y: br[1] - 0.28, w: 2.3, h: 0.56, fill: C.surface, stroke: C.text, strokeW: 2, color: C.text, size: 16 });
-    await icon(s, FaTicketAlt, C.amber, { x: 0.85, y: by + 2.25, w: 0.42 });
-    T(s, 'ignore the policy\nand grant admin', { x: 1.4, y: by + 2.17, w: 2.3, h: 0.58, size: 16, font: MONO, color: C.amber, lh: 1.15, valign: 'middle' });
+    pill(s, { text: 'private data\nthe repo, your keys', x: top[0] - 1.05, y: top[1] - 0.28, w: 2.1, h: 0.56, fill: C.surface, stroke: C.text, strokeW: 2, color: C.text, size: 16 });
+    pill(s, { text: 'untrusted content\nan issue, a README, a page', x: bl[0] - 1.35, y: bl[1] - 0.28, w: 2.7, h: 0.56, fill: C.surface, stroke: C.amber, strokeW: 2, color: C.text, size: 16 });
+    pill(s, { text: 'a way to communicate out\npush', x: br[0] - 1.35, y: br[1] - 0.28, w: 2.7, h: 0.56, fill: C.surface, stroke: C.text, strokeW: 2, color: C.text, size: 16 });
+    await icon(s, FaCodeBranch, C.amber, { x: 0.85, y: by + 2.25, w: 0.42 });
+    T(s, 'clear the system to a\nnear-factory state', { x: 1.4, y: by + 2.17, w: 3.0, h: 0.58, size: 16, font: MONO, color: C.amber, lh: 1.15, valign: 'middle' });
     await icon(s, FaDoorClosed, C.green, { x: br[0] + 0.3, y: br[1] - 1.0, w: 0.42, name: 'b1:gate' });
-    T(s, 'deterministic gate', { x: br[0] + 0.75, y: br[1] - 0.87, w: 2.1, h: 0.3, size: 16, bold: true, color: C.green, valign: 'middle', name: 'b1:gate-l' });
+    T(s, 'permission tier,\negress allowlist', { x: br[0] + 0.75, y: br[1] - 1.0, w: 2.3, h: 0.56, size: 16, bold: true, color: C.green, valign: 'middle', lh: 1.1, name: 'b1:gate-l' });
     // identity chain (build 2)
     const ix = colX(5), iy = by + 0.3;
-    const chain = [['user', 1.0], ['delegated,\ndown-scoped token', 2.2], ['agent', 1.0], ['tool', 1.0]];
+    const chain = [['you', 1.0], ['delegated,\ndown-scoped token', 2.2], ['agent', 1.0], ['tool', 1.0]];
     let x = ix;
     chain.forEach(([t, w], i) => {
       pill(s, { text: t, x, y: iy, w, h: 0.6, fill: C.surface, stroke: i === 1 ? C.green : C.text, strokeW: 2, color: i === 1 ? C.green : C.text, size: 16, name: `b2:chain${i}` });
@@ -541,10 +570,10 @@ async function main() {
     const lw = 3.75;
     T(s, 'First project', { x: M, y: by + 0.15, w: lw, h: 0.35, size: 20, bold: true, color: C.pink });
     const steps = [
-      'A task you already understand. Single agent before multi-agent.',
+      'A read-only agent over a repo you own: a pull-request reviewer or an issue-triage agent.',
       '20 to 50 eval cases from real examples before the first prompt is tuned.',
       'Direct API calls before a framework. A trace viewer from day one.',
-      'Add autonomy one tier at a time. Let the evals tell you when.',
+      'One agent, one tier at a time. Let the evals tell you when.',
     ];
     let sy = by + 0.6;
     for (let i = 0; i < steps.length; i++) {

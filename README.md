@@ -6,7 +6,7 @@ Preparation materials for a conference talk on AI engineering as a discipline, w
 
 - **Length:** 50 minutes, roughly 30 of presentation and 20 of questions and discussion
 - **Audience:** software engineers who want to move into AI engineering, most of whom have used a coding agent but few of whom have shipped a system whose behavior depends on a model
-- **Focus:** agentic AI, taught by building one enterprise agent area by area
+- **Focus:** agentic AI, taught by taking apart the coding agent everyone in the room has used, area by area, with a beat in each area for where a customer-facing agent differs
 - **When:** September 2026
 
 ## Presentation Description
@@ -27,11 +27,12 @@ The description above was provided to attendees before the outline was finalized
 
 | Path | What it is |
 |---|---|
-| `overview.md` | A one-file breakdown of the talk as drafted: thesis, through-lines, time budget, the access agent, the map, every slide's beat and first cut, the cut inventory, evidence flags, Q&A stage answers, and status. Start here before opening the slide files. |
-| `outlines/outline-v3.md` | The current outline. Thirty minutes of content drawn on the agent loop, a running access-request agent built in four versions from a single model call to a tiered autonomous agent, a coding-agent bridge for every area, a Q&A table, and appendices on what changed from v1 and v2 and what was deliberately cut. |
+| `overview.md` | A one-file breakdown of the talk as drafted: thesis, through-lines, time budget, the specimen and the different-customer beats, the map, every slide's beat and first cut, the cut inventory, evidence flags, Q&A stage answers, and status. Start here before opening the slide files. |
+| `outlines/outline-v4.md` | The current outline. Thirty minutes of content drawn on the agent loop, the coding agent taken apart from the builder's side as the specimen for every area, a "same machine, different customer" beat closing each area, the loop as ten lines of code on the harness slide, a Q&A table, and appendices on what changed from v1, v2, and v3 and what was deliberately cut. |
+| `outlines/outline-v3.md` | Superseded by v4, which removed the invented access-request agent in favor of the coding agent as the specimen. Kept for comparison. |
 | `outlines/outline-v2.md` | Superseded by v3, which restructured section 2 (verification folded into the harness area, one meaning of harness, evaluation on the outer ring). Kept for comparison. |
 | `outlines/outline-v1.md` | The original draft, written for a 60-minute slot. Superseded, kept for comparison. |
-| `slides/` | Slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md` for the discussion. Nineteen slides numbered globally, each with on-slide text, a visual spec, a verbatim speaker script sized at 150 words per minute, a first cut for rehearsal, and a sources line that traces every number and quotation to the research with its evidence flag. |
+| `slides/` | Slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md` for the discussion. Nineteen slides numbered globally, each with on-slide text, a visual spec, a specimen beat and a different-customer beat in section 2, a verbatim speaker script sized at 150 words per minute, a first cut for rehearsal, and a sources line that traces every number and quotation to the research with its evidence flag. |
 | `research/synthesis.md` | Consolidated research: the ranked verdict on what v1 was missing, 2026 vocabulary with attribution, statistics sorted by how safely they can be cited, live controversies, the transition roadmap, and sourced Q&A answers. Read this before putting any number or quotation on a slide. |
 | `research/track-a-discipline.md` | How the field defines AI engineering in 2025 and 2026, competency maps, the shift from prompt to context to harness engineering, conference programs. |
 | `research/track-b-enterprise-agents.md` | Canonical agent design guidance, standards (MCP, A2A, Agent Skills, AGENTS.md, agent identity), production patterns, security incidents, adoption data, governance. |
@@ -48,6 +49,6 @@ Using AI makes you an AI-enabled software engineer. Engineering systems whose be
 
 - Description: final and distributed.
 - Research: complete as of 2026-09-11. Each track report flags anything that could only be reached through secondary coverage.
-- Outline: v3 complete. Section 2 restructured with the speaker on 2026-09-13; v2 kept for comparison.
-- Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13.
-- Deck: transcribed on 2026-09-14 into `deck/beyond-the-coding-agent.pptx` by the generator in `deck/build/`; click-to-appear builds, scripts in the speaker notes.
+- Outline: v4 complete. The access-request running example was replaced by the coding agent as the specimen with the speaker on 2026-09-13; v3 kept for comparison.
+- Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13, then restructured to v4 on 2026-09-13.
+- Deck: regenerated on 2026-09-13 into `deck/beyond-the-coding-agent.pptx` from the v4 slides by the generator in `deck/build/`; click-to-appear builds, scripts in the speaker notes.

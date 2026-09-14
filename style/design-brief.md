@@ -73,8 +73,8 @@ These recur across slides and must not vary.
 | Structure | Key |
 |---|---|
 | The map (slides 5, 14, 19) and area names on slide 16 | Model at the center: amber. Loop ring: blue. Harness ring: green. Operations ring: muted off-white. |
-| Autonomy spectrum (slide 4) | Four stop cards on the surface color. v3 highlighted in pink; v0, v1, v2 dimmed. |
-| Tool tiers (slide 8) | Read-only: blue. Durable wait: muted off-white. External and consequential: amber. |
+| Autonomy spectrum (slide 4) | Four stop cards on the surface color. The fourth stop highlighted in pink; the first three dimmed. |
+| Tool tiers (slide 8) | Read-only: blue. Reversible: muted off-white. Consequential and external: amber. |
 | Mistake and antidote columns (slide 17) | Mistake column text in amber. Antidote column text in green. |
 | Contrast card (slide 9) | Two columns on one surface card; headings in blue and green at 24 pt bold or larger. |
 | Checklists (slides 15, 18) | Green check glyph, off-white text. |
@@ -117,8 +117,8 @@ Each component names the slides that use it. "Not for" says where a similar-look
 
 - **Statement slide**: one headline alone, centered, 64 to 72 pt. Default is off-white on the background; optional full-bleed pink with dark text. On build the headline shrinks to the top and body text appears beneath. For: slide 1, and the thesis pair with the closing line on slide 19. Not for: section breaks; the deck has none and bridges by script.
 - **Title + body**: title top left, body, table, or diagram below. For: most slides. Not for: a slide whose only content is a headline; use the statement slide.
-- **Two column**: text left, diagram right, 5/7 or 8/4. For: slides 8, 9, 13, 18. Not for: two lists of equal weight; use a table.
-- **Card and card row**: surface fill, hairline border, 8 px radius, title in bold body size, two or three lines beneath. Variants: highlighted (pink border, or pink fill with dark text) and dimmed (Dimmed token for border and text). For: the three categories on slide 2 (third card dimmed) and the four stops on slide 4 (v3 highlighted). Not for: metrics; use a stat tile.
+- **Two column**: text left, diagram right, 5/7 or 8/4. For: slides 8, 9, 10, 13, 18. Not for: two lists of equal weight; use a table.
+- **Card and card row**: surface fill, hairline border, 8 px radius, title in bold body size, two or three lines beneath. Variants: highlighted (pink border, or pink fill with dark text) and dimmed (Dimmed token for border and text). For: the three categories on slide 2 (third card dimmed) and the four stops on slide 4 (the fourth stop highlighted). Not for: metrics; use a stat tile.
 - **Contrast card**: one surface card split into two columns with a hairline between, headings in blue and green at 24 pt bold or larger (blue on the surface color is 3.3:1, large text only), body in off-white. For: verification versus evaluation on slide 9. Not for: mistakes and antidotes; that is a table.
 - **Table**: hairline row dividers, no vertical borders, header row bold. Variants: highlighted row (pink border, slide 16); color-coded cells (tier cells on slide 8 and area names on slide 16 in their fixed key); tinted columns (slide 17, mistake text amber, antidote text green, surface fill unchanged). Rows may build one at a time. For: slides 8, 16, 17. Not for: a list of resources; use the resource list.
 - **Checklist**: green check glyph at the left, off-white text at body size, one item per line. For: the seven carried-over skills on slide 15 and the four first-project steps on slide 18. Not for: mistakes or warnings; those are a table.
@@ -134,19 +134,20 @@ Each component names the slides that use it. "Not for" says where a similar-look
   |---|---|---|---|
   | model | Amber `#fdad00` | `#14161c` | The model node on slides 5 and 14. |
   | step | Blue `#1064f8` | `#fffcf5` | Ordinary steps: gather context, act through a tool, verify, and the run steps on slides 10 and 11. |
-  | wait | Amber `#fdad00` | `#14161c` | The approval wait on slide 10. |
-  | strike | Pink `#f948be` | `#14161c` | The deploy strike on slide 10; any failure or cross-out. |
+  | wait | Amber `#fdad00` | `#14161c` | The CI and review wait on slide 10. |
+  | strike | Pink `#f948be` | `#14161c` | The session-end marker on slide 10; any failure or cross-out. |
   | ops | Off-white `#fffcf5` | `#14161c` | Outer-ring nodes (evaluate, observability, security, governance) on slides 5 and 14. |
   | container | Surface `#1c1f27` | `#fffcf5` label | Subgraphs: 2 px stroke in the ring color (blue for the loop, green for the harness, muted off-white for operations). |
 
   Connectors are muted off-white at 2 px; an edge that is the point (the loop-back, the resume) takes an accent. Dotted edges stay dotted. Labels are 16 pt minimum. For: slides 5, 10, 11, 14. Not for: cards; cards have hairline borders and no accent fill unless highlighted.
-- **Spectrum**: one horizontal line across the slide in muted off-white, labeled at the ends (workflow at the left, agent at the right), four stop cards on it built left to right, v3 highlighted in pink and the rest dimmed. Two definitions above in body size. For: slide 4 only.
+- **Spectrum**: one horizontal line across the slide in muted off-white, labeled at the ends (workflow at the left, agent at the right), four stop cards on it built left to right, the fourth stop highlighted in pink and the rest dimmed. Two definitions above in body size. For: slide 4 only.
 - **Drawn diagram rules**: for the one-offs that are neither Mermaid nor cards: the three-word cycle and eval gate on slide 6, the segmented budget bar on slide 7, the sandbox strip on slide 8, the ladder on slide 9, the four-dial gauge on slide 10, the four-column scorecard strip on slide 11, the record card on slide 12, the triangle and identity chain on slide 13. Boxes on the surface color with hairline or 2 px accent strokes. Cross-hatching is allowed as an amber pattern on a surface fill (the untrusted segments on slide 7). Markers, stamps, and direction-of-argument arrows in pink. Crossed-out elements in pink. Greyed example values in the Dimmed token. The gauge dials are line drawings in off-white with pink needles.
 - **Prop card**: a surface card styled to look like a document, with an amber stamp. For: the deprecation notice on slide 6 only.
+- **Code block**: the loop as code, once. Menlo at 16 pt on a surface-filled block with a hairline border and 8 px radius, code in off-white, comments in the muted token, no syntax coloring beyond that. About ten lines; never scrolls or shrinks below 16 pt. For: the loop on slide 10 only. Not for: quotations (use the quote component) or the monospace headline on slide 3 (that is a quote).
 
 ## Iconography, imagery, and decoration
 
-- Icons come in two styles; pick one per slide. Filled icons in an accent color (the key on slide 8; the ticket, gate, package, speech bubble, and ledger on slide 13; the status badge on slide 12; checks; dials). Or line icons at 2 px in off-white. Icons never carry text; a caption in muted 16 pt sits beside them.
+- Icons come in two styles; pick one per slide. Filled icons in an accent color (the key on slide 8; the pull request, gate, package, speech bubble, and ledger on slide 13; the status badge on slide 12; checks; dials). Or line icons at 2 px in off-white. Icons never carry text; a caption in muted 16 pt sits beside them.
 - Diagrams use the node class table and the drawn diagram rules above.
 - One decorative shape per slide is allowed: a flat circle or ring in an accent, echoing the map, behind a big number or on the statement slide. Never behind body text, tables, or diagrams. Flat color only, no gradient, no glow.
 - Patterns are limited to cross-hatching inside a diagram element. No background patterns.
