@@ -1,6 +1,6 @@
 # Section 1: The Line
 
-**Slides:** 2 through 4 (3 slides) | **Approximate time:** 4 minutes | **Outline:** outline-v2.md §1
+**Slides:** 2 through 4 (3 slides) | **Approximate time:** 4 minutes | **Outline:** outline-v3.md §1
 
 **Goal:** Define the discipline, explain why it is distinct, and set up the spectrum the running example moves along.
 
@@ -153,5 +153,5 @@ Drop the "For many applications" quotation. Saves about 8 seconds. Keep the rule
 - Workflows are "systems where LLMs and tools are orchestrated through predefined code paths"; agents are "systems where LLMs dynamically direct their own processes and tool usage." → synthesis.md §3 (Anthropic, "Building effective agents," 2024-12-19).
 - Add complexity "only when it demonstrably improves outcomes" → track-b-enterprise-agents.md §2 (Anthropic, 2024-12-19).
 - "For many applications, optimizing single LLM calls with retrieval and in-context examples is usually enough." → track-d-transition.md §3 (Anthropic, 2024-12-19).
-- The access agent, v0 to v3 → outlines/outline-v2.md, "The Running Example." The talk's own scenario. No external source, no invented numbers.
+- The access agent, v0 to v3 → outlines/outline-v3.md, "The Running Example." The talk's own scenario. No external source, no invented numbers.
 - "the same shape as the coding agent you used this morning" → synthesis.md §2 finding 10.

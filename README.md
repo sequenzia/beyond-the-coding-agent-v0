@@ -28,7 +28,8 @@ The description above was provided to attendees before the outline was finalized
 | Path | What it is |
 |---|---|
 | `overview.md` | A one-file breakdown of the talk as drafted: thesis, through-lines, time budget, the access agent, the map, every slide's beat and first cut, the cut inventory, evidence flags, Q&A stage answers, and status. Start here before opening the slide files. |
-| `outlines/outline-v2.md` | The current outline. Thirty minutes of content drawn on the agent loop, a running access-request agent built in four versions from a single model call to a tiered autonomous agent, a coding-agent bridge for every area, a Q&A table, and appendices on what changed from v1 and what was deliberately cut. |
+| `outlines/outline-v3.md` | The current outline. Thirty minutes of content drawn on the agent loop, a running access-request agent built in four versions from a single model call to a tiered autonomous agent, a coding-agent bridge for every area, a Q&A table, and appendices on what changed from v1 and v2 and what was deliberately cut. |
+| `outlines/outline-v2.md` | Superseded by v3, which restructured section 2 (verification folded into the harness area, one meaning of harness, evaluation on the outer ring). Kept for comparison. |
 | `outlines/outline-v1.md` | The original draft, written for a 60-minute slot. Superseded, kept for comparison. |
 | `slides/` | Slide-by-slide content, one file per section (`00-cold-open.md` through `04-close.md`) plus `qa.md` for the discussion. Nineteen slides numbered globally, each with on-slide text, a visual spec, a verbatim speaker script sized at 150 words per minute, a first cut for rehearsal, and a sources line that traces every number and quotation to the research with its evidence flag. |
 | `research/synthesis.md` | Consolidated research: the ranked verdict on what v1 was missing, 2026 vocabulary with attribution, statistics sorted by how safely they can be cited, live controversies, the transition roadmap, and sourced Q&A answers. Read this before putting any number or quotation on a slide. |
@@ -46,5 +47,5 @@ Using AI makes you an AI-enabled software engineer. Engineering systems whose be
 
 - Description: final and distributed.
 - Research: complete as of 2026-09-11. Each track report flags anything that could only be reached through secondary coverage.
-- Outline: v2 complete and under review by the speaker.
+- Outline: v3 complete. Section 2 restructured with the speaker on 2026-09-13; v2 kept for comparison.
 - Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13. Not yet transcribed into a deck.

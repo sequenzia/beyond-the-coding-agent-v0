@@ -26,6 +26,6 @@ Repo-specific facts for re-syncing this design system to Claude Design. Read thi
 ## Re-sync risks
 
 - `.design-sync/conventions.md` restates rules from the brief (tokens, text on fills, accent rules, type scale, layout). When the brief changes, re-read the header against it. The token-name check only catches renamed tokens, not changed rules.
-- The header's example uses the slide 4 stop-card wording from `outlines/outline-v2.md`. If that wording changes, update the example.
+- The header's example uses the slide 4 stop-card wording from `outlines/outline-v3.md`. If that wording changes, update the example.
 - Type sizes in the header assume a 960 × 540 pt slide rendered at 1920 × 1080 px, so 1 pt = 2 px. That conversion is an assumption of this sync, not something the brief states.
 - Playwright pins a Chromium build per version. A fresh `.ds-sync/` install may need `npx playwright install chromium` again.

@@ -1,6 +1,6 @@
 # Questions and Discussion
 
-**Time:** about 20 minutes | **Outline:** outline-v2.md "Questions and Discussion" | **Sourced answers:** research/synthesis.md §7, with track-report detail where noted
+**Time:** about 20 minutes | **Outline:** outline-v3.md "Questions and Discussion" | **Sourced answers:** research/synthesis.md §7, with track-report detail where noted
 
 **How to use this file.** One block per anticipated question. *Stage answer* is about twenty seconds, said as written. *If pressed* is the next layer, from the synthesis. *Sources* says where each fact lives. *Do not say* names the number or claim to avoid on that question. The file closes with the list of numbers that must not be cited and what to say instead.
 
@@ -12,9 +12,9 @@
 
 ## Preface: the vocabulary trap
 
-"Harness engineering" means two things in 2026. Anthropic's posts use it for the system around a production agent, which is how this talk uses it. OpenAI's February 2026 post and Birgitta Böckeler's essay on martinfowler.com use it for configuring a coding agent with instruction files, linters, and tests. The skills overlap, which is the talk's bridge, but the targets differ. Slide 9 names this once. If a question seems to disagree with slide 9, the asker is probably using the other meaning. Say so, then answer.
+"Harness engineering" means two things in 2026. Anthropic's posts use it for the system around a production agent, which is the sense the deck uses throughout. OpenAI's February 2026 post and Birgitta Böckeler's essay on martinfowler.com use it for configuring a coding agent with instruction files, linters, and tests. The skills overlap, which is the talk's bridge, but the targets differ. The talk does not say this on stage; it lives here. Slide 5 defines the harness as the program that runs the loop, and slide 10 builds on it. If a question seems to disagree with slide 10, the asker is probably using the other meaning. Say so, then answer.
 
-Sources: outline-v2.md Appendix D; synthesis.md §3 (harness); track-a-discipline.md §4 ("Two meanings of 'harness engineering'").
+Sources: outline-v3.md Appendix D; synthesis.md §3 (harness); track-a-discipline.md §4 ("Two meanings of 'harness engineering'").
 
 ---
 

@@ -1,6 +1,6 @@
 # Section 0: Cold Open
 
-**Slides:** 1 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v2.md §0
+**Slides:** 1 (1 slide) | **Approximate time:** 1 minute | **Outline:** outline-v3.md §0
 
 **Goal:** Open on the coding agent, not on AI. Name the distinction the whole talk rests on, put the thesis on screen, and leave it there.
 

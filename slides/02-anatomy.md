@@ -1,16 +1,18 @@
 # Section 2: Anatomy of an Enterprise Agent
 
-**Slides:** 5 through 14 (10 slides) | **Approximate time:** 19 minutes | **Outline:** outline-v2.md §2
+**Slides:** 5 through 14 (10 slides) | **Approximate time:** 19 minutes | **Outline:** outline-v3.md §2
 
 **Goal:** The conceptual map of the discipline, drawn on the agent loop, built through the access agent. This is the section attendees should photograph. It covers every responsibility the session description promised: context engineering and retrieval, tools and extensibility, harness design and orchestration, evaluations and verification, observability, guardrails, security, and cost and latency.
 
-**Running example in this section:** The access agent at v3. Slide 4 placed it on the spectrum. This section builds it area by area: the two-model split (slide 6), the window (7), the six tools and their tiers (8), the two-day approval wait (9), the verification gate and the eval set (10 and 11), the trace (12), and the injected ticket (13).
+**Running example in this section:** The access agent at v3. Slide 4 placed it on the spectrum. This section builds it area by area: the two-model split (slide 6), the window (7), the six tools and their tiers (8), the verification gate (9), the two-day approval wait (10), the eval set (11), the trace (12), and the injected ticket (13).
 
 **Bridge in:** "v3 is the same shape as the coding agent you used this morning." | **Bridge out:** "Now imagine it holding your customers' data" (slide 13), then the map filled (slide 14).
 
-**Cut order if long:** The memory sentences on slide 7 (about 12 seconds), then the governance line on slide 13 (about 10 seconds), per outline-v2.md:65. Each slide also names its own first cut.
+**Cut order if long:** The memory sentences on slide 7 (about 12 seconds), then the governance line on slide 13 (about 10 seconds), per outline-v3.md:65. Each slide also names its own first cut.
 
-**Timing note:** The outline's per-area budgets sum to 19:30. This file holds 19:00 by giving slide 7 (area 2.2) 2:30 instead of 3:00, which is where the outline's second cut candidate lives.
+**Timing note:** The outline's per-area budgets and this file both hold 19:00.
+
+**The spine:** The section walks the map outward, and each slide opens with a scope phrase: one call (6), what that call sees (7), one action (8), that action gated (9), one run (10), many runs (11), production (12). A refrain, "in code, not in a prompt," is seeded on slides 7, 8, and 9 and collected on slide 10, so the harness arrives expected. Both devices are the talk's own.
 
 **Sources convention:** Every number and quotation traces to `research/synthesis.md` §4 or a track report, with attribution and date. Flags: CAVEAT (say so on stage), SECONDARY (primary unreachable; keep the flag), NOT IN SYNTHESIS (traced to a track report, not in the §4 tables).
 
@@ -20,9 +22,9 @@
 | 6 | 2.1 | The model is a component | 2:00 | 300 |
 | 7 | 2.2 | Context is a budget, not a bucket | 2:30 | 375 |
 | 8 | 2.3 | Tools, action tiers, and isolation | 3:00 | 450 |
-| 9 | 2.4 | The harness: loop, state, and budgets | 3:00 | 450 |
-| 10 | 2.5a | Verify this action | 1:45 | 260 |
-| 11 | 2.5b | Evaluate across cases: the loop | 2:15 | 340 |
+| 9 | 2.4a | Verify this action | 1:45 | 260 |
+| 10 | 2.4b | The harness: one run | 3:00 | 450 |
+| 11 | 2.5 | Evaluate across runs: the loop | 2:15 | 340 |
 | 12 | 2.6a | Observe and operate | 1:00 | 150 |
 | 13 | 2.6b | Secure and govern | 2:00 | 300 |
 | 14 | 2 close | The map, filled | 0:30 | 75 |
@@ -41,11 +43,11 @@ The map. No bullets beyond the diagram's own labels.
 
 **Visual**
 
-The map, base variant. In the deck, draw it as three concentric rings: the model at the center, the loop as a circular arrow in the innermost ring (gather context, act through a tool, verify, repeat), the harness as the middle ring (state, budgets, boundaries), and operations as the outer ring (observability, security, governance). Build on two [BUILD]s: loop first, then the harness ring, then the operations ring. The Mermaid below is the content of record; it renders as nested boxes because Mermaid cannot draw rings. Dark text on every node. This exact diagram returns labeled on slide 14 and bare again on slide 19.
+The map, base variant. In the deck, draw it as three concentric rings: the model at the center, the loop as a circular arrow in the innermost ring (gather context, act through a tool, verify, repeat), the harness as the middle ring (state, budgets, boundaries), and the outer ring for everything done across runs and in production (evaluation, observability, security, governance). Build on two [BUILD]s: loop first, then the harness ring, then the outer ring. The Mermaid below is the content of record; it renders as nested boxes because Mermaid cannot draw rings. Dark text on every node. This exact diagram returns labeled on slide 14 and bare again on slide 19.
 
 ```mermaid
 flowchart TB
-  subgraph OPS["Operations: observability, security, governance"]
+  subgraph OPS["Across runs and in production: evaluate, observe, secure, govern"]
     direction TB
     subgraph HARNESS["Harness: state, budgets, boundaries"]
       direction TB
@@ -60,30 +62,30 @@ flowchart TB
         M -.- V
       end
     end
-    OBS["Observability"] ~~~ SEC["Security"] ~~~ GOV["Governance"]
+    EV["Evaluate"] ~~~ OBS["Observability"] ~~~ SEC["Security"] ~~~ GOV["Governance"]
   end
   classDef model fill:#ffe08a,stroke:#333,color:#111
   classDef step fill:#dbeafe,stroke:#333,color:#111
   classDef ops fill:#e5e7eb,stroke:#333,color:#111
   class M model
   class G,A,V step
-  class OBS,SEC,GOV ops
+  class EV,OBS,SEC,GOV ops
   style LOOP fill:#f5f9ff,stroke:#555,color:#111
   style HARNESS fill:#f4faf0,stroke:#555,color:#111
   style OPS fill:#fafafa,stroke:#555,color:#111
 ```
 
-Mermaid limits, for whoever redraws it: the model's dotted edges must stay inside the loop subgraph or the nested direction is ignored; the invisible links between the three operations nodes need Mermaid 10 or later; the "repeat" back-edge draws as a curve under the row.
+Mermaid limits, for whoever redraws it: the model's dotted edges must stay inside the loop subgraph or the nested direction is ignored; the invisible links between the four outer-ring nodes need Mermaid 10 or later; the "repeat" back-edge draws as a curve under the row.
 
 **Script**
 
 Here is the map for the next nineteen minutes. Photograph this one.
 
-[POINT: center] A model in the middle. [POINT: loop] Around it, the loop: gather context, act through a tool, verify the result, repeat. That loop is what an agent is. [BUILD] Around the loop, the harness. It owns state, budgets, and boundaries. It decides when the loop stops. [BUILD] Around the harness, operations: observability, security, governance. The things that keep it safe once it is running.
+[POINT: center] A model in the middle. It answers one call. [POINT: loop] Around it, the loop: gather context, act through a tool, verify the result, repeat. That loop is what an agent is. [BUILD] Around the loop, the harness: the code that runs the loop, keeps its state across a whole run, and decides when the run stops. [BUILD] Around the harness, everything across many runs and in production: evaluate, observe, secure, govern.
 
-Addy Osmani put it in one line this spring: "Agent equals model plus harness. If you're not the model, you're the harness." You are not the model. Everything you will engineer is on this diagram.
+Addy Osmani put it in one line this spring: "Agent equals model plus harness. If you're not the model, you're the harness." You are not the model. And harness, in this talk, means one thing: the program that runs the loop. The loop is the idea. The harness is the code.
 
-Six areas follow, in the order the loop touches them. The model. Context. Tools and action tiers. The harness. Verification and evaluation. Operations. We come back to this map with all six filled in.
+Six areas follow, from one call outward. The model: one call. Context: what that call sees. Tools: one action. The harness: that action gated, then the whole run. Evaluation: many runs. Operations: production. We come back to this map with all six filled in.
 
 **Cut if running long**
 
@@ -93,7 +95,9 @@ Nothing. This is the slide the section is built on.
 
 - "Agent = Model + Harness. If you're not the model, you're the harness." → track-a-discipline.md §3 (Addy Osmani, April 19, 2026); synthesis.md §2 finding 2.
 - The loop: gather context, take action, verify work, repeat → synthesis.md §1 item 3 and §2 finding 3 (Anthropic, "Effective context engineering for AI agents," 2025-09-29).
-- The harness owns state, budgets, boundaries → outline-v2.md 2.0; synthesis.md §3 harness definition (OpenAI, 2026-08-19).
+- The harness owns state, budgets, boundaries → outline-v3.md 2.0; synthesis.md §3 harness definition (OpenAI, 2026-08-19).
+- The gloss, "the program that runs the loop; the loop is the idea, the harness is the code" → the talk's own sentence, backed by synthesis.md §2 finding 3 ("the reusable part is the agent loop," OpenAI, August 2026; Google, an agent "uses the LM in a loop to accomplish a goal"). NOT IN SYNTHESIS §4; a definition, not a statistic.
+- Evaluation on the outer ring → outline-v3.md 2.0 and 2.5; track-c-evals-and-operations.md §2.4 (evaluation estimates a rate across cases, outside the loop).
 
 ---
 
@@ -123,7 +127,7 @@ The model picker in your coding agent, and the deprecation email you received th
 
 **Script**
 
-First area. The model. Every canonical decomposition of an agent starts here. OpenAI says model, tools, instructions. Google says model, tools, orchestration. The point for you is that the model is a component. You select it, you measure it, you replace it. It is not a given.
+First area. The model. It answers one call. Every canonical decomposition of an agent starts here. OpenAI says model, tools, instructions. Google says model, tools, orchestration. The point for you is that the model is a component. You select it, you measure it, you replace it. It is not a given.
 
 The selection rule, from OpenAI's guide: "build your agent prototype with the most capable model for every task to establish a performance baseline. From there, try swapping in smaller models." Then route by task. A capable model for judgment. A cheaper one for classification.
 
@@ -175,7 +179,7 @@ The context window as one horizontal budget bar divided into seven labeled segme
 
 **Running example**
 
-The access agent's window holds the requester's directory record, their current entitlements, policy excerpts retrieved for this request, and the request text, labeled as untrusted input. Policy documents carry a last-reviewed date, and stale policy blocks autonomous action.
+The access agent's window holds the requester's directory record, their current entitlements, policy excerpts retrieved for this request, and the request text, labeled as untrusted input. Policy documents carry a last-reviewed date, and stale policy blocks autonomous action. That rule is the first harness seed.
 
 **Bridge**
 
@@ -183,13 +187,13 @@ The instructions file in your repo is context engineering. OpenAI's own agent-fi
 
 **Script**
 
-Second area. Context. Anthropic's definition: context engineering is "the set of strategies for curating and maintaining the optimal set of tokens during LLM inference." Prompt engineering is a subset of that. And the governing rule, also Anthropic: "find the smallest set of high-signal tokens that maximize the likelihood of your desired outcome." Smallest. Not most.
+Second area. Context: what that one call sees. Anthropic's definition: context engineering is "the set of strategies for curating and maintaining the optimal set of tokens during LLM inference." Prompt engineering is a subset of that. And the governing rule, also Anthropic: "find the smallest set of high-signal tokens that maximize the likelihood of your desired outcome." Smallest. Not most.
 
 [POINT: bar] Here is what is in the window. System instructions. The task. Conversation state. Retrieved knowledge. Memory. Tool definitions. Tool results. Retrieval-augmented generation, which you have heard a lot about, is one technique for one of these segments. The field treats it as infrastructure now.
 
 The window is a budget, not a bucket. Attention degrades as it fills. So the long-horizon techniques are all about spending less: compaction, structured notes the agent maintains for itself, subagents that return a short summary instead of their whole transcript, and just-in-time retrieval instead of preloading everything you might need. Memory, briefly, is the same budget across sessions: working, episodic, semantic, procedural. Your skills files are procedural memory under version control.
 
-[BUILD] Now two properties beginners miss. First, provenance and freshness. Amazon's retail outage in March traced to an engineer acting on advice an agent had inferred from an outdated internal wiki. The agent was not wrong about code. It was confidently right about stale context. So for the access agent, every policy document carries a last-reviewed date, and stale policy blocks autonomous action. That is a rule in code, not a hope in a prompt.
+[BUILD] Now two properties beginners miss. First, provenance and freshness. Amazon's retail outage in March traced to an engineer acting on advice an agent had inferred from an outdated internal wiki. The agent was not wrong about code. It was confidently right about stale context. So for the access agent, every policy document carries a last-reviewed date, and stale policy blocks autonomous action. That is a rule in code, not a hope in a prompt. In code, not in a prompt. That code has a name on the map: the harness. Hold on to it.
 
 Second, the security boundary. Tool results and retrieved documents enter the window with the same authority as your instructions. One practitioner's phrase: "tool output is prompt engineering." So label untrusted content as untrusted. The access agent's window holds the requester's directory record, their entitlements, the retrieved policy, and the request text itself, marked as untrusted input. We will see why that label matters when someone puts an instruction inside a ticket.
 
@@ -203,13 +207,14 @@ The two memory sentences ("Memory, briefly ... version control."). Saves about 1
 
 - Context engineering is "the set of strategies for curating and maintaining the optimal set of tokens (information) during LLM inference" → synthesis.md §3 (Anthropic, "Effective context engineering for AI agents," 2025-09-29). Spoken without the parenthetical.
 - "Find the smallest set of high-signal tokens that maximize the likelihood of your desired outcome." → track-b-enterprise-agents.md §3 (Anthropic, 2025-09-29).
-- What is in the window; RAG as infrastructure → outline-v2.md 2.2; synthesis.md §1 "What v1 gets right."
+- What is in the window; RAG as infrastructure → outline-v3.md 2.2; synthesis.md §1 "What v1 gets right."
 - Compaction, structured note-taking, sub-agents returning condensed summaries, just-in-time retrieval → track-b-enterprise-agents.md §2.1 (Anthropic, 2025-09-29).
 - Memory taxonomy: working, episodic, semantic, procedural → track-b-enterprise-agents.md §2.3 "Memory." The working taxonomy, no single source. Vocabulary only. NOT IN SYNTHESIS §4.
 - Skills as procedural memory in version-controlled files → synthesis.md §3 (Agent Skills); track-b-enterprise-agents.md §2.2.
 - Amazon retail outage, March 2026: "inaccurate advice that an AI agent inferred from an outdated internal wiki" → synthesis.md §2 finding 8; track-b-enterprise-agents.md §2.4 incidents (Amazon's statement, as reported in Wharton Accountable AI Lab's analysis, 2026-04-14). Attribute "Amazon, as reported by Wharton, April 2026" if asked.
 - "Tool output is prompt engineering." → track-c-evals-and-operations.md §3 (Pedro Alonso, 2026-07-30, practitioner blog). NOT IN SYNTHESIS §4.
 - OpenAI's AGENTS.md about 100 lines as a table of contents → track-b-enterprise-agents.md §2.1 (OpenAI, "Harness engineering," early 2026; primary blocked to fetch) and §2.2 AGENTS.md. SECONDARY. Primary-sourced alternative if preferred: AGENTS.md is in 60,000+ open-source projects (agents.md, track-b §2.2).
+- The refrain and the seed → outline-v3.md 2.2 and Appendix E. The talk's own device.
 - Bridge → synthesis.md §2 finding 10.
 
 ---
@@ -243,7 +248,7 @@ Left two-thirds: the six-tool table, tier column color-coded (read-only cool, du
 
 **Running example**
 
-Six tools. Look up requester, search policy, and check entitlements are read-only. Request approval is a durable wait. Notify requester is external communication. Grant entitlement is consequential and carries a sensitivity tier; the policy engine, not the model, decides whether a grant may proceed without approval. A revoke tool exists as the compensating action.
+Six tools. Look up requester, search policy, and check entitlements are read-only. Request approval is a durable wait. Notify requester is external communication. Grant entitlement is consequential and carries a sensitivity tier; the policy engine, not the model, decides whether a grant may proceed without approval. A revoke tool exists as the compensating action. The policy engine is the second harness seed.
 
 **Bridge**
 
@@ -251,13 +256,13 @@ The permission prompt in your coding agent is an action tier. Its sandbox is thi
 
 **Script**
 
-Third area. Tools. Anthropic's definition: tools are "a new kind of software which reflects a contract between deterministic systems and non-deterministic agents." You are writing an interface for a caller that reads the documentation, reasons about it, and sometimes gets it wrong. So the design rules differ from an API for code. A few workflow-shaped tools instead of a wrapper per endpoint. Descriptions written as you would for a new teammate. Results that return meaning rather than identifiers. Errors that say what to do next.
+Third area. Tools: one action. Anthropic's definition: tools are "a new kind of software which reflects a contract between deterministic systems and non-deterministic agents." You are writing an interface for a caller that reads the documentation, reasons about it, and sometimes gets it wrong. So the design rules differ from an API for code. A few workflow-shaped tools instead of a wrapper per endpoint. Descriptions written as you would for a new teammate. Results that return meaning rather than identifiers. Errors that say what to do next.
 
 MCP, the Model Context Protocol, is how tools ship. It has been vendor-neutral under the Linux Foundation since December, and it is the de facto standard. This year's revision made servers stateless and hardened the OAuth profile. One thing to know: the protocol delegates the security boundary to you. Akamai's Maxim Zavodchik, in June: "critical security boundaries are now entirely dependent on how developers implement them." If you write a server, the tool-design rules apply. If you configure a client, scoped short-lived tokens are your job. And if your agents ever cross a vendor or organizational boundary, there is an agent-to-agent protocol, A2A, for that. Inside one system you do not need it.
 
 [BUILD] Now the most important design decision in this talk. Action tiers. Read-only. Reversible. Consequential. OpenAI rates every tool low, medium, or high by write access, reversibility, permissions, and financial impact. [POINT: table] Here are the access agent's six tools. Look up requester, search policy, check entitlements: read-only. Request approval: a durable wait, and approval is itself a tool call. Notify requester: external communication, which will matter for security in a few minutes. Grant entitlement: consequential. It carries a sensitivity tier. And a revoke tool exists as the compensating action.
 
-Here is the part that makes it engineering. [BUILD] Tiers are enforced by a policy layer outside the model. Not by asking the model to be careful. The policy engine, not the model, decides whether a grant may proceed without approval.
+Here is the part that makes it engineering. [BUILD] Tiers are enforced by a policy layer outside the model. Not by asking the model to be careful. The policy engine, not the model, decides whether a grant may proceed without approval. In code, not in a prompt. Harness code, again.
 
 Execution isolation is the counterpart. A sandbox with filesystem confinement and a network egress allowlist, and credentials that never enter the sandbox at all. Why? Replit's agent deleted a production database during a declared code freeze in July of last year. A code freeze is a prompt. The fix was three controls: separate dev and prod databases, one-click restore, and a planning-only mode. Not a better prompt.
 
@@ -278,26 +283,86 @@ The two A2A sentences ("And if your agents ever cross ... you do not need it.").
 - Tiers enforced as policy outside the model → synthesis.md §1 mis-weightings (3.2); track-b-enterprise-agents.md §2.3 (AWS Agentic AI Lens AGENTREL02-BP05; Google's Layer 1 runtime policy).
 - Sandbox: filesystem confinement, network egress allowlist, credentials never enter → synthesis.md §1 item 6; track-b-enterprise-agents.md §2.3 (Anthropic, 2025-10-20 and 2026-04-08).
 - Replit, July 2025: production database deleted during a declared code freeze; fixes were dev/prod separation, one-click restore, planning-only mode → synthesis.md §2 finding 8; track-b-enterprise-agents.md §2.4.
-- The six tools → outline-v2.md 2.3 running example. The talk's own design.
+- The six tools → outline-v3.md 2.3 running example. The talk's own design.
+- The refrain and the seed → outline-v3.md 2.3 and Appendix E. The talk's own device.
 - Bridge → synthesis.md §2 finding 10.
 
 ---
 
-### Slide 9: The harness: loop, state, and budgets
+### Slide 9: Verify this action
 
-**Outline:** 2.4 | **Time:** 3:00 | **Script target:** about 450 words
+**Outline:** 2.4a | **Time:** 1:45 | **Script target:** about 260 words
 
 **On slide**
 
-Headline: The harness is the reusable asset. The chat interface is not.
+Headline: Verification decides this action, now. Evaluation estimates the rate.
 
-- Deterministic outer loop in code. Model-directed inner steps. Hard budgets: steps, tokens, dollars, wall-clock.
-- Durable state: journal every side effect, idempotency keys, compensating actions, approval as a durable wait.
+- Verifiers in order of trust: deterministic checks, external evidence and end state, approval gates, model judges as evidence.
+- "Some tasks are much easier to verify than to solve." Design so checking is cheap.
+- Separate the agent doing the work from the agent judging it.
+
+**Visual**
+
+Left: a two-column contrast card. Verification: one action, before it takes effect, inside the loop, failure cost is the action itself. Evaluation: many cases, before and after a change, outside the loop, failure cost is a bad release. Right: a four-rung ladder with an arrow up its side labeled "trust." Top rung: deterministic checks and tests. Then external evidence and end state. Then approval gates. Bottom: model judges, as evidence rather than proof. On [BUILD] the rungs appear top to bottom. The three bullets sit beneath.
+
+**Running example**
+
+Verification before any grant confirms the requester's identity from SSO, the policy match, and the recorded approval. Three deterministic checks in code before the grant tool fires. This is the third harness seed, and the slide hands off to the harness with "the harness is next."
+
+**Bridge**
+
+Your coding agent running the tests before it says done is a verifier. When it says done without running them, that is Anthropic's finding, on your laptop.
+
+**Script**
+
+Fourth area, the harness, in two halves. First half: that same action, gated, before it takes effect. [POINT: card] Two questions beginners blur. Verification decides whether this action, now, is acceptable. Evaluation, two slides from now, estimates how often the system succeeds across many runs. Different failure costs. Fail verification and you granted admin to the wrong person. Fail evaluation and you shipped a bad release.
+
+Verification is the third step of the loop. Gather context, take action, verify work, repeat. [BUILD] Verifiers, in order of trust. Deterministic checks and tests. External evidence and the end state of the world. Approval gates. And model judges, last, as evidence rather than proof.
+
+Jason Wei's principle: "Some tasks are much easier to verify than to solve." So design your tasks and your tools so that checking is cheap. Return the end state, not a success message.
+
+One finding from Anthropic's long-running-agent work. Agents "declare the job done" without checking end to end. The fix was not a better prompt. It was separating the agent doing the work from the agent judging it. Clean context is a feature. The judge should not share the worker's reasons for believing it succeeded.
+
+For the access agent, verification before any grant is deterministic. Identity from SSO. The policy match. The recorded approval. Three checks, in code, before the grant tool fires. The model proposes. The verifier disposes. In code, not in a prompt. Three times now. The harness is next.
+
+You have seen this. Your coding agent running the tests before it says done is a verifier. When it says done without running them, that is Anthropic's finding, on your laptop.
+
+That guards one action. A run is many actions over days, and that is the other half.
+
+**Cut if running long**
+
+Compress the Anthropic paragraph to its last three sentences ("It was separating the agent doing the work from the agent judging it. Clean context is a feature. The judge should not share the worker's reasons for believing it succeeded."). Saves about 12 seconds.
+
+**Sources**
+
+- Verification decides one case before it takes effect; evaluation estimates a rate over many → synthesis.md §1 item 3; track-c-evals-and-operations.md §2.4.
+- "gather context, take action, verify work, repeat" → synthesis.md §1 item 3 (Anthropic, "Effective context engineering for AI agents," 2025-09-29).
+- Verifiers in order of trust: deterministic checks and tests, external evidence and end state, approval gates, model judges as evidence rather than proof → synthesis.md §1 item 3; track-c-evals-and-operations.md §2.4 "Verifier models and test-time compute."
+- "Some tasks are much easier to verify than to solve." → track-c-evals-and-operations.md §3 (Jason Wei, 2025-07-15); synthesis.md §1 item 3.
+- Agents "declare the job done" without end-to-end checks → synthesis.md §1 item 3; track-c-evals-and-operations.md §2.4 (Anthropic, "Effective harnesses for long-running agents," 2025-11-26).
+- "Separating the agent doing the work from the agent judging it proves to be a strong lever." → track-b-enterprise-agents.md §3 (Prithvi Rajasekaran, Anthropic, March 2026). Paraphrased in script.
+- Clean context is a feature → track-b-enterprise-agents.md §3 short examples (Cognition's review agent, 2026-04-22).
+- Per-action verification as a harness concern → track-c-evals-and-operations.md §5 ("a step of the loop: verify before proceeding, stop when unverifiable"); synthesis.md §3 (Böckeler, martinfowler.com, April 2026: sensors observe after the agent acts); track-b-enterprise-agents.md §2.1 (Anthropic, "Harness design for long-running application development," 2026-03-24: the evaluator role inside the harness). NOT IN SYNTHESIS §4.
+- Bridge: the coding agent's tests as a verifier → track-a-discipline.md §2.7 (linters, tests, and hooks as the coding-agent harness); track-c-evals-and-operations.md §2.4 (rules-based feedback: linting, type checks). The talk's own line. NOT IN SYNTHESIS §4.
+- Running example, the refrain, and the seed → outline-v3.md 2.4 and Appendix E.
+
+---
+
+### Slide 10: The harness: one run
+
+**Outline:** 2.4b | **Time:** 3:00 | **Script target:** about 450 words
+
+**On slide**
+
+Headline: An approval can take two days. The harness is what survives them.
+
+- One run, in code: a deterministic outer loop, model-directed steps, hard budgets for steps, tokens, dollars, and wall-clock.
+- Durable state: journal before acting, idempotency keys, compensating actions, approval as a durable wait with a timeout.
 - Multi-agent in one rule: writes stay single-threaded.
 
 **Visual**
 
-One run of the access agent, left to right, as the Mermaid below. A deploy strikes the run during the two-day approval wait; the run resumes from its log and completes with an idempotency key on the grant. A timeout branch drops the request into a human queue. In a corner, a budget gauge with four dials: steps, tokens, dollars, wall-clock. Builds: the run appears whole through the approval wait; [BUILD] adds the deploy strike, the resume step, and the rest of the run. Dark text on every node.
+One run of the access agent, left to right, as the Mermaid below. The headline's two days are the wait node. A deploy strikes the run during the approval wait; the run resumes from its log and completes with an idempotency key on the grant. A timeout branch drops the request into a human queue. In a corner, a budget gauge with four dials: steps, tokens, dollars, wall-clock. Builds: the run appears whole through the approval wait; [BUILD], on the first paragraph of the script, adds the deploy strike, the resume step, and the rest of the run. Dark text on every node.
 
 ```mermaid
 flowchart LR
@@ -319,7 +384,7 @@ flowchart LR
 
 **Running example**
 
-A manager approval can take two days. The agent's run must survive a deploy in the middle, resume from its log, and never re-grant on retry. If approval times out, the request lands in a human queue with the agent's reasoning attached. Step and cost budgets stop a request that is looping on policy lookups.
+A manager approval can take two days. The agent's run must survive a deploy in the middle, resume from its log, and never re-grant on retry. If approval times out, the request lands in a human queue with the agent's reasoning attached. Step and cost budgets stop a request that is looping on policy lookups. This slide collects the three seeds: the freshness rule (slide 7), the policy engine (slide 8), and the three checks before a grant (slide 9).
 
 **Bridge**
 
@@ -327,92 +392,44 @@ Subagents in your coding agent follow the single-writer rule. The context-remain
 
 **Script**
 
-Fourth area. The harness. OpenAI's definition from August: the harness is "the layer between your application and the model." It has to "understand a task, maintain context over time, inspect relevant information, call tools, expose progress, handle failures, request human approval when necessary, and return a useful result." That is a long list, and it is the reusable asset. The chat interface is not.
+A manager approval can take two days. [POINT: flow] Here is one run of the access agent. Look up the requester. Search policy. Check entitlements. Request approval. Then nothing, for two days. [BUILD] Somewhere in those two days, somebody deploys, and the process that was running this loop is gone. When it comes back, does it grant twice? Does it grant at all? Nothing on the last four slides answers that. Not the model. Not the context. Not the tool. Not the check.
 
-One vocabulary warning. "Harness engineering" means two things this year. Anthropic uses it for the system around a production agent, which is what I mean. OpenAI's February post and an essay on Martin Fowler's site use it for configuring a coding agent with instruction files, linters, and tests. The skills overlap. The targets differ. If you hear the phrase, ask which one.
+This is the harness's job: one run. Three times I have said in code, not in a prompt. The freshness rule that blocks a stale policy. The policy engine that decides the tier. The three checks before a grant. Here is where that code lives: the program that runs the loop. The loop is the idea. The harness is the code.
 
-Control flow. A deterministic outer loop in code. Model-directed inner steps. And hard budgets: steps, tokens, money, and wall-clock time. Stopping conditions and escalation paths are designed, not discovered. For the access agent, a step budget and a cost budget stop a request that is looping on policy lookups.
+Control flow first. [POINT: gauge] A deterministic outer loop in code. Model-directed inner steps. And hard budgets: steps, tokens, money, and wall-clock time. Stopping conditions and escalation paths are designed, not discovered. For the access agent, a step budget and a cost budget stop a request that is looping on policy lookups.
 
-Now the thing that separates a demo loop from a production agent: durable state. [POINT: flow] A manager approval can take two days. The run has to survive a deploy in the middle. [BUILD] So: journal every side effect before it runs. Make steps idempotent with keys, so a retry cannot grant twice. Pair consequential steps with compensating actions; that is what the revoke tool is for. Model human approval as a durable wait with a timeout that escalates. If the manager never answers, the request lands in a human queue with the agent's reasoning attached. Anthropic's managed agents split the stateless harness from a durable session log and disposable sandboxes for exactly this reason. You need the pattern. The product is optional.
+Now the thing that separates a demo loop from a production agent: durable state. [POINT: wait] So: journal every side effect before it runs, and the run resumes from its log. Make steps idempotent with keys, so a retry cannot grant twice. Pair consequential steps with compensating actions; that is what the revoke tool is for. Model human approval as a durable wait with a timeout that escalates. If the manager never answers, the request lands in a human queue with the agent's reasoning attached. Anthropic's managed agents split a stateless harness from a durable session log and disposable sandboxes for exactly this reason.
 
 Multi-agent, in one rule, from Cognition this spring: "writes stay single-threaded and the additional agents contribute intelligence rather than actions." Parallelize reads. Never writes. And know the price: Anthropic's multi-agent research system cost about fifteen times the tokens of a chat.
 
-Finally, autonomy is set by tier, not by mood. More autonomy where actions are cheap to verify and reverse. Less where they are not.
+Autonomy is set by tier, not by mood. More autonomy where actions are cheap to verify and reverse, which is why verification came first. Less where they are not.
+
+So here is the harness in the terms that matter to this room. The model is rented. The tools wrap systems your company already owns. The harness is the program you write. OpenAI's own phrase for its platform: "the reusable part is the agent loop."
 
 You have used this. Subagents in your coding agent follow the single-writer rule. The context-remaining indicator is the budget.
 
 **Cut if running long**
 
-The vocabulary-warning paragraph. Saves about 25 seconds. If cut, it moves to the Q&A preface in qa.md, where it also lives.
+The two price sentences in the multi-agent paragraph ("Parallelize reads. Never writes. And know the price ... tokens of a chat."). Saves about 10 seconds. The figure returns in the Q&A answer to "Should we build multi-agent?"
 
 **Sources**
 
-- The harness is "the layer between your application and the model" that must "understand a task, maintain context over time, inspect relevant information, call tools, expose progress, handle failures, request human approval when necessary, and return a useful result." → synthesis.md §3 (OpenAI, "Codex as a platform," 2026-08-19).
-- "the most valuable reusable asset inside Codex is not the chat interface. It is the harness." → synthesis.md §2 finding 2 (OpenAI, August 2026). Paraphrased in the headline.
-- Two meanings of "harness engineering" → outline-v2.md Appendix D; synthesis.md §3 (OpenAI's February 2026 post; Böckeler, martinfowler.com, April 2026); track-a-discipline.md §4.
+- Running example, the collected seeds, and the headline → outline-v3.md 2.4 and Appendix E. The talk's own design.
+- "The reusable part is the agent loop." → synthesis.md §2 finding 3; track-a-discipline.md §2.4 (OpenAI, "Codex as a platform," 2026-08-19).
+- The division of labor (the application owns product context, business rules, and tools; the platform provides the agent loop and sandboxed execution) → track-b-enterprise-agents.md §2.1 (OpenAI, 2026-08-19). Backs the rented, owned, written line; not quoted. NOT IN SYNTHESIS §4.
 - Deterministic outer loop, model-directed inner steps, hard budgets → track-b-enterprise-agents.md §2.1, "Where the sources disagree" (d): the reconciliation in practice between 12-Factor's factor 8 and the agent definition. NOT IN SYNTHESIS §4.
 - Durable state: journal before running, idempotency keys, compensating actions, durable wait with timeout → synthesis.md §1 item 4; track-b-enterprise-agents.md §2.3 (Temporal, 2026-03-10; Inngest, 2026-02-19; Restate docs; 12-Factor Agents factors 5, 6, 12; Anthropic Managed Agents, 2026-04-08).
 - Anthropic's stateless harness, durable append-only session log, disposable sandboxes → synthesis.md §1 item 4 (Anthropic, "Scaling Managed Agents," 2026-04-08).
-- "You need the pattern. The product is optional." → synthesis.md §7 (the talk's Q&A answer).
 - "writes stay single-threaded and the additional agents contribute intelligence rather than actions" → synthesis.md §1 item 9 (Cognition, "Multi-Agents: What's Actually Working," 2026-04-22).
 - Multi-agent research at about 15x the tokens of chat → synthesis.md §4 safe (Anthropic, 2025-06-13).
-- Autonomy by tier → outline-v2.md 2.4; track-b-enterprise-agents.md §2.3 "Human-in-the-loop and action tiers."
+- Autonomy by tier → outline-v3.md 2.4; track-b-enterprise-agents.md §2.3 "Human-in-the-loop and action tiers."
 - Bridge → synthesis.md §2 finding 10.
 
 ---
 
-### Slide 10: Verify this action
+### Slide 11: Evaluate across runs: the loop
 
-**Outline:** 2.5a | **Time:** 1:45 | **Script target:** about 260 words
-
-**On slide**
-
-Headline: Verification decides this action, now. Evaluation estimates the rate.
-
-- Verifiers in order of trust: deterministic checks, external evidence and end state, approval gates, model judges as evidence.
-- "Some tasks are much easier to verify than to solve." Design so checking is cheap.
-- Separate the agent doing the work from the agent judging it.
-
-**Visual**
-
-Left: a two-column contrast card. Verification: one action, before it takes effect, inside the loop, failure cost is the action itself. Evaluation: many cases, before and after a change, outside the loop, failure cost is a bad release. Right: a four-rung ladder with an arrow up its side labeled "trust." Top rung: deterministic checks and tests. Then external evidence and end state. Then approval gates. Bottom: model judges, as evidence rather than proof. On [BUILD] the rungs appear top to bottom. The three bullets sit beneath.
-
-**Running example**
-
-Verification before any grant confirms the requester's identity from SSO, the policy match, and the recorded approval. Three deterministic checks in code before the grant tool fires.
-
-**Script**
-
-Fifth area, and the one every source names as the hardest new skill, so it gets the most time. Two different questions that beginners blur together. Verification decides whether this action, now, is acceptable before it takes effect. Evaluation estimates how often the system succeeds across many cases. Same grader types. Different questions. Very different failure costs. Fail verification and you granted admin to the wrong person. Fail evaluation and you shipped a bad release.
-
-Verification first, because it lives inside the loop. Gather context, take action, verify work, repeat. [BUILD] Verifiers, in order of trust. Deterministic checks and tests. External evidence and the actual end state of the world. Approval gates. And model judges, last, as evidence rather than proof.
-
-Jason Wei's principle: "Some tasks are much easier to verify than to solve." So design your tasks and your tools so that checking is cheap. Return the end state, not a success message.
-
-One finding from Anthropic's long-running-agent work. Agents "declare the job done" without checking end to end. A later instance looks around, sees progress, and announces success. The fix was not a better prompt. It was separating the agent doing the work from the agent judging it. Clean context is a feature. The judge should not share the worker's reasons for believing it succeeded.
-
-For the access agent, verification before any grant is deterministic. Confirm the requester's identity from SSO. Confirm the policy match. Confirm the recorded approval exists. Three checks, in code, before the grant tool fires. The model proposes. The verifier disposes.
-
-**Cut if running long**
-
-Compress the Anthropic paragraph to its last three sentences ("It was separating the agent doing the work from the agent judging it. Clean context is a feature. The judge should not share the worker's reasons for believing it succeeded."). Saves about 12 seconds.
-
-**Sources**
-
-- Verification decides one case before it takes effect; evaluation estimates a rate over many → synthesis.md §1 item 3; track-c-evals-and-operations.md §2.4.
-- "gather context, take action, verify work, repeat" → synthesis.md §1 item 3 (Anthropic, "Effective context engineering for AI agents," 2025-09-29).
-- Verifiers in order of trust: deterministic checks and tests, external evidence and end state, approval gates, model judges as evidence rather than proof → synthesis.md §1 item 3; track-c-evals-and-operations.md §2.4 "Verifier models and test-time compute."
-- "Some tasks are much easier to verify than to solve." → track-c-evals-and-operations.md §3 (Jason Wei, 2025-07-15); synthesis.md §1 item 3.
-- Agents "declare the job done" without end-to-end checks → synthesis.md §1 item 3; track-c-evals-and-operations.md §2.4 (Anthropic, "Effective harnesses for long-running agents," 2025-11-26).
-- "Separating the agent doing the work from the agent judging it proves to be a strong lever." → track-b-enterprise-agents.md §3 (Prithvi Rajasekaran, Anthropic, March 2026). Paraphrased in script.
-- Clean context is a feature → track-b-enterprise-agents.md §3 short examples (Cognition's review agent, 2026-04-22).
-- Running example → outline-v2.md 2.5.
-
----
-
-### Slide 11: Evaluate across cases: the loop
-
-**Outline:** 2.5b | **Time:** 2:15 | **Script target:** about 340 words
+**Outline:** 2.5 | **Time:** 2:15 | **Script target:** about 340 words
 
 **On slide**
 
@@ -450,7 +467,7 @@ You already know the test pyramid and CI gates. The new habit is reading raw tra
 
 **Script**
 
-Now evaluation, and the word that matters is loop. Not an artifact you build once. [POINT: cycle] Read a hundred real traces. One domain expert labels each one pass or fail, with a written critique. Cluster the failures into a taxonomy and count them. Write graders for the top failures: code where possible, a model judge where necessary, humans for calibration. Freeze a regression suite and gate changes on rates, not exact outputs. Ship, and sample production traffic into the same graders. Then repeat, every two to four weeks.
+Fifth area. Evaluation: many runs. The one every source names as the hardest new skill. And the word that matters is loop. Not an artifact you build once. [POINT: cycle] Read a hundred real traces. One domain expert labels each one pass or fail, with a written critique. Cluster the failures into a taxonomy and count them. Write graders for the top failures: code where possible, a model judge where necessary, humans for calibration. Freeze a regression suite and gate changes on rates, not exact outputs. Ship, and sample production traffic into the same graders. Then repeat, every two to four weeks. This loop sits on the outer ring of the map, because it samples production.
 
 Husain and Shankar, who teach this method: "Write evaluators for errors you discover, not errors you imagine." Anthropic says start with 20 to 50 tasks from real failures. And expect to spend 60 to 80 percent of your development time here.
 
@@ -470,13 +487,15 @@ Compress the tests paragraph to one sentence: "Tests remain necessary; evals sit
 
 - The loop: read 100+ traces, one expert labels pass/fail with critiques, cluster into a taxonomy and count, re-run every 2 to 4 weeks → track-c-evals-and-operations.md §2.1 (Husain and Shankar, Evals FAQ, 2025-05-28, updated 2026-09-01: "review 100+ diverse traces ... re-run error analysis every 2-4 weeks"). The full nine-step sequence is the track's synthesis of Husain and Shankar with Anthropic; the numbers are Husain and Shankar's.
 - "Write evaluators for errors you discover, not errors you imagine." → track-c-evals-and-operations.md §3 (Husain and Shankar, FAQ); synthesis.md §1 item 2.
+- Evals as the hardest new skill, named by every source → synthesis.md §2 finding 5 and §6.
+- Evaluation outside the loop, on the outer ring → outline-v3.md 2.5; track-c-evals-and-operations.md §2.4.
 - Start with 20 to 50 tasks from real failures → synthesis.md §4 safe (Anthropic, "Demystifying evals for AI agents," 2026-01-09).
 - 60 to 80 percent of development time on error analysis and evaluation → synthesis.md §4 safe (Husain and Shankar, Evals FAQ, 2025-05-28, updated 2026-09-01).
 - pass@k versus pass^k → synthesis.md §3 (Sierra, 2024; Anthropic, 2026).
 - Cost per task on the scorecard → track-c-evals-and-operations.md §2.8 (Kapoor et al., July 2024: evaluate on the accuracy-cost Pareto frontier).
 - Tests necessary but insufficient; graders, judges, fixtures as production code that drift → track-c-evals-and-operations.md §2.7 and §2.2 "Judge drift"; synthesis.md §1 mis-weightings (3.4).
 - 89 percent observability, 52.4 percent offline evals, 37.3 percent online evals, quality the top barrier at about 33 percent → synthesis.md §4 safe (LangChain State of Agent Engineering, December 2025, n=1,340). Spoken as "about half" and "about a third."
-- Running example and bridge → outline-v2.md 2.5.
+- Running example and bridge → outline-v3.md 2.5.
 
 ---
 
@@ -502,7 +521,7 @@ Every run of the access agent produces one trace. The graders on slide 11 read i
 
 **Script**
 
-Sixth area, operations, in two halves. First, observe. The trace is the shared unit of evals and operations. The record your graders read is the record your on-call engineer reads. So record all of it: the full context, every model call, every tool call and its result, state transitions and the stopping reason, the end state, tokens, cost, latency, the model version, the prompt version, and user feedback.
+Sixth area, operations: production, in two halves. First, observe. The trace is the shared unit of evals and operations. The record your graders read is the record your on-call engineer reads. So record all of it: the full context, every model call, every tool call and its result, state transitions and the stopping reason, the end state, tokens, cost, latency, the model version, the prompt version, and user feedback.
 
 OpenTelemetry has GenAI semantic conventions for agents and tools. As of July they are still marked development status. Instrument now anyway, and expect renames.
 
@@ -516,7 +535,7 @@ Nothing. This is one minute and it carries the observability promise from the se
 
 - The trace as the shared unit; what to record → track-c-evals-and-operations.md §2.5 "What to record" (the union of Anthropic's transcript definition, the OpenTelemetry agent span model, and LangChain's monitoring guide, 2026-02-26).
 - OpenTelemetry GenAI conventions all marked "Development" as of 2026-07-16 → track-c-evals-and-operations.md §2.5 (OpenTelemetry semantic-conventions registry; Azena summary). NOT IN SYNTHESIS §4. Dated "as of July" in the script.
-- Incident response and rollback for behavior; a model swap as an incident → outline-v2.md 2.6; track-c-evals-and-operations.md §2.6 (Arthur AI, 2026-08-06: "Probabilistic systems don't raise exceptions when their behavior drifts").
+- Incident response and rollback for behavior; a model swap as an incident → outline-v3.md 2.6; track-c-evals-and-operations.md §2.6 (Arthur AI, 2026-08-06: "Probabilistic systems don't raise exceptions when their behavior drifts").
 
 ---
 
@@ -577,7 +596,7 @@ The governance paragraph, except "Every grant is attributable and reversible." S
 - "human-in-the-loop bypass" was "the most consistently exploited failure mode" → synthesis.md §1 item 7 (Microsoft AI Red Team, June 2026); track-b-enterprise-agents.md §2.3.
 - Approval gates carry the action, the reasoning, and the impact → track-b-enterprise-agents.md §2.3 (AWS Agentic AI Lens, AGENTREL02-BP05).
 - Audit trail fields → track-b-enterprise-agents.md §2.6 "Audit trail expectations in practice."
-- Running example and bridge → outline-v2.md 2.6; synthesis.md §2 finding 10.
+- Running example and bridge → outline-v3.md 2.6; synthesis.md §2 finding 10.
 
 ---
 
@@ -597,39 +616,39 @@ The slide 5 ring drawing, now with every element labeled by area and by the resp
 
 ```mermaid
 flowchart TB
-  subgraph OPS["2.6 Operations"]
+  subgraph OPS["Across runs and in production: 2.5 evaluate, 2.6 operate"]
     direction TB
-    subgraph HARNESS["2.4 The harness: state, budgets, boundaries<br/>harness design and orchestration, cost and latency"]
+    subgraph HARNESS["2.4 The harness: verify, state, budgets<br/>harness design and orchestration, cost and latency"]
       direction TB
       subgraph LOOP["The loop"]
         direction LR
         M(("2.1 The model<br/>select, measure, replace"))
         G["2.2 Context<br/>context engineering and retrieval"] --> A["2.3 Tools and action tiers<br/>tools and extensibility, guardrails"]
-        A --> V["2.5 Verify, then evaluate<br/>evaluations and verification"]
+        A --> V["2.4 Verify this action<br/>verification"]
         V -- repeat --> G
         M -.- G
         M -.- A
         M -.- V
       end
     end
-    OBS["Observability"] ~~~ SEC["Security and guardrails"] ~~~ GOV["Governance"]
+    E["2.5 Evaluate across runs<br/>evaluations, cost per task"] ~~~ OBS["2.6 Observability"] ~~~ SEC["2.6 Security and guardrails"] ~~~ GOV["2.6 Governance"]
   end
   classDef model fill:#ffe08a,stroke:#333,color:#111
   classDef step fill:#dbeafe,stroke:#333,color:#111
   classDef ops fill:#e5e7eb,stroke:#333,color:#111
   class M model
   class G,A,V step
-  class OBS,SEC,GOV ops
+  class E,OBS,SEC,GOV ops
   style LOOP fill:#f5f9ff,stroke:#555,color:#111
   style HARNESS fill:#f4faf0,stroke:#555,color:#111
   style OPS fill:#fafafa,stroke:#555,color:#111
 ```
 
-Coverage check against README.md line 20: context engineering and retrieval (2.2), tools and extensibility (2.3), harness design and orchestration (2.4), evaluations and verification (2.5), observability (2.6), guardrails (2.3 and 2.6), security (2.6), cost and latency (2.4). All eight appear on this slide.
+Coverage check against README.md line 20: context engineering and retrieval (2.2), tools and extensibility (2.3), harness design and orchestration (2.4), evaluations and verification (verification 2.4, evaluations 2.5), observability (2.6), guardrails (2.3 and 2.6), security (2.6), cost and latency (2.4 budgets, 2.5 cost per task). All eight appear on this slide.
 
 **Script**
 
-Here is the map again, filled in. [POINT: each in turn] The model: select, measure, replace. Context: context engineering and retrieval. Tools and action tiers: tools, extensibility, and your first guardrail. The harness: orchestration, cost, and latency. Verify, then evaluate. And the operations ring: observability, security, governance. Every responsibility in the session description is on this diagram. That is the discipline. Now, how do you get there from here?
+Here is the map again, filled in. [POINT: each in turn] The model: select, measure, replace. Context: context engineering and retrieval. Tools and action tiers: tools, extensibility, and your first guardrail. Verify, the last step inside the loop. The harness around it: orchestration, cost, and latency. On the outer ring: evaluate across runs, then observe, secure, govern. One call. What it sees. One action. That action gated. One run. Many runs. Production. Every responsibility in the session description is on this diagram. That is the discipline. Now, how do you get there from here?
 
 **Cut if running long**
 
@@ -637,5 +656,5 @@ Nothing. Thirty seconds, and it is the section's payoff.
 
 **Sources**
 
-- The map and the six areas → outline-v2.md 2.0 and section close.
+- The map and the six areas → outline-v3.md 2.0 and section close.
 - The eight responsibilities → README.md line 20 (the session description, fixed scope).

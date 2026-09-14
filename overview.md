@@ -1,6 +1,6 @@
 # Beyond the Coding Agent: Talk Overview
 
-A one-file breakdown of the talk as drafted. Compiled 2026-09-13 from `slides/`, `outlines/outline-v2.md`, `research/synthesis.md`, and `style/design-brief.md`. Read this first; open the slide files for the verbatim scripts and sources lines.
+A one-file breakdown of the talk as drafted. Compiled 2026-09-13 from `slides/`, `outlines/outline-v3.md`, `research/synthesis.md`, and `style/design-brief.md`. Read this first; open the slide files for the verbatim scripts and sources lines.
 
 ## At a glance
 
@@ -12,7 +12,7 @@ A one-file breakdown of the talk as drafted. Compiled 2026-09-13 from `slides/`,
 | Script | About 4,500 words of verbatim first-person script at 150 words per minute |
 | Audience | Software engineers, leaning beginner. Most have used a coding agent. Fewer have called a model API. Few have shipped an AI-dependent system. |
 | Venue | An internal virtual conference themed "Code Meets Intelligence," delivered over a video call, September 2026 |
-| Status | Slides drafted and reviewed with the speaker on 2026-09-12 and 2026-09-13. Not yet transcribed into a deck. |
+| Status | Slides drafted and reviewed with the speaker on 2026-09-12 and 2026-09-13. Section 2 restructured on 2026-09-13 (outline v3). Not yet transcribed into a deck. |
 
 ## Central thesis
 
@@ -26,7 +26,7 @@ The talk opens on something everyone in the room did this week: shipped code fro
 
 Three through-lines make it one argument rather than a list.
 
-1. **The loop.** An agent is a model in a loop: gather context, act through a tool, verify, repeat, inside a harness that owns state, budgets, and boundaries. Every area of the discipline is a part of that loop. The map in section 2 is drawn on it.
+1. **The loop.** An agent is a model in a loop: gather context, act through a tool, verify, repeat, inside a harness that owns state, budgets, and boundaries. The loop is the idea; the harness is the program that runs it. Every area of the discipline is a part of that loop. The map in section 2 is drawn on it.
 2. **The running example.** The access agent, introduced on slide 4 and built area by area through slide 13. Four versions on the autonomy spectrum. The talk builds v3.
 3. **The coding-agent bridge.** Each area ends with the thing the audience already touched from the user side: the instructions file, the permission prompt, the sandbox, the subagent, the deprecation email. The title is literal.
 
@@ -52,7 +52,7 @@ The bridges between sections, in the speaker's words:
 | 4. Close | 1 | 19 | The map once more, the thesis in the same words as slide 1, the closing line, questions. |
 | Questions and discussion | 20 | | Sixteen anticipated questions with twenty-second stage answers in `slides/qa.md`. |
 
-The per-slide times in the section files sum to exactly 30:00. The outline's per-area budgets for section 2 summed to 19:30; the slide file holds 19:00 by giving slide 7 (context) 2:30 instead of 3:00.
+The per-slide times in the section files sum to exactly 30:00. Outline v3's per-area budgets for section 2 and the slide file both hold 19:00.
 
 ## The running example: the access agent
 
@@ -83,11 +83,11 @@ The six tools, named on slide 8 and reused verbatim on slides 9 through 13:
 
 ## The map
 
-The deck's signature asset, drawn three times: base on slide 5 (built ring by ring), labeled on slide 14 (no build), bare on slide 19. In the deck it is three concentric rings: the model at the center, the loop as the innermost ring, the harness as the middle ring, operations as the outer ring. The Mermaid in the slide files is the content of record and renders as nested boxes. This is slide 5's version; the deck recolors it per the node class table in the design brief.
+The deck's signature asset, drawn three times: base on slide 5 (built ring by ring), labeled on slide 14 (no build), bare on slide 19. In the deck it is three concentric rings: the model at the center, the loop as the innermost ring, the harness as the middle ring, and the outer ring for everything done across runs and in production (evaluation, observability, security, governance). The Mermaid in the slide files is the content of record and renders as nested boxes. This is slide 5's version; the deck recolors it per the node class table in the design brief.
 
 ```mermaid
 flowchart TB
-  subgraph OPS["Operations: observability, security, governance"]
+  subgraph OPS["Across runs and in production: evaluate, observe, secure, govern"]
     direction TB
     subgraph HARNESS["Harness: state, budgets, boundaries"]
       direction TB
@@ -102,28 +102,28 @@ flowchart TB
         M -.- V
       end
     end
-    OBS["Observability"] ~~~ SEC["Security"] ~~~ GOV["Governance"]
+    EV["Evaluate"] ~~~ OBS["Observability"] ~~~ SEC["Security"] ~~~ GOV["Governance"]
   end
   classDef model fill:#ffe08a,stroke:#333,color:#111
   classDef step fill:#dbeafe,stroke:#333,color:#111
   classDef ops fill:#e5e7eb,stroke:#333,color:#111
   class M model
   class G,A,V step
-  class OBS,SEC,GOV ops
+  class EV,OBS,SEC,GOV ops
   style LOOP fill:#f5f9ff,stroke:#555,color:#111
   style HARNESS fill:#f4faf0,stroke:#555,color:#111
   style OPS fill:#fafafa,stroke:#555,color:#111
 ```
 
-Six areas follow the loop in order. Slide 14 checks them against the eight responsibilities the session description promised.
+Six areas follow, from one call outward, and each slide opens with its scope phrase: one call, what that call sees, one action, that action gated, one run, many runs, production. A refrain, "in code, not in a prompt," is seeded on slides 7, 8, and 9 and collected on slide 10, so the harness arrives expected. Slide 14 checks the six areas against the eight responsibilities the session description promised.
 
 | Area | Ring | Slides | Promises from the description |
 |---|---|---|---|
 | 2.1 The model | Center (amber) | 6 | New in v2. Every canonical decomposition of an agent starts here. |
 | 2.2 Context | Loop (blue) | 7 | Context engineering and retrieval |
 | 2.3 Tools and action tiers | Loop (blue) | 8 | Tools and extensibility. Guardrails. |
-| 2.4 The harness | Middle (green) | 9 | Harness design and orchestration. Cost and latency. |
-| 2.5 Verify, then evaluate | Loop (blue) | 10, 11 | Evaluations and verification. The hardest new skill, so the most time. |
+| 2.4 The harness | Loop (blue) for verify, then middle (green) for the run | 9, 10 | Harness design and orchestration. Verification. Cost and latency. |
+| 2.5 Evaluate | Outer (muted) | 11 | Evaluations. Cost per task. The hardest new skill, by every source's account. |
 | 2.6 Operations | Outer (muted) | 12, 13 | Observability. Security. Guardrails. Governance. |
 
 ## Slide by slide
@@ -155,7 +155,7 @@ Goal: define the discipline, explain why it is distinct, and set up the spectrum
 
 Goal: the map, drawn on the loop, built through the access agent at v3. Covers every responsibility the session description promised.
 
-**Slide 5. The loop and the map.** 1:00, 150 words. Addy Osmani's headline: "Agent = Model + Harness. If you're not the model, you're the harness." The ring map, base variant, built loop, then harness, then operations. Names the six areas in the order the loop touches them. "Photograph this one."
+**Slide 5. The loop and the map.** 1:00, 150 words. Addy Osmani's headline: "Agent = Model + Harness. If you're not the model, you're the harness." The ring map, base variant, built loop, then harness, then the outer ring. One gloss, said once: harness in this talk means the program that runs the loop; the loop is the idea, the harness is the code. Names the six areas from one call outward. "Photograph this one."
 - First cut: nothing. The section is built on this slide.
 
 **Slide 6. The model is a component you select, measure, and replace.** 2:00, 300 words. Area 2.1, new in v2. A select, measure, replace cycle with the eval suite drawn as a gate every model change passes through. OpenAI's selection rule: baseline with the most capable model, then swap in smaller ones. Route by task. Ask for a schema whenever code consumes the answer. Lifecycle as an operational fact: six months' notice, the GPT-4 era retired on 2026-07-23, most surveyed teams on more than one model. Plan a migration every six to twelve months. Never change the model and the prompt in the same commit. A prop card shows the deprecation notice.
@@ -164,25 +164,26 @@ Goal: the map, drawn on the loop, built through the access agent at v3. Covers e
 - First cut: the "harnesses encode assumptions that go stale" paragraph. Saves 12 s. Returns in Q&A.
 
 **Slide 7. Context is a budget, not a bucket.** 2:30, 375 words. Area 2.2. The window as one horizontal budget bar in seven segments, with a marker reading "attention degrades here." Anthropic's definition and the governing rule: the smallest set of high-signal tokens. RAG is one technique for one segment. Long-horizon techniques all spend less: compaction, structured notes, subagents that return summaries, just-in-time retrieval. Then two properties beginners miss. Provenance and freshness, with Amazon's March 2026 outage traced to a stale internal wiki. And the security boundary: tool results and retrieved documents enter with the same authority as your instructions, so on build the untrusted segments cross-hatch and the policy segment gets a last-reviewed stamp.
-- Example: the window holds the requester's directory record, their entitlements, retrieved policy excerpts, and the request text labeled untrusted. Stale policy blocks autonomous action, in code.
+- Example: the window holds the requester's directory record, their entitlements, retrieved policy excerpts, and the request text labeled untrusted. Stale policy blocks autonomous action, in code. The first harness seed.
 - Bridge: the instructions file in your repo is context engineering. OpenAI's own agent-first codebase keeps it to about 100 lines that act as a table of contents. SECONDARY.
 - First cut: the two memory sentences. Saves 12 s. The outline's designated trim for the section.
 
 **Slide 8. Tiers are enforced outside the model.** 3:00, 450 words. Area 2.3. An 8/4 split: the six-tool table on the left, a sandbox strip on the right with the model above a policy engine above the tools, inside a sandbox whose only opening is an egress allowlist, and a key outside captioned "credentials never enter." Tools as "a contract between deterministic systems and non-deterministic agents," with Anthropic's design rules. MCP is how tools ship, vendor-neutral under the Linux Foundation, with the security boundary delegated to the implementer. A2A gets one mention. Then the most important design decision in the talk: read-only, reversible, consequential, enforced by a policy layer, not by asking the model to be careful. Replit's July 2025 database deletion closes it: the fix was three controls, not a better prompt.
-- Example: the six tools and their tiers, plus revoke as the compensating action.
+- Example: the six tools and their tiers, plus revoke as the compensating action. The policy engine is the second harness seed.
 - Bridge: the permission prompt in your coding agent is an action tier. Its sandbox is this isolation.
 - First cut: the two A2A sentences. Saves 10 s. A2A is then mentioned nowhere, which the outline permits.
 
-**Slide 9. The harness is the reusable asset. The chat interface is not.** 3:00, 450 words. Area 2.4. OpenAI's August 2026 definition of the harness. A vocabulary warning that "harness engineering" means two things this year. Control flow: a deterministic outer loop in code, model-directed inner steps, hard budgets for steps, tokens, dollars, and wall-clock, shown as a four-dial gauge. Then durable state, the thing that separates a demo loop from a production agent: journal every side effect, idempotency keys so a retry cannot grant twice, compensating actions, approval as a durable wait with a timeout that escalates. Multi-agent in one rule from Cognition: writes stay single-threaded. Autonomy set by tier, not by mood.
-- Example: one run drawn left to right. A deploy strikes during the two-day approval wait; the run resumes from its log and grants once, with an idempotency key. A timeout branch drops the request into a human queue with the agent's reasoning attached.
-- Bridge: subagents in your coding agent follow the single-writer rule. The context-remaining indicator is the budget.
-- First cut: the vocabulary-warning paragraph. Saves 25 s, the largest single cut in section 2. It also lives in the Q&A preface.
-
-**Slide 10. Verification decides this action, now. Evaluation estimates the rate.** 1:45, 260 words. Area 2.5, first half. A contrast card separates the two questions beginners blur: one action before it takes effect versus many cases before and after a change, with very different failure costs. A four-rung ladder of verifiers in order of trust: deterministic checks, external evidence and end state, approval gates, model judges as evidence rather than proof. Jason Wei's asymmetry: some tasks are much easier to verify than to solve, so design so checking is cheap. Anthropic's finding that agents "declare the job done," and the fix: separate the agent doing the work from the agent judging it.
-- Example: three deterministic checks in code before the grant tool fires: the requester's identity from SSO, the policy match, the recorded approval. The model proposes. The verifier disposes.
+**Slide 9. Verification decides this action, now. Evaluation estimates the rate.** 1:45, 260 words. Area 2.4, first half. Opens "Fourth area, the harness, in two halves. First half: that same action, gated, before it takes effect." A contrast card separates the two questions beginners blur: one action before it takes effect versus many runs before and after a change, with very different failure costs. A four-rung ladder of verifiers in order of trust: deterministic checks, external evidence and end state, approval gates, model judges as evidence rather than proof. Jason Wei's asymmetry: some tasks are much easier to verify than to solve, so design so checking is cheap. Anthropic's finding that agents "declare the job done," and the fix: separate the agent doing the work from the agent judging it. Hands off with "A run is many actions over days, and that is the other half."
+- Example: three deterministic checks in code before the grant tool fires: the requester's identity from SSO, the policy match, the recorded approval. The model proposes. The verifier disposes. The third harness seed.
+- Bridge: your coding agent running the tests before it says done is a verifier. Saying done without running them is Anthropic's finding, on your laptop.
 - First cut: compress the Anthropic paragraph to its last three sentences. Saves 12 s.
 
-**Slide 11. Evaluation is a loop, not an artifact.** 2:15, 340 words. Area 2.5, second half. The improvement cycle as a ring: read 100 real traces, one expert labels pass or fail with a critique, cluster failures into a taxonomy and count, write graders for the top failures, freeze a regression suite gated on rates, ship and sample production into the same graders, repeat every two to four weeks. Husain and Shankar: "Write evaluators for errors you discover, not errors you imagine." Start with 20 to 50 tasks. Expect 60 to 80 percent of development time here. pass@k versus pass^k. A scorecard of correctness, cost per task, latency, and pass^k. Tests remain necessary; graders are production code that drift. Three adoption tiles: 89 percent have observability, about half run offline evals, about a third run online evals.
+**Slide 10. An approval can take two days. The harness is what survives them.** 3:00, 450 words. Area 2.4, second half. Opens on the problem: a manager approval can take two days, a deploy lands in the middle, and nothing on the last four slides says whether the run grants twice or at all. Then the collection: three times "in code, not in a prompt," and here is where that code lives, the program that runs the loop. Control flow: a deterministic outer loop in code, model-directed inner steps, hard budgets for steps, tokens, dollars, and wall-clock, shown as a four-dial gauge. Durable state, the thing that separates a demo loop from a production agent: journal every side effect, idempotency keys so a retry cannot grant twice, compensating actions, approval as a durable wait with a timeout that escalates. Multi-agent in one rule from Cognition: writes stay single-threaded. Autonomy set by tier, not by mood. Closes on the stakes: the model is rented, the tools wrap systems the company already owns, the harness is the program you write, and OpenAI's "the reusable part is the agent loop."
+- Example: one run drawn left to right. A deploy strikes during the two-day approval wait; the run resumes from its log and grants once, with an idempotency key. A timeout branch drops the request into a human queue with the agent's reasoning attached.
+- Bridge: subagents in your coding agent follow the single-writer rule. The context-remaining indicator is the budget.
+- First cut: the two multi-agent price sentences. Saves 10 s. The figure returns in the Q&A answer on multi-agent.
+
+**Slide 11. Evaluation is a loop, not an artifact.** 2:15, 340 words. Area 2.5, the hardest new skill by every source's account. Opens "many runs, before and after a change." The improvement cycle as a ring, which sits on the map's outer ring because it samples production: read 100 real traces, one expert labels pass or fail with a critique, cluster failures into a taxonomy and count, write graders for the top failures, freeze a regression suite gated on rates, ship and sample production into the same graders, repeat every two to four weeks. Husain and Shankar: "Write evaluators for errors you discover, not errors you imagine." Start with 20 to 50 tasks. Expect 60 to 80 percent of development time here. pass@k versus pass^k. A scorecard of correctness, cost per task, latency, and pass^k. Tests remain necessary; graders are production code that drift. Three adoption tiles: 89 percent have observability, about half run offline evals, about a third run online evals.
 - Example: the eval set starts as 20 to 50 historical requests with known end states and deterministic graders. Production sampling surfaces a failure nobody imagined: requests phrased as urgent skip the policy lookup. It becomes a taxonomy entry, a grader, and a regression case.
 - Bridge: you know the test pyramid and CI gates. The new habit is reading raw traces by hand. The new artifact is a labeled failure taxonomy. The new metric is a rate with a confidence interval.
 - First cut: compress the tests paragraph to one sentence. Saves 10 s.
@@ -197,7 +198,7 @@ Goal: the map, drawn on the loop, built through the access agent at v3. Covers e
 - Flags: SECONDARY on OpenAI's "unlikely to ever be fully solved." CAVEAT on the shared-API-key figure, spoken as "in one vendor survey."
 - First cut: the governance paragraph, except "Every grant is attributable and reversible." Saves 10 s.
 
-**Slide 14. The map, with the six areas and the eight promises.** 0:30, 75 words. The ring map, labeled variant, all at once so the speaker can point through it. Every responsibility in the session description is on the diagram.
+**Slide 14. The map, with the six areas and the eight promises.** 0:30, 75 words. The ring map, labeled variant, all at once so the speaker can point through it: the loop's three steps with verify last, the harness ring, and evaluation on the outer ring beside observability, security, and governance. A seven-beat read-back of the scope phrases. Every responsibility in the session description is on the diagram.
 - Bridge: "Now, how do you get there from here?"
 - First cut: nothing. Thirty seconds, and the section's payoff.
 
@@ -232,7 +233,7 @@ The outline's designated order:
 2. The memory sentences on slide 7. About 12 s.
 3. The governance line on slide 13. About 10 s.
 
-Those three save about a minute. Every slide also names its own first cut. The full inventory comes to 202 seconds, about 3 minutes 20 seconds. Slides 5, 12, 14, and 19 have no cut.
+Those three save about a minute. Every slide also names its own first cut. The full inventory comes to 187 seconds, about 3 minutes 7 seconds. Slides 5, 12, 14, and 19 have no cut.
 
 | Slide | Cut | Saves |
 |---|---|---|
@@ -243,15 +244,15 @@ Those three save about a minute. Every slide also names its own first cut. The f
 | 6 | "Harnesses encode assumptions" paragraph | 12 s |
 | 7 | Two memory sentences | 12 s |
 | 8 | Two A2A sentences | 10 s |
-| 9 | Vocabulary-warning paragraph | 25 s |
-| 10 | Compress the Anthropic paragraph | 12 s |
+| 9 | Compress the Anthropic paragraph | 12 s |
+| 10 | Two multi-agent price sentences | 10 s |
 | 11 | Compress the tests paragraph | 10 s |
 | 13 | Governance paragraph, keep one line | 10 s |
 | 15 | Fold into slide 16 | 40 s |
 | 16 | McNairn quotation | 10 s |
 | 17 | Horthy interview sentence | 10 s |
 | 18 | Market paragraph | 15 s |
-| | Total available | 202 s |
+| | Total available | 187 s |
 
 ## Evidence rules
 
@@ -261,7 +262,7 @@ Every number and quotation on a slide traces to `research/synthesis.md` section 
 |---|---|---|
 | CAVEAT | Say the caveat on stage. | Slide 13: the shared-API-key figure (Gravitee, February 2026, vendor survey). |
 | SECONDARY | The primary source was unreachable when the research ran. Keep the flag. | Slide 7: OpenAI's agent-first codebase keeping its instructions file to about 100 lines (a primary-sourced alternative is offered). Slide 13: OpenAI's "unlikely to ever be fully solved," via press coverage. |
-| NOT IN SYNTHESIS | Traced to a track report rather than the section 4 tables. Mostly definitions, quotations, and the talk's own rules. | Slides 1, 2, 3, 6, 7, 8, 9, 12, and 15. The migration cadence and the "never change model and prompt in the same commit" rule on slide 6 are presented as the talk's rules. The "about 80 percent" on slide 15 is one practitioner's anecdote, never a statistic. |
+| NOT IN SYNTHESIS | Traced to a track report rather than the section 4 tables. Mostly definitions, quotations, and the talk's own rules. | Slides 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, and 15. The migration cadence and the "never change model and prompt in the same commit" rule on slide 6 are presented as the talk's rules. The harness gloss on slide 5, the refrain on slides 7 to 10, and the rented, owned, written line on slide 10 are the talk's own sentences. The "about 80 percent" on slide 15 is one practitioner's anecdote, never a statistic. |
 
 Numbers that appear on no slide, and what to say if one comes up from the floor:
 
@@ -280,7 +281,7 @@ Figures usable only with their caveat spoken aloud: McKinsey's August 2026 numbe
 
 Opening line: "Questions about the discipline, the transition, agent reliability, or applying this inside an existing engineering organization. All fair game." If the room is quiet, offer in order: "Isn't this just software engineering?", then "Which framework?", then "How do we handle prompt injection?"
 
-The vocabulary trap. "Harness engineering" means two things in 2026. Anthropic's posts use it for the system around a production agent, which is how the talk uses it. OpenAI's February 2026 post and Birgitta Böckeler's essay on martinfowler.com use it for configuring a coding agent with instruction files, linters, and tests. If a question seems to disagree with slide 9, the asker is probably using the other meaning. Say so, then answer.
+The vocabulary trap. "Harness engineering" means two things in 2026. Anthropic's posts use it for the system around a production agent, which is the sense the deck uses throughout. OpenAI's February 2026 post and Birgitta Böckeler's essay on martinfowler.com use it for configuring a coding agent with instruction files, linters, and tests. The talk does not say this on stage; it lives in the Q&A preface. If a question seems to disagree with slide 10, the harness slide, the asker is probably using the other meaning. Say so, then answer.
 
 Sixteen anticipated questions and their twenty-second stage answers. Each has an "if pressed" layer and a "do not say" line in `slides/qa.md`.
 
@@ -315,7 +316,7 @@ Fixed color keys that must not vary:
 | Autonomy spectrum (slide 4) | Four stop cards on the surface color. v3 highlighted in pink; v0, v1, v2 dimmed. |
 | Tool tiers (slide 8) | Read-only in blue. Durable wait in muted off-white. External and consequential in amber. |
 | Mistakes and antidotes (slide 17) | Mistake column in amber. Antidote column in green. |
-| Contrast card (slide 10) | Headings in blue and green at 24 pt bold or larger. |
+| Contrast card (slide 9) | Headings in blue and green at 24 pt bold or larger. |
 | Checklists (slides 15, 18) | Green check glyph, off-white text. |
 | Text on fills | Dark text on pink, green, amber, and off-white. Off-white text on blue. Blue text only at large sizes. No red anywhere; strikes and failures use pink. |
 
@@ -333,7 +334,7 @@ The brief is also a tiny npm package that `/design-sync` uploads to the Claude D
 
 - Description: final and distributed.
 - Research: complete as of 2026-09-11.
-- Outline: v2 complete and under review by the speaker.
+- Outline: v3 complete. Section 2 restructured with the speaker on 2026-09-13; v2 kept for comparison.
 - Slides: drafted and reviewed section by section with the speaker on 2026-09-12 and 2026-09-13.
 - Design: brief aligned with the conference brand and synced to Claude Design on 2026-09-13.
 - Next: transcribe the nineteen slides into a deck using the brief, then rehearse against the timing tables and the cut inventory above.
