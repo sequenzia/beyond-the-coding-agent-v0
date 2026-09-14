@@ -37,6 +37,7 @@ The description above was provided to attendees before the outline was finalized
 | `research/track-b-enterprise-agents.md` | Canonical agent design guidance, standards (MCP, A2A, Agent Skills, AGENTS.md, agent identity), production patterns, security incidents, adoption data, governance. |
 | `research/track-c-evals-and-operations.md` | Evaluation methodology, verification versus evaluation, observability, testing, cost and latency. |
 | `research/track-d-transition.md` | Job market, transferable skills, first-timer mistakes, learning resources, first-person accounts, career debates. |
+| `deck/` | The PowerPoint deck and, under `deck/build/`, the generator that rebuilds it from `slides/` and `style/design-brief.md`. |
 | `CLAUDE.md` | Working conventions and the decisions that govern the talk, for Claude Code sessions in this repo. |
 
 ## Central Thesis
@@ -48,4 +49,5 @@ Using AI makes you an AI-enabled software engineer. Engineering systems whose be
 - Description: final and distributed.
 - Research: complete as of 2026-09-11. Each track report flags anything that could only be reached through secondary coverage.
 - Outline: v3 complete. Section 2 restructured with the speaker on 2026-09-13; v2 kept for comparison.
-- Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13. Not yet transcribed into a deck.
+- Slides: drafted in `slides/`, one file per section plus Q&A prep, reviewed section by section with the speaker on 2026-09-12 and 2026-09-13.
+- Deck: transcribed on 2026-09-14 into `deck/beyond-the-coding-agent.pptx` by the generator in `deck/build/`; click-to-appear builds, scripts in the speaker notes.
